@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 18, 2019 at 09:36 AM
+-- Generation Time: Dec 18, 2019 at 10:24 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -19,6 +19,184 @@ SET time_zone = "+00:00";
 --
 -- Database: `wordpress`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wp_bp_activity`
+--
+
+CREATE TABLE `wp_bp_activity` (
+  `id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `component` varchar(75) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `type` varchar(75) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `action` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `content` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `primary_link` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `item_id` bigint(20) NOT NULL,
+  `secondary_item_id` bigint(20) DEFAULT NULL,
+  `date_recorded` datetime NOT NULL,
+  `hide_sitewide` tinyint(1) DEFAULT '0',
+  `mptt_left` int(11) NOT NULL DEFAULT '0',
+  `mptt_right` int(11) NOT NULL DEFAULT '0',
+  `is_spam` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- Dumping data for table `wp_bp_activity`
+--
+
+INSERT INTO `wp_bp_activity` (`id`, `user_id`, `component`, `type`, `action`, `content`, `primary_link`, `item_id`, `secondary_item_id`, `date_recorded`, `hide_sitewide`, `mptt_left`, `mptt_right`, `is_spam`) VALUES
+(1, 1, 'members', 'last_activity', '', '', '', 0, NULL, '2019-12-18 10:23:09', 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wp_bp_activity_meta`
+--
+
+CREATE TABLE `wp_bp_activity_meta` (
+  `id` bigint(20) NOT NULL,
+  `activity_id` bigint(20) NOT NULL,
+  `meta_key` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `meta_value` longtext COLLATE utf8mb4_unicode_520_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wp_bp_invitations`
+--
+
+CREATE TABLE `wp_bp_invitations` (
+  `id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `inviter_id` bigint(20) NOT NULL,
+  `invitee_email` varchar(100) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `class` varchar(120) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `item_id` bigint(20) NOT NULL,
+  `secondary_item_id` bigint(20) DEFAULT NULL,
+  `type` varchar(12) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'invite',
+  `content` longtext COLLATE utf8mb4_unicode_520_ci,
+  `date_modified` datetime NOT NULL,
+  `invite_sent` tinyint(1) NOT NULL DEFAULT '0',
+  `accepted` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wp_bp_notifications`
+--
+
+CREATE TABLE `wp_bp_notifications` (
+  `id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `item_id` bigint(20) NOT NULL,
+  `secondary_item_id` bigint(20) DEFAULT NULL,
+  `component_name` varchar(75) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `component_action` varchar(75) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `date_notified` datetime NOT NULL,
+  `is_new` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wp_bp_notifications_meta`
+--
+
+CREATE TABLE `wp_bp_notifications_meta` (
+  `id` bigint(20) NOT NULL,
+  `notification_id` bigint(20) NOT NULL,
+  `meta_key` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `meta_value` longtext COLLATE utf8mb4_unicode_520_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wp_bp_xprofile_data`
+--
+
+CREATE TABLE `wp_bp_xprofile_data` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `field_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `value` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `last_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wp_bp_xprofile_fields`
+--
+
+CREATE TABLE `wp_bp_xprofile_fields` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `group_id` bigint(20) UNSIGNED NOT NULL,
+  `parent_id` bigint(20) UNSIGNED NOT NULL,
+  `type` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `name` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `is_required` tinyint(1) NOT NULL DEFAULT '0',
+  `is_default_option` tinyint(1) NOT NULL DEFAULT '0',
+  `field_order` bigint(20) NOT NULL DEFAULT '0',
+  `option_order` bigint(20) NOT NULL DEFAULT '0',
+  `order_by` varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `can_delete` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- Dumping data for table `wp_bp_xprofile_fields`
+--
+
+INSERT INTO `wp_bp_xprofile_fields` (`id`, `group_id`, `parent_id`, `type`, `name`, `description`, `is_required`, `is_default_option`, `field_order`, `option_order`, `order_by`, `can_delete`) VALUES
+(1, 1, 0, 'textbox', 'Name', '', 1, 0, 0, 0, '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wp_bp_xprofile_groups`
+--
+
+CREATE TABLE `wp_bp_xprofile_groups` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `description` mediumtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `group_order` bigint(20) NOT NULL DEFAULT '0',
+  `can_delete` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- Dumping data for table `wp_bp_xprofile_groups`
+--
+
+INSERT INTO `wp_bp_xprofile_groups` (`id`, `name`, `description`, `group_order`, `can_delete`) VALUES
+(1, 'Base', '', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wp_bp_xprofile_meta`
+--
+
+CREATE TABLE `wp_bp_xprofile_meta` (
+  `id` bigint(20) NOT NULL,
+  `object_id` bigint(20) NOT NULL,
+  `object_type` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `meta_key` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `meta_value` longtext COLLATE utf8mb4_unicode_520_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+--
+-- Dumping data for table `wp_bp_xprofile_meta`
+--
+
+INSERT INTO `wp_bp_xprofile_meta` (`id`, `object_id`, `object_type`, `meta_key`, `meta_value`) VALUES
+(1, 1, 'field', 'allow_custom_visibility', 'disabled');
 
 -- --------------------------------------------------------
 
@@ -136,13 +314,13 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (30, 'hack_file', '0', 'yes'),
 (31, 'blog_charset', 'UTF-8', 'yes'),
 (32, 'moderation_keys', '', 'no'),
-(33, 'active_plugins', 'a:0:{}', 'yes'),
+(33, 'active_plugins', 'a:1:{i:0;s:24:\"buddypress/bp-loader.php\";}', 'yes'),
 (34, 'category_base', '', 'yes'),
 (35, 'ping_sites', 'http://rpc.pingomatic.com/', 'yes'),
 (36, 'comment_max_links', '2', 'yes'),
 (37, 'gmt_offset', '0', 'yes'),
 (38, 'default_email_category', '1', 'yes'),
-(39, 'recently_edited', 'a:2:{i:0;s:60:\"/Applications/MAMP/htdocs/wp-content/themes/atreus/style.css\";i:1;s:0:\"\";}', 'no'),
+(39, 'recently_edited', 'a:5:{i:0;s:64:\"/Applications/MAMP/htdocs/wp-content/plugins/akismet/akismet.php\";i:1;s:60:\"/Applications/MAMP/htdocs/wp-content/themes/atreus/style.css\";i:2;s:64:\"/Applications/MAMP/htdocs/wp-content/themes/atreus/css/bulma.css\";i:3;s:68:\"/Applications/MAMP/htdocs/wp-content/themes/atreus/css/bulma.min.css\";i:4;s:61:\"/Applications/MAMP/htdocs/wp-content/themes/atreus/header.php\";}', 'no'),
 (40, 'template', 'atreus', 'yes'),
 (41, 'stylesheet', 'atreus', 'yes'),
 (42, 'comment_whitelist', '1', 'yes'),
@@ -182,7 +360,7 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (76, 'comment_order', 'asc', 'yes'),
 (77, 'sticky_posts', 'a:0:{}', 'yes'),
 (78, 'widget_categories', 'a:6:{i:2;a:4:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:12:\"hierarchical\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;i:4;a:4:{s:5:\"title\";s:9:\"Parcourir\";s:5:\"count\";i:0;s:12:\"hierarchical\";i:1;s:8:\"dropdown\";i:0;}i:5;a:0:{}i:6;a:4:{s:5:\"title\";s:9:\"Parcourir\";s:5:\"count\";i:0;s:12:\"hierarchical\";i:0;s:8:\"dropdown\";i:0;}i:7;a:4:{s:5:\"title\";s:9:\"Parcourir\";s:5:\"count\";i:0;s:12:\"hierarchical\";i:0;s:8:\"dropdown\";i:0;}}', 'yes'),
-(79, 'widget_text', 'a:5:{i:2;a:4:{s:5:\"title\";s:20:\"À propos de ce site\";s:4:\"text\";s:99:\"C’est peut-être le bon endroit pour vous présenter et votre site ou insérer quelques crédits.\";s:6:\"filter\";b:1;s:6:\"visual\";b:1;}i:3;a:4:{s:5:\"title\";s:14:\"Retrouvez-nous\";s:4:\"text\";s:189:\"<strong>Adresse</strong>\nAvenue des Champs-Élysées\n75008, Paris\n\n<strong>Heures d’ouverture</strong>\nDu lundi au vendredi : 9h00&ndash;17h00\nLes samedi et dimanche : 11h00&ndash;15h00\";s:6:\"filter\";b:1;s:6:\"visual\";b:1;}s:12:\"_multiwidget\";i:1;i:4;a:4:{s:5:\"title\";s:20:\"À propos de ce site\";s:4:\"text\";s:99:\"C’est peut-être le bon endroit pour vous présenter et votre site ou insérer quelques crédits.\";s:6:\"filter\";b:1;s:6:\"visual\";b:1;}i:5;a:4:{s:5:\"title\";s:14:\"Retrouvez-nous\";s:4:\"text\";s:189:\"<strong>Adresse</strong>\nAvenue des Champs-Élysées\n75008, Paris\n\n<strong>Heures d’ouverture</strong>\nDu lundi au vendredi : 9h00&ndash;17h00\nLes samedi et dimanche : 11h00&ndash;15h00\";s:6:\"filter\";b:1;s:6:\"visual\";b:1;}}', 'yes'),
+(79, 'widget_text', 'a:6:{i:2;a:4:{s:5:\"title\";s:20:\"À propos de ce site\";s:4:\"text\";s:99:\"C’est peut-être le bon endroit pour vous présenter et votre site ou insérer quelques crédits.\";s:6:\"filter\";b:1;s:6:\"visual\";b:1;}i:3;a:4:{s:5:\"title\";s:14:\"Retrouvez-nous\";s:4:\"text\";s:189:\"<strong>Adresse</strong>\nAvenue des Champs-Élysées\n75008, Paris\n\n<strong>Heures d’ouverture</strong>\nDu lundi au vendredi : 9h00&ndash;17h00\nLes samedi et dimanche : 11h00&ndash;15h00\";s:6:\"filter\";b:1;s:6:\"visual\";b:1;}s:12:\"_multiwidget\";i:1;i:4;a:4:{s:5:\"title\";s:20:\"À propos de ce site\";s:4:\"text\";s:99:\"C’est peut-être le bon endroit pour vous présenter et votre site ou insérer quelques crédits.\";s:6:\"filter\";b:1;s:6:\"visual\";b:1;}i:5;a:4:{s:5:\"title\";s:14:\"Retrouvez-nous\";s:4:\"text\";s:189:\"<strong>Adresse</strong>\nAvenue des Champs-Élysées\n75008, Paris\n\n<strong>Heures d’ouverture</strong>\nDu lundi au vendredi : 9h00&ndash;17h00\nLes samedi et dimanche : 11h00&ndash;15h00\";s:6:\"filter\";b:1;s:6:\"visual\";b:1;}i:7;a:0:{}}', 'yes'),
 (80, 'widget_rss', 'a:2:{i:1;a:0:{}s:12:\"_multiwidget\";i:1;}', 'yes'),
 (81, 'uninstall_plugins', 'a:0:{}', 'no'),
 (82, 'timezone_string', 'Europe/Paris', 'yes'),
@@ -201,13 +379,13 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (95, 'wp_user_roles', 'a:5:{s:13:\"administrator\";a:2:{s:4:\"name\";s:13:\"Administrator\";s:12:\"capabilities\";a:61:{s:13:\"switch_themes\";b:1;s:11:\"edit_themes\";b:1;s:16:\"activate_plugins\";b:1;s:12:\"edit_plugins\";b:1;s:10:\"edit_users\";b:1;s:10:\"edit_files\";b:1;s:14:\"manage_options\";b:1;s:17:\"moderate_comments\";b:1;s:17:\"manage_categories\";b:1;s:12:\"manage_links\";b:1;s:12:\"upload_files\";b:1;s:6:\"import\";b:1;s:15:\"unfiltered_html\";b:1;s:10:\"edit_posts\";b:1;s:17:\"edit_others_posts\";b:1;s:20:\"edit_published_posts\";b:1;s:13:\"publish_posts\";b:1;s:10:\"edit_pages\";b:1;s:4:\"read\";b:1;s:8:\"level_10\";b:1;s:7:\"level_9\";b:1;s:7:\"level_8\";b:1;s:7:\"level_7\";b:1;s:7:\"level_6\";b:1;s:7:\"level_5\";b:1;s:7:\"level_4\";b:1;s:7:\"level_3\";b:1;s:7:\"level_2\";b:1;s:7:\"level_1\";b:1;s:7:\"level_0\";b:1;s:17:\"edit_others_pages\";b:1;s:20:\"edit_published_pages\";b:1;s:13:\"publish_pages\";b:1;s:12:\"delete_pages\";b:1;s:19:\"delete_others_pages\";b:1;s:22:\"delete_published_pages\";b:1;s:12:\"delete_posts\";b:1;s:19:\"delete_others_posts\";b:1;s:22:\"delete_published_posts\";b:1;s:20:\"delete_private_posts\";b:1;s:18:\"edit_private_posts\";b:1;s:18:\"read_private_posts\";b:1;s:20:\"delete_private_pages\";b:1;s:18:\"edit_private_pages\";b:1;s:18:\"read_private_pages\";b:1;s:12:\"delete_users\";b:1;s:12:\"create_users\";b:1;s:17:\"unfiltered_upload\";b:1;s:14:\"edit_dashboard\";b:1;s:14:\"update_plugins\";b:1;s:14:\"delete_plugins\";b:1;s:15:\"install_plugins\";b:1;s:13:\"update_themes\";b:1;s:14:\"install_themes\";b:1;s:11:\"update_core\";b:1;s:10:\"list_users\";b:1;s:12:\"remove_users\";b:1;s:13:\"promote_users\";b:1;s:18:\"edit_theme_options\";b:1;s:13:\"delete_themes\";b:1;s:6:\"export\";b:1;}}s:6:\"editor\";a:2:{s:4:\"name\";s:6:\"Editor\";s:12:\"capabilities\";a:34:{s:17:\"moderate_comments\";b:1;s:17:\"manage_categories\";b:1;s:12:\"manage_links\";b:1;s:12:\"upload_files\";b:1;s:15:\"unfiltered_html\";b:1;s:10:\"edit_posts\";b:1;s:17:\"edit_others_posts\";b:1;s:20:\"edit_published_posts\";b:1;s:13:\"publish_posts\";b:1;s:10:\"edit_pages\";b:1;s:4:\"read\";b:1;s:7:\"level_7\";b:1;s:7:\"level_6\";b:1;s:7:\"level_5\";b:1;s:7:\"level_4\";b:1;s:7:\"level_3\";b:1;s:7:\"level_2\";b:1;s:7:\"level_1\";b:1;s:7:\"level_0\";b:1;s:17:\"edit_others_pages\";b:1;s:20:\"edit_published_pages\";b:1;s:13:\"publish_pages\";b:1;s:12:\"delete_pages\";b:1;s:19:\"delete_others_pages\";b:1;s:22:\"delete_published_pages\";b:1;s:12:\"delete_posts\";b:1;s:19:\"delete_others_posts\";b:1;s:22:\"delete_published_posts\";b:1;s:20:\"delete_private_posts\";b:1;s:18:\"edit_private_posts\";b:1;s:18:\"read_private_posts\";b:1;s:20:\"delete_private_pages\";b:1;s:18:\"edit_private_pages\";b:1;s:18:\"read_private_pages\";b:1;}}s:6:\"author\";a:2:{s:4:\"name\";s:6:\"Author\";s:12:\"capabilities\";a:10:{s:12:\"upload_files\";b:1;s:10:\"edit_posts\";b:1;s:20:\"edit_published_posts\";b:1;s:13:\"publish_posts\";b:1;s:4:\"read\";b:1;s:7:\"level_2\";b:1;s:7:\"level_1\";b:1;s:7:\"level_0\";b:1;s:12:\"delete_posts\";b:1;s:22:\"delete_published_posts\";b:1;}}s:11:\"contributor\";a:2:{s:4:\"name\";s:11:\"Contributor\";s:12:\"capabilities\";a:5:{s:10:\"edit_posts\";b:1;s:4:\"read\";b:1;s:7:\"level_1\";b:1;s:7:\"level_0\";b:1;s:12:\"delete_posts\";b:1;}}s:10:\"subscriber\";a:2:{s:4:\"name\";s:10:\"Subscriber\";s:12:\"capabilities\";a:2:{s:4:\"read\";b:1;s:7:\"level_0\";b:1;}}}', 'yes'),
 (96, 'fresh_site', '0', 'yes'),
 (97, 'WPLANG', 'fr_FR', 'yes'),
-(98, 'widget_search', 'a:2:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}', 'yes'),
+(98, 'widget_search', 'a:3:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;i:4;a:1:{s:5:\"title\";s:9:\"Recherche\";}}', 'yes'),
 (99, 'widget_recent-posts', 'a:2:{i:2;a:2:{s:5:\"title\";s:0:\"\";s:6:\"number\";i:5;}s:12:\"_multiwidget\";i:1;}', 'yes'),
 (100, 'widget_recent-comments', 'a:2:{i:2;a:2:{s:5:\"title\";s:0:\"\";s:6:\"number\";i:5;}s:12:\"_multiwidget\";i:1;}', 'yes'),
 (101, 'widget_archives', 'a:2:{i:2;a:3:{s:5:\"title\";s:0:\"\";s:5:\"count\";i:0;s:8:\"dropdown\";i:0;}s:12:\"_multiwidget\";i:1;}', 'yes'),
 (102, 'widget_meta', 'a:2:{i:2;a:1:{s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}', 'yes'),
-(103, 'sidebars_widgets', 'a:5:{s:19:\"wp_inactive_widgets\";a:3:{i:0;s:10:\"nav_menu-3\";i:1;s:12:\"categories-4\";i:2;s:10:\"nav_menu-6\";}s:9:\"sidebar-1\";a:1:{i:0;s:6:\"text-4\";}s:9:\"sidebar-2\";a:1:{i:0;s:6:\"text-5\";}s:13:\"array_version\";i:3;s:15:\"custom-side-bar\";a:1:{i:0;s:10:\"nav_menu-8\";}}', 'yes'),
-(104, 'cron', 'a:6:{i:1576664493;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1576696893;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1576740093;a:1:{s:32:\"recovery_mode_clean_expired_keys\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1576740229;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1576740231;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}', 'yes'),
+(103, 'sidebars_widgets', 'a:5:{s:19:\"wp_inactive_widgets\";a:3:{i:0;s:10:\"nav_menu-3\";i:1;s:12:\"categories-4\";i:2;s:10:\"nav_menu-6\";}s:9:\"sidebar-1\";a:1:{i:0;s:6:\"text-4\";}s:9:\"sidebar-2\";a:1:{i:0;s:6:\"text-5\";}s:13:\"array_version\";i:3;s:15:\"custom-side-bar\";a:3:{i:0;s:10:\"nav_menu-8\";i:1;s:22:\"bp_core_login_widget-4\";i:2;s:8:\"search-4\";}}', 'yes'),
+(104, 'cron', 'a:6:{i:1576668093;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1576696893;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1576740093;a:1:{s:32:\"recovery_mode_clean_expired_keys\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1576740229;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1576740231;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}s:7:\"version\";i:2;}', 'yes'),
 (105, 'widget_pages', 'a:2:{s:12:\"_multiwidget\";i:1;i:3;a:3:{s:5:\"title\";s:9:\"Parcourir\";s:6:\"sortby\";s:10:\"post_title\";s:7:\"exclude\";s:0:\"\";}}', 'yes'),
 (106, 'widget_calendar', 'a:1:{s:12:\"_multiwidget\";i:1;}', 'yes'),
 (107, 'widget_media_audio', 'a:1:{s:12:\"_multiwidget\";i:1;}', 'yes'),
@@ -219,13 +397,11 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (113, 'widget_custom_html', 'a:1:{s:12:\"_multiwidget\";i:1;}', 'yes'),
 (115, 'recovery_keys', 'a:0:{}', 'yes'),
 (119, 'theme_mods_twentytwenty', 'a:2:{s:18:\"custom_css_post_id\";i:-1;s:16:\"sidebars_widgets\";a:2:{s:4:\"time\";i:1576654951;s:4:\"data\";a:3:{s:19:\"wp_inactive_widgets\";a:0:{}s:9:\"sidebar-1\";a:1:{i:0;s:6:\"text-4\";}s:9:\"sidebar-2\";a:1:{i:0;s:6:\"text-5\";}}}}', 'yes'),
-(123, '_site_transient_update_core', 'O:8:\"stdClass\":4:{s:7:\"updates\";a:1:{i:0;O:8:\"stdClass\":10:{s:8:\"response\";s:6:\"latest\";s:8:\"download\";s:65:\"https://downloads.wordpress.org/release/fr_FR/wordpress-5.3.1.zip\";s:6:\"locale\";s:5:\"fr_FR\";s:8:\"packages\";O:8:\"stdClass\":5:{s:4:\"full\";s:65:\"https://downloads.wordpress.org/release/fr_FR/wordpress-5.3.1.zip\";s:10:\"no_content\";b:0;s:11:\"new_bundled\";b:0;s:7:\"partial\";b:0;s:8:\"rollback\";b:0;}s:7:\"current\";s:5:\"5.3.1\";s:7:\"version\";s:5:\"5.3.1\";s:11:\"php_version\";s:6:\"5.6.20\";s:13:\"mysql_version\";s:3:\"5.0\";s:11:\"new_bundled\";s:3:\"5.3\";s:15:\"partial_version\";s:0:\"\";}}s:12:\"last_checked\";i:1576654457;s:15:\"version_checked\";s:5:\"5.3.1\";s:12:\"translations\";a:0:{}}', 'no'),
-(125, '_site_transient_update_plugins', 'O:8:\"stdClass\":4:{s:12:\"last_checked\";i:1576654457;s:8:\"response\";a:0:{}s:12:\"translations\";a:0:{}s:9:\"no_update\";a:2:{s:19:\"akismet/akismet.php\";O:8:\"stdClass\":9:{s:2:\"id\";s:21:\"w.org/plugins/akismet\";s:4:\"slug\";s:7:\"akismet\";s:6:\"plugin\";s:19:\"akismet/akismet.php\";s:11:\"new_version\";s:5:\"4.1.3\";s:3:\"url\";s:38:\"https://wordpress.org/plugins/akismet/\";s:7:\"package\";s:56:\"https://downloads.wordpress.org/plugin/akismet.4.1.3.zip\";s:5:\"icons\";a:2:{s:2:\"2x\";s:59:\"https://ps.w.org/akismet/assets/icon-256x256.png?rev=969272\";s:2:\"1x\";s:59:\"https://ps.w.org/akismet/assets/icon-128x128.png?rev=969272\";}s:7:\"banners\";a:1:{s:2:\"1x\";s:61:\"https://ps.w.org/akismet/assets/banner-772x250.jpg?rev=479904\";}s:11:\"banners_rtl\";a:0:{}}s:9:\"hello.php\";O:8:\"stdClass\":9:{s:2:\"id\";s:25:\"w.org/plugins/hello-dolly\";s:4:\"slug\";s:11:\"hello-dolly\";s:6:\"plugin\";s:9:\"hello.php\";s:11:\"new_version\";s:5:\"1.7.2\";s:3:\"url\";s:42:\"https://wordpress.org/plugins/hello-dolly/\";s:7:\"package\";s:60:\"https://downloads.wordpress.org/plugin/hello-dolly.1.7.2.zip\";s:5:\"icons\";a:2:{s:2:\"2x\";s:64:\"https://ps.w.org/hello-dolly/assets/icon-256x256.jpg?rev=2052855\";s:2:\"1x\";s:64:\"https://ps.w.org/hello-dolly/assets/icon-128x128.jpg?rev=2052855\";}s:7:\"banners\";a:1:{s:2:\"1x\";s:66:\"https://ps.w.org/hello-dolly/assets/banner-772x250.jpg?rev=2052855\";}s:11:\"banners_rtl\";a:0:{}}}}', 'no'),
 (126, '_site_transient_timeout_browser_04670b756a50e224e264838829bde090', '1577258630', 'no'),
 (127, '_site_transient_browser_04670b756a50e224e264838829bde090', 'a:10:{s:4:\"name\";s:6:\"Safari\";s:7:\"version\";s:6:\"13.0.4\";s:8:\"platform\";s:9:\"Macintosh\";s:10:\"update_url\";s:29:\"https://www.apple.com/safari/\";s:7:\"img_src\";s:43:\"http://s.w.org/images/browsers/safari.png?1\";s:11:\"img_src_ssl\";s:44:\"https://s.w.org/images/browsers/safari.png?1\";s:15:\"current_version\";s:2:\"11\";s:7:\"upgrade\";b:0;s:8:\"insecure\";b:0;s:6:\"mobile\";b:0;}', 'no'),
 (128, '_site_transient_timeout_php_check_78e1776a2900a8656cebe7d7ea2a07cc', '1577258630', 'no'),
 (129, '_site_transient_php_check_78e1776a2900a8656cebe7d7ea2a07cc', 'a:5:{s:19:\"recommended_version\";s:3:\"7.3\";s:15:\"minimum_version\";s:6:\"5.6.20\";s:12:\"is_supported\";b:1;s:9:\"is_secure\";b:1;s:13:\"is_acceptable\";b:1;}', 'no'),
-(131, '_site_transient_timeout_community-events-d41d8cd98f00b204e9800998ecf8427e', '1576702578', 'no'),
+(131, '_site_transient_timeout_community-events-d41d8cd98f00b204e9800998ecf8427e', '1576706808', 'no'),
 (132, '_site_transient_community-events-d41d8cd98f00b204e9800998ecf8427e', 'a:3:{s:9:\"sandboxed\";b:0;s:8:\"location\";a:1:{s:2:\"ip\";b:0;}s:6:\"events\";a:1:{i:0;a:8:{s:4:\"type\";s:8:\"wordcamp\";s:5:\"title\";s:25:\"WordCamp Antwerp, Belgium\";s:3:\"url\";s:34:\"https://2020.antwerp.wordcamp.org/\";s:6:\"meetup\";N;s:10:\"meetup_url\";N;s:4:\"date\";s:19:\"2020-03-27 00:00:00\";s:8:\"end_date\";s:19:\"2020-03-29 00:00:00\";s:8:\"location\";a:4:{s:8:\"location\";s:16:\"Antwerp, Belgium\";s:7:\"country\";s:2:\"BE\";s:8:\"latitude\";d:51.2234817;s:9:\"longitude\";d:4.4101775;}}}}', 'no'),
 (133, 'can_compress_scripts', '1', 'no'),
 (134, '_transient_timeout_feed_0d2db5fea5a8633b56992c916819b198', '1576697032', 'no');
@@ -242,16 +418,53 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (141, '_transient_feed_mod_76f8d9281c01f21e505004d0986f50c6', '1576653832', 'no'),
 (142, '_transient_timeout_dash_v2_bd94b8f41e74bae2f4dc72e9bd8379af', '1576697032', 'no'),
 (143, '_transient_dash_v2_bd94b8f41e74bae2f4dc72e9bd8379af', '<div class=\"rss-widget\"><ul><li><a class=\'rsswidget\' href=\'https://fr.wordpress.org/2019/11/13/wordpress-5-3-kirk/\'>WordPress 5.3 « Kirk »</a></li></ul></div><div class=\"rss-widget\"><ul><li><a class=\'rsswidget\' href=\'http://feedproxy.google.com/~r/wpfr/~3/IIBAG3Ahc2k/\'>9 Puissants Plugins de Migration WordPress (Migrez Votre Site en toute Sécurité en 2020)</a></li><li><a class=\'rsswidget\' href=\'http://feedproxy.google.com/~r/wpfr/~3/52voQDdp__c/\'>Apprenez à développer pour WordPress avec le WPCookBook !</a></li><li><a class=\'rsswidget\' href=\'http://feedproxy.google.com/~r/wpfr/~3/ouBioNYfzUQ/\'>Comment mettre de la pub sur son site WordPress ?</a></li></ul></div>', 'no'),
-(150, 'theme_mods_atreus', 'a:4:{s:18:\"custom_css_post_id\";i:-1;s:18:\"nav_menu_locations\";a:2:{s:16:\"hero-header-menu\";i:5;s:16:\"hero-footer-menu\";i:0;}s:11:\"custom_logo\";i:70;s:11:\"header_text\";i:0;}', 'yes'),
-(151, '_site_transient_update_themes', 'O:8:\"stdClass\":4:{s:12:\"last_checked\";i:1576661580;s:7:\"checked\";a:4:{s:6:\"atreus\";s:6:\"1.1.13\";s:14:\"twentynineteen\";s:3:\"1.4\";s:15:\"twentyseventeen\";s:3:\"2.2\";s:12:\"twentytwenty\";s:3:\"1.1\";}s:8:\"response\";a:0:{}s:12:\"translations\";a:0:{}}', 'no'),
+(150, 'theme_mods_atreus', 'a:5:{s:18:\"custom_css_post_id\";i:-1;s:18:\"nav_menu_locations\";a:2:{s:16:\"hero-header-menu\";i:5;s:16:\"hero-footer-menu\";i:0;}s:11:\"custom_logo\";i:70;s:11:\"header_text\";i:0;s:27:\"atreus_theme_colour_setting\";s:10:\"is-warning\";}', 'yes'),
 (152, 'current_theme', 'Atreus', 'yes'),
 (153, 'theme_switched', '', 'yes'),
 (154, 'theme_switched_via_customizer', '', 'yes'),
 (155, 'nav_menu_options', 'a:1:{s:8:\"auto_add\";a:0:{}}', 'yes'),
 (156, 'customize_stashed_theme_mods', 'a:1:{s:12:\"twentytwenty\";a:3:{s:27:\"nav_menu_locations[primary]\";a:5:{s:15:\"starter_content\";b:1;s:5:\"value\";i:-1;s:4:\"type\";s:9:\"theme_mod\";s:7:\"user_id\";i:1;s:17:\"date_modified_gmt\";s:19:\"2019-12-18 07:39:41\";}s:28:\"nav_menu_locations[expanded]\";a:5:{s:15:\"starter_content\";b:1;s:5:\"value\";i:-5;s:4:\"type\";s:9:\"theme_mod\";s:7:\"user_id\";i:1;s:17:\"date_modified_gmt\";s:19:\"2019-12-18 07:39:41\";}s:26:\"nav_menu_locations[social]\";a:5:{s:15:\"starter_content\";b:1;s:5:\"value\";i:-9;s:4:\"type\";s:9:\"theme_mod\";s:7:\"user_id\";i:1;s:17:\"date_modified_gmt\";s:19:\"2019-12-18 07:39:41\";}}}', 'no'),
 (166, 'category_children', 'a:0:{}', 'yes'),
-(171, '_site_transient_timeout_theme_roots', '1576663379', 'no'),
-(172, '_site_transient_theme_roots', 'a:4:{s:6:\"atreus\";s:7:\"/themes\";s:14:\"twentynineteen\";s:7:\"/themes\";s:15:\"twentyseventeen\";s:7:\"/themes\";s:12:\"twentytwenty\";s:7:\"/themes\";}', 'no');
+(175, '_site_transient_timeout_poptags_40cd750bba9870f18aada2478b24840a', '1576674281', 'no'),
+(176, '_site_transient_poptags_40cd750bba9870f18aada2478b24840a', 'O:8:\"stdClass\":100:{s:6:\"widget\";a:3:{s:4:\"name\";s:6:\"widget\";s:4:\"slug\";s:6:\"widget\";s:5:\"count\";i:4650;}s:11:\"woocommerce\";a:3:{s:4:\"name\";s:11:\"woocommerce\";s:4:\"slug\";s:11:\"woocommerce\";s:5:\"count\";i:3807;}s:4:\"post\";a:3:{s:4:\"name\";s:4:\"post\";s:4:\"slug\";s:4:\"post\";s:5:\"count\";i:2651;}s:5:\"admin\";a:3:{s:4:\"name\";s:5:\"admin\";s:4:\"slug\";s:5:\"admin\";s:5:\"count\";i:2531;}s:5:\"posts\";a:3:{s:4:\"name\";s:5:\"posts\";s:4:\"slug\";s:5:\"posts\";s:5:\"count\";i:1947;}s:9:\"shortcode\";a:3:{s:4:\"name\";s:9:\"shortcode\";s:4:\"slug\";s:9:\"shortcode\";s:5:\"count\";i:1779;}s:8:\"comments\";a:3:{s:4:\"name\";s:8:\"comments\";s:4:\"slug\";s:8:\"comments\";s:5:\"count\";i:1760;}s:7:\"twitter\";a:3:{s:4:\"name\";s:7:\"twitter\";s:4:\"slug\";s:7:\"twitter\";s:5:\"count\";i:1475;}s:6:\"images\";a:3:{s:4:\"name\";s:6:\"images\";s:4:\"slug\";s:6:\"images\";s:5:\"count\";i:1460;}s:6:\"google\";a:3:{s:4:\"name\";s:6:\"google\";s:4:\"slug\";s:6:\"google\";s:5:\"count\";i:1451;}s:8:\"facebook\";a:3:{s:4:\"name\";s:8:\"facebook\";s:4:\"slug\";s:8:\"facebook\";s:5:\"count\";i:1441;}s:5:\"image\";a:3:{s:4:\"name\";s:5:\"image\";s:4:\"slug\";s:5:\"image\";s:5:\"count\";i:1397;}s:3:\"seo\";a:3:{s:4:\"name\";s:3:\"seo\";s:4:\"slug\";s:3:\"seo\";s:5:\"count\";i:1373;}s:7:\"sidebar\";a:3:{s:4:\"name\";s:7:\"sidebar\";s:4:\"slug\";s:7:\"sidebar\";s:5:\"count\";i:1296;}s:7:\"gallery\";a:3:{s:4:\"name\";s:7:\"gallery\";s:4:\"slug\";s:7:\"gallery\";s:5:\"count\";i:1163;}s:5:\"email\";a:3:{s:4:\"name\";s:5:\"email\";s:4:\"slug\";s:5:\"email\";s:5:\"count\";i:1147;}s:4:\"page\";a:3:{s:4:\"name\";s:4:\"page\";s:4:\"slug\";s:4:\"page\";s:5:\"count\";i:1114;}s:6:\"social\";a:3:{s:4:\"name\";s:6:\"social\";s:4:\"slug\";s:6:\"social\";s:5:\"count\";i:1078;}s:9:\"ecommerce\";a:3:{s:4:\"name\";s:9:\"ecommerce\";s:4:\"slug\";s:9:\"ecommerce\";s:5:\"count\";i:1072;}s:5:\"login\";a:3:{s:4:\"name\";s:5:\"login\";s:4:\"slug\";s:5:\"login\";s:5:\"count\";i:972;}s:5:\"links\";a:3:{s:4:\"name\";s:5:\"links\";s:4:\"slug\";s:5:\"links\";s:5:\"count\";i:863;}s:7:\"widgets\";a:3:{s:4:\"name\";s:7:\"widgets\";s:4:\"slug\";s:7:\"widgets\";s:5:\"count\";i:853;}s:5:\"video\";a:3:{s:4:\"name\";s:5:\"video\";s:4:\"slug\";s:5:\"video\";s:5:\"count\";i:851;}s:8:\"security\";a:3:{s:4:\"name\";s:8:\"security\";s:4:\"slug\";s:8:\"security\";s:5:\"count\";i:832;}s:4:\"spam\";a:3:{s:4:\"name\";s:4:\"spam\";s:4:\"slug\";s:4:\"spam\";s:5:\"count\";i:767;}s:7:\"content\";a:3:{s:4:\"name\";s:7:\"content\";s:4:\"slug\";s:7:\"content\";s:5:\"count\";i:757;}s:10:\"e-commerce\";a:3:{s:4:\"name\";s:10:\"e-commerce\";s:4:\"slug\";s:10:\"e-commerce\";s:5:\"count\";i:744;}s:6:\"slider\";a:3:{s:4:\"name\";s:6:\"slider\";s:4:\"slug\";s:6:\"slider\";s:5:\"count\";i:742;}s:10:\"buddypress\";a:3:{s:4:\"name\";s:10:\"buddypress\";s:4:\"slug\";s:10:\"buddypress\";s:5:\"count\";i:738;}s:9:\"analytics\";a:3:{s:4:\"name\";s:9:\"analytics\";s:4:\"slug\";s:9:\"analytics\";s:5:\"count\";i:721;}s:3:\"rss\";a:3:{s:4:\"name\";s:3:\"rss\";s:4:\"slug\";s:3:\"rss\";s:5:\"count\";i:709;}s:5:\"media\";a:3:{s:4:\"name\";s:5:\"media\";s:4:\"slug\";s:5:\"media\";s:5:\"count\";i:694;}s:5:\"pages\";a:3:{s:4:\"name\";s:5:\"pages\";s:4:\"slug\";s:5:\"pages\";s:5:\"count\";i:692;}s:4:\"form\";a:3:{s:4:\"name\";s:4:\"form\";s:4:\"slug\";s:4:\"form\";s:5:\"count\";i:684;}s:6:\"search\";a:3:{s:4:\"name\";s:6:\"search\";s:4:\"slug\";s:6:\"search\";s:5:\"count\";i:671;}s:6:\"jquery\";a:3:{s:4:\"name\";s:6:\"jquery\";s:4:\"slug\";s:6:\"jquery\";s:5:\"count\";i:657;}s:4:\"feed\";a:3:{s:4:\"name\";s:4:\"feed\";s:4:\"slug\";s:4:\"feed\";s:5:\"count\";i:640;}s:4:\"menu\";a:3:{s:4:\"name\";s:4:\"menu\";s:4:\"slug\";s:4:\"menu\";s:5:\"count\";i:637;}s:8:\"category\";a:3:{s:4:\"name\";s:8:\"category\";s:4:\"slug\";s:8:\"category\";s:5:\"count\";i:629;}s:4:\"ajax\";a:3:{s:4:\"name\";s:4:\"ajax\";s:4:\"slug\";s:4:\"ajax\";s:5:\"count\";i:622;}s:6:\"editor\";a:3:{s:4:\"name\";s:6:\"editor\";s:4:\"slug\";s:6:\"editor\";s:5:\"count\";i:620;}s:5:\"embed\";a:3:{s:4:\"name\";s:5:\"embed\";s:4:\"slug\";s:5:\"embed\";s:5:\"count\";i:607;}s:3:\"css\";a:3:{s:4:\"name\";s:3:\"css\";s:4:\"slug\";s:3:\"css\";s:5:\"count\";i:579;}s:10:\"javascript\";a:3:{s:4:\"name\";s:10:\"javascript\";s:4:\"slug\";s:10:\"javascript\";s:5:\"count\";i:577;}s:4:\"link\";a:3:{s:4:\"name\";s:4:\"link\";s:4:\"slug\";s:4:\"link\";s:5:\"count\";i:569;}s:7:\"youtube\";a:3:{s:4:\"name\";s:7:\"youtube\";s:4:\"slug\";s:7:\"youtube\";s:5:\"count\";i:567;}s:12:\"contact-form\";a:3:{s:4:\"name\";s:12:\"contact form\";s:4:\"slug\";s:12:\"contact-form\";s:5:\"count\";i:563;}s:5:\"share\";a:3:{s:4:\"name\";s:5:\"share\";s:4:\"slug\";s:5:\"share\";s:5:\"count\";i:549;}s:5:\"theme\";a:3:{s:4:\"name\";s:5:\"theme\";s:4:\"slug\";s:5:\"theme\";s:5:\"count\";i:539;}s:7:\"comment\";a:3:{s:4:\"name\";s:7:\"comment\";s:4:\"slug\";s:7:\"comment\";s:5:\"count\";i:538;}s:7:\"payment\";a:3:{s:4:\"name\";s:7:\"payment\";s:4:\"slug\";s:7:\"payment\";s:5:\"count\";i:536;}s:10:\"responsive\";a:3:{s:4:\"name\";s:10:\"responsive\";s:4:\"slug\";s:10:\"responsive\";s:5:\"count\";i:532;}s:9:\"dashboard\";a:3:{s:4:\"name\";s:9:\"dashboard\";s:4:\"slug\";s:9:\"dashboard\";s:5:\"count\";i:527;}s:6:\"custom\";a:3:{s:4:\"name\";s:6:\"custom\";s:4:\"slug\";s:6:\"custom\";s:5:\"count\";i:524;}s:9:\"affiliate\";a:3:{s:4:\"name\";s:9:\"affiliate\";s:4:\"slug\";s:9:\"affiliate\";s:5:\"count\";i:524;}s:3:\"ads\";a:3:{s:4:\"name\";s:3:\"ads\";s:4:\"slug\";s:3:\"ads\";s:5:\"count\";i:517;}s:10:\"categories\";a:3:{s:4:\"name\";s:10:\"categories\";s:4:\"slug\";s:10:\"categories\";s:5:\"count\";i:507;}s:4:\"user\";a:3:{s:4:\"name\";s:4:\"user\";s:4:\"slug\";s:4:\"user\";s:5:\"count\";i:490;}s:7:\"contact\";a:3:{s:4:\"name\";s:7:\"contact\";s:4:\"slug\";s:7:\"contact\";s:5:\"count\";i:487;}s:3:\"api\";a:3:{s:4:\"name\";s:3:\"api\";s:4:\"slug\";s:3:\"api\";s:5:\"count\";i:486;}s:4:\"tags\";a:3:{s:4:\"name\";s:4:\"tags\";s:4:\"slug\";s:4:\"tags\";s:5:\"count\";i:483;}s:6:\"button\";a:3:{s:4:\"name\";s:6:\"button\";s:4:\"slug\";s:6:\"button\";s:5:\"count\";i:481;}s:15:\"payment-gateway\";a:3:{s:4:\"name\";s:15:\"payment gateway\";s:4:\"slug\";s:15:\"payment-gateway\";s:5:\"count\";i:469;}s:5:\"users\";a:3:{s:4:\"name\";s:5:\"users\";s:4:\"slug\";s:5:\"users\";s:5:\"count\";i:466;}s:6:\"mobile\";a:3:{s:4:\"name\";s:6:\"mobile\";s:4:\"slug\";s:6:\"mobile\";s:5:\"count\";i:461;}s:6:\"events\";a:3:{s:4:\"name\";s:6:\"events\";s:4:\"slug\";s:6:\"events\";s:5:\"count\";i:453;}s:5:\"photo\";a:3:{s:4:\"name\";s:5:\"photo\";s:4:\"slug\";s:5:\"photo\";s:5:\"count\";i:434;}s:9:\"slideshow\";a:3:{s:4:\"name\";s:9:\"slideshow\";s:4:\"slug\";s:9:\"slideshow\";s:5:\"count\";i:426;}s:9:\"gutenberg\";a:3:{s:4:\"name\";s:9:\"gutenberg\";s:4:\"slug\";s:9:\"gutenberg\";s:5:\"count\";i:423;}s:9:\"marketing\";a:3:{s:4:\"name\";s:9:\"marketing\";s:4:\"slug\";s:9:\"marketing\";s:5:\"count\";i:422;}s:6:\"photos\";a:3:{s:4:\"name\";s:6:\"photos\";s:4:\"slug\";s:6:\"photos\";s:5:\"count\";i:420;}s:10:\"navigation\";a:3:{s:4:\"name\";s:10:\"navigation\";s:4:\"slug\";s:10:\"navigation\";s:5:\"count\";i:420;}s:5:\"stats\";a:3:{s:4:\"name\";s:5:\"stats\";s:4:\"slug\";s:5:\"stats\";s:5:\"count\";i:417;}s:4:\"chat\";a:3:{s:4:\"name\";s:4:\"chat\";s:4:\"slug\";s:4:\"chat\";s:5:\"count\";i:417;}s:8:\"calendar\";a:3:{s:4:\"name\";s:8:\"calendar\";s:4:\"slug\";s:8:\"calendar\";s:5:\"count\";i:415;}s:10:\"statistics\";a:3:{s:4:\"name\";s:10:\"statistics\";s:4:\"slug\";s:10:\"statistics\";s:5:\"count\";i:407;}s:5:\"popup\";a:3:{s:4:\"name\";s:5:\"popup\";s:4:\"slug\";s:5:\"popup\";s:5:\"count\";i:403;}s:10:\"newsletter\";a:3:{s:4:\"name\";s:10:\"newsletter\";s:4:\"slug\";s:10:\"newsletter\";s:5:\"count\";i:397;}s:10:\"shortcodes\";a:3:{s:4:\"name\";s:10:\"shortcodes\";s:4:\"slug\";s:10:\"shortcodes\";s:5:\"count\";i:390;}s:4:\"news\";a:3:{s:4:\"name\";s:4:\"news\";s:4:\"slug\";s:4:\"news\";s:5:\"count\";i:388;}s:5:\"forms\";a:3:{s:4:\"name\";s:5:\"forms\";s:4:\"slug\";s:5:\"forms\";s:5:\"count\";i:384;}s:12:\"social-media\";a:3:{s:4:\"name\";s:12:\"social media\";s:4:\"slug\";s:12:\"social-media\";s:5:\"count\";i:382;}s:4:\"code\";a:3:{s:4:\"name\";s:4:\"code\";s:4:\"slug\";s:4:\"code\";s:5:\"count\";i:375;}s:8:\"redirect\";a:3:{s:4:\"name\";s:8:\"redirect\";s:4:\"slug\";s:8:\"redirect\";s:5:\"count\";i:372;}s:14:\"contact-form-7\";a:3:{s:4:\"name\";s:14:\"contact form 7\";s:4:\"slug\";s:14:\"contact-form-7\";s:5:\"count\";i:371;}s:7:\"plugins\";a:3:{s:4:\"name\";s:7:\"plugins\";s:4:\"slug\";s:7:\"plugins\";s:5:\"count\";i:370;}s:9:\"multisite\";a:3:{s:4:\"name\";s:9:\"multisite\";s:4:\"slug\";s:9:\"multisite\";s:5:\"count\";i:366;}s:3:\"url\";a:3:{s:4:\"name\";s:3:\"url\";s:4:\"slug\";s:3:\"url\";s:5:\"count\";i:361;}s:4:\"meta\";a:3:{s:4:\"name\";s:4:\"meta\";s:4:\"slug\";s:4:\"meta\";s:5:\"count\";i:353;}s:11:\"performance\";a:3:{s:4:\"name\";s:11:\"performance\";s:4:\"slug\";s:11:\"performance\";s:5:\"count\";i:352;}s:4:\"list\";a:3:{s:4:\"name\";s:4:\"list\";s:4:\"slug\";s:4:\"list\";s:5:\"count\";i:349;}s:12:\"notification\";a:3:{s:4:\"name\";s:12:\"notification\";s:4:\"slug\";s:12:\"notification\";s:5:\"count\";i:343;}s:8:\"tracking\";a:3:{s:4:\"name\";s:8:\"tracking\";s:4:\"slug\";s:8:\"tracking\";s:5:\"count\";i:334;}s:16:\"custom-post-type\";a:3:{s:4:\"name\";s:16:\"custom post type\";s:4:\"slug\";s:16:\"custom-post-type\";s:5:\"count\";i:330;}s:16:\"google-analytics\";a:3:{s:4:\"name\";s:16:\"google analytics\";s:4:\"slug\";s:16:\"google-analytics\";s:5:\"count\";i:330;}s:11:\"advertising\";a:3:{s:4:\"name\";s:11:\"advertising\";s:4:\"slug\";s:11:\"advertising\";s:5:\"count\";i:327;}s:5:\"cache\";a:3:{s:4:\"name\";s:5:\"cache\";s:4:\"slug\";s:5:\"cache\";s:5:\"count\";i:322;}s:6:\"simple\";a:3:{s:4:\"name\";s:6:\"simple\";s:4:\"slug\";s:6:\"simple\";s:5:\"count\";i:320;}s:4:\"html\";a:3:{s:4:\"name\";s:4:\"html\";s:4:\"slug\";s:4:\"html\";s:5:\"count\";i:319;}s:6:\"author\";a:3:{s:4:\"name\";s:6:\"author\";s:4:\"slug\";s:6:\"author\";s:5:\"count\";i:317;}}', 'no'),
+(178, '_site_transient_update_core', 'O:8:\"stdClass\":4:{s:7:\"updates\";a:1:{i:0;O:8:\"stdClass\":10:{s:8:\"response\";s:6:\"latest\";s:8:\"download\";s:65:\"https://downloads.wordpress.org/release/fr_FR/wordpress-5.3.1.zip\";s:6:\"locale\";s:5:\"fr_FR\";s:8:\"packages\";O:8:\"stdClass\":5:{s:4:\"full\";s:65:\"https://downloads.wordpress.org/release/fr_FR/wordpress-5.3.1.zip\";s:10:\"no_content\";b:0;s:11:\"new_bundled\";b:0;s:7:\"partial\";b:0;s:8:\"rollback\";b:0;}s:7:\"current\";s:5:\"5.3.1\";s:7:\"version\";s:5:\"5.3.1\";s:11:\"php_version\";s:6:\"5.6.20\";s:13:\"mysql_version\";s:3:\"5.0\";s:11:\"new_bundled\";s:3:\"5.3\";s:15:\"partial_version\";s:0:\"\";}}s:12:\"last_checked\";i:1576663544;s:15:\"version_checked\";s:5:\"5.3.1\";s:12:\"translations\";a:0:{}}', 'no'),
+(179, '_site_transient_update_plugins', 'O:8:\"stdClass\":5:{s:12:\"last_checked\";i:1576663546;s:7:\"checked\";a:3:{s:19:\"akismet/akismet.php\";s:5:\"4.1.3\";s:24:\"buddypress/bp-loader.php\";s:5:\"5.1.0\";s:9:\"hello.php\";s:5:\"1.7.2\";}s:8:\"response\";a:0:{}s:12:\"translations\";a:0:{}s:9:\"no_update\";a:3:{s:19:\"akismet/akismet.php\";O:8:\"stdClass\":9:{s:2:\"id\";s:21:\"w.org/plugins/akismet\";s:4:\"slug\";s:7:\"akismet\";s:6:\"plugin\";s:19:\"akismet/akismet.php\";s:11:\"new_version\";s:5:\"4.1.3\";s:3:\"url\";s:38:\"https://wordpress.org/plugins/akismet/\";s:7:\"package\";s:56:\"https://downloads.wordpress.org/plugin/akismet.4.1.3.zip\";s:5:\"icons\";a:2:{s:2:\"2x\";s:59:\"https://ps.w.org/akismet/assets/icon-256x256.png?rev=969272\";s:2:\"1x\";s:59:\"https://ps.w.org/akismet/assets/icon-128x128.png?rev=969272\";}s:7:\"banners\";a:1:{s:2:\"1x\";s:61:\"https://ps.w.org/akismet/assets/banner-772x250.jpg?rev=479904\";}s:11:\"banners_rtl\";a:0:{}}s:24:\"buddypress/bp-loader.php\";O:8:\"stdClass\":9:{s:2:\"id\";s:24:\"w.org/plugins/buddypress\";s:4:\"slug\";s:10:\"buddypress\";s:6:\"plugin\";s:24:\"buddypress/bp-loader.php\";s:11:\"new_version\";s:5:\"5.1.0\";s:3:\"url\";s:41:\"https://wordpress.org/plugins/buddypress/\";s:7:\"package\";s:59:\"https://downloads.wordpress.org/plugin/buddypress.5.1.0.zip\";s:5:\"icons\";a:3:{s:2:\"2x\";s:63:\"https://ps.w.org/buddypress/assets/icon-256x256.png?rev=1309232\";s:2:\"1x\";s:54:\"https://ps.w.org/buddypress/assets/icon.svg?rev=977480\";s:3:\"svg\";s:54:\"https://ps.w.org/buddypress/assets/icon.svg?rev=977480\";}s:7:\"banners\";a:2:{s:2:\"2x\";s:66:\"https://ps.w.org/buddypress/assets/banner-1544x500.png?rev=1854372\";s:2:\"1x\";s:65:\"https://ps.w.org/buddypress/assets/banner-772x250.png?rev=1854372\";}s:11:\"banners_rtl\";a:2:{s:2:\"2x\";s:70:\"https://ps.w.org/buddypress/assets/banner-1544x500-rtl.png?rev=1854372\";s:2:\"1x\";s:69:\"https://ps.w.org/buddypress/assets/banner-772x250-rtl.png?rev=1854372\";}}s:9:\"hello.php\";O:8:\"stdClass\":9:{s:2:\"id\";s:25:\"w.org/plugins/hello-dolly\";s:4:\"slug\";s:11:\"hello-dolly\";s:6:\"plugin\";s:9:\"hello.php\";s:11:\"new_version\";s:5:\"1.7.2\";s:3:\"url\";s:42:\"https://wordpress.org/plugins/hello-dolly/\";s:7:\"package\";s:60:\"https://downloads.wordpress.org/plugin/hello-dolly.1.7.2.zip\";s:5:\"icons\";a:2:{s:2:\"2x\";s:64:\"https://ps.w.org/hello-dolly/assets/icon-256x256.jpg?rev=2052855\";s:2:\"1x\";s:64:\"https://ps.w.org/hello-dolly/assets/icon-128x128.jpg?rev=2052855\";}s:7:\"banners\";a:1:{s:2:\"1x\";s:66:\"https://ps.w.org/hello-dolly/assets/banner-772x250.jpg?rev=2052855\";}s:11:\"banners_rtl\";a:0:{}}}}', 'no'),
+(180, '_site_transient_update_themes', 'O:8:\"stdClass\":4:{s:12:\"last_checked\";i:1576663546;s:7:\"checked\";a:4:{s:6:\"atreus\";s:6:\"1.1.13\";s:14:\"twentynineteen\";s:3:\"1.4\";s:15:\"twentyseventeen\";s:3:\"2.2\";s:12:\"twentytwenty\";s:3:\"1.1\";}s:8:\"response\";a:0:{}s:12:\"translations\";a:0:{}}', 'no'),
+(181, '_transient_timeout_plugin_slugs', '1576749970', 'no'),
+(182, '_transient_plugin_slugs', 'a:3:{i:0;s:19:\"akismet/akismet.php\";i:1;s:24:\"buddypress/bp-loader.php\";i:2;s:9:\"hello.php\";}', 'no'),
+(183, 'recently_activated', 'a:0:{}', 'yes'),
+(184, 'bp-deactivated-components', 'a:0:{}', 'yes'),
+(185, 'bp-xprofile-base-group-name', 'Base', 'yes'),
+(186, 'bp-xprofile-fullname-field-name', 'Name', 'yes'),
+(187, 'bp-blogs-first-install', '', 'yes'),
+(188, 'bp-disable-profile-sync', '', 'yes'),
+(189, 'hide-loggedout-adminbar', '', 'yes'),
+(190, 'bp-disable-avatar-uploads', '', 'yes'),
+(191, 'bp-disable-cover-image-uploads', '', 'yes'),
+(192, 'bp-disable-group-avatar-uploads', '', 'yes'),
+(193, 'bp-disable-group-cover-image-uploads', '', 'yes'),
+(194, 'bp-disable-account-deletion', '', 'yes'),
+(195, 'bp-disable-blogforum-comments', '1', 'yes'),
+(196, '_bp_theme_package_id', 'nouveau', 'yes'),
+(197, 'bp-emails-unsubscribe-salt', 'el5oZj0yV350Rl9wfG4ob1gxUHs4biNUSChyN1I0dUk0TThPYVspJXxOPFliNVpwa2U3I2ApZ1ZxQX1wPWU6eA==', 'yes'),
+(198, 'bp_restrict_group_creation', '', 'yes'),
+(199, '_bp_enable_akismet', '1', 'yes'),
+(200, '_bp_enable_heartbeat_refresh', '1', 'yes'),
+(201, '_bp_force_buddybar', '', 'yes'),
+(202, '_bp_retain_bp_default', '', 'yes'),
+(203, '_bp_ignore_deprecated_code', '1', 'yes'),
+(204, 'widget_bp_core_login_widget', 'a:4:{i:1;a:0:{}s:12:\"_multiwidget\";i:1;i:3;a:0:{}i:4;a:1:{s:5:\"title\";s:6:\"Profil\";}}', 'yes'),
+(205, 'widget_bp_core_members_widget', 'a:2:{i:1;a:0:{}s:12:\"_multiwidget\";i:1;}', 'yes'),
+(206, 'widget_bp_core_whos_online_widget', 'a:2:{i:1;a:0:{}s:12:\"_multiwidget\";i:1;}', 'yes'),
+(207, 'widget_bp_core_recently_active_widget', 'a:2:{i:1;a:0:{}s:12:\"_multiwidget\";i:1;}', 'yes'),
+(208, 'widget_bp_groups_widget', '', 'yes'),
+(209, 'widget_bp_messages_sitewide_notices_widget', '', 'yes'),
+(214, 'widget_bp_nouveau_sidebar_object_nav_widget', 'a:1:{s:12:\"_multiwidget\";i:1;}', 'yes'),
+(215, 'bp-active-components', 'a:5:{s:8:\"activity\";i:1;s:7:\"members\";i:1;s:8:\"settings\";i:1;s:8:\"xprofile\";i:1;s:13:\"notifications\";i:1;}', 'yes'),
+(216, 'bp-pages', 'a:2:{s:8:\"activity\";i:91;s:7:\"members\";i:92;}', 'yes'),
+(217, '_bp_db_version', '12385', 'yes'),
+(218, 'widget_bp_latest_activities', 'a:1:{s:12:\"_multiwidget\";i:1;}', 'yes'),
+(223, 'bp_nouveau_appearance', 'a:5:{s:12:\"avatar_style\";i:1;s:16:\"user_nav_display\";i:0;s:13:\"user_nav_tabs\";i:1;s:16:\"user_subnav_tabs\";i:1;s:18:\"members_dir_layout\";i:0;}', 'yes');
 
 -- --------------------------------------------------------
 
@@ -335,14 +548,6 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (266, 64, '_wp_trash_meta_status', 'publish'),
 (267, 64, '_wp_trash_meta_time', '1576656180'),
 (268, 65, '_edit_lock', '1576656299:1'),
-(269, 66, '_menu_item_type', 'custom'),
-(270, 66, '_menu_item_menu_item_parent', '0'),
-(271, 66, '_menu_item_object_id', '66'),
-(272, 66, '_menu_item_object', 'custom'),
-(273, 66, '_menu_item_target', ''),
-(274, 66, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
-(275, 66, '_menu_item_xfn', ''),
-(276, 66, '_menu_item_url', 'http://localhost:8888'),
 (277, 65, '_wp_trash_meta_status', 'publish'),
 (278, 65, '_wp_trash_meta_time', '1576656300'),
 (279, 67, '_edit_lock', '1576656635:1'),
@@ -423,7 +628,20 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (372, 81, '_wp_trash_meta_time', '1576659320'),
 (373, 87, '_wp_trash_meta_status', 'publish'),
 (374, 87, '_wp_trash_meta_time', '1576659345'),
-(375, 88, '_edit_lock', '1576661606:1');
+(375, 88, '_edit_lock', '1576661606:1'),
+(376, 88, '_customize_restore_dismissed', '1'),
+(377, 46, '_edit_lock', '1576662026:1'),
+(378, 89, '_wp_trash_meta_status', 'publish'),
+(379, 89, '_wp_trash_meta_time', '1576662571'),
+(380, 90, '_wp_trash_meta_status', 'publish'),
+(381, 90, '_wp_trash_meta_time', '1576662611'),
+(382, 108, '_edit_lock', '1576663912:1'),
+(383, 108, '_wp_trash_meta_status', 'publish'),
+(384, 108, '_wp_trash_meta_time', '1576663942'),
+(385, 109, '_edit_lock', '1576663929:1'),
+(386, 110, '_edit_lock', '1576664287:1'),
+(387, 110, '_wp_trash_meta_status', 'publish'),
+(388, 110, '_wp_trash_meta_time', '1576664314');
 
 -- --------------------------------------------------------
 
@@ -505,7 +723,6 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (56, 1, '2019-12-18 09:02:16', '2019-12-18 08:02:16', '', 'Cours', '', 'inherit', 'closed', 'closed', '', '51-revision-v1', '', '', '2019-12-18 09:02:16', '2019-12-18 08:02:16', '', 51, 'http://localhost:8888/2019/12/18/51-revision-v1/', 0, 'revision', '', 0),
 (64, 1, '2019-12-18 09:03:00', '2019-12-18 08:03:00', '{\n    \"sidebars_widgets[wp_inactive_widgets]\": {\n        \"value\": [\n            \"nav_menu-3\",\n            \"categories-4\",\n            \"nav_menu-6\"\n        ],\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:02:59\"\n    },\n    \"sidebars_widgets[custom-side-bar]\": {\n        \"value\": [\n            \"nav_menu-8\"\n        ],\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:02:59\"\n    },\n    \"atreus::nav_menu_locations[hero-footer-menu]\": {\n        \"value\": 0,\n        \"type\": \"theme_mod\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:02:59\"\n    },\n    \"nav_menu_item[62]\": {\n        \"value\": false,\n        \"type\": \"nav_menu_item\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:02:59\"\n    },\n    \"nav_menu_item[63]\": {\n        \"value\": false,\n        \"type\": \"nav_menu_item\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:02:59\"\n    },\n    \"widget_nav_menu[8]\": {\n        \"value\": {\n            \"encoded_serialized_instance\": \"YToyOntzOjU6InRpdGxlIjtzOjk6IlBhcmNvdXJpciI7czo4OiJuYXZfbWVudSI7aTo2O30=\",\n            \"title\": \"Parcourir\",\n            \"is_widget_customizer_js_value\": true,\n            \"instance_hash_key\": \"09cc062152251c8b9de07b3eb00292d8\"\n        },\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:02:59\"\n    }\n}', '', '', 'trash', 'closed', 'closed', '', 'baa23c19-7685-4e9f-a327-7b52c64924cb', '', '', '2019-12-18 09:03:00', '2019-12-18 08:03:00', '', 0, 'http://localhost:8888/?p=64', 0, 'customize_changeset', '', 0),
 (65, 1, '2019-12-18 09:05:00', '2019-12-18 08:05:00', '{\n    \"nav_menu_item[42]\": {\n        \"value\": false,\n        \"type\": \"nav_menu_item\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:04:59\"\n    },\n    \"nav_menu_item[43]\": {\n        \"value\": false,\n        \"type\": \"nav_menu_item\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:04:59\"\n    },\n    \"nav_menu_item[44]\": {\n        \"value\": false,\n        \"type\": \"nav_menu_item\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:04:59\"\n    },\n    \"nav_menu_item[45]\": {\n        \"value\": false,\n        \"type\": \"nav_menu_item\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:04:59\"\n    },\n    \"nav_menu_item[-2520418147743805400]\": {\n        \"value\": {\n            \"object_id\": 0,\n            \"object\": \"custom\",\n            \"menu_item_parent\": 0,\n            \"position\": 2,\n            \"type\": \"custom\",\n            \"title\": \"Deconnexion\",\n            \"url\": \"http://localhost:8888\",\n            \"target\": \"\",\n            \"attr_title\": \"\",\n            \"description\": \"\",\n            \"classes\": \"\",\n            \"xfn\": \"\",\n            \"status\": \"publish\",\n            \"original_title\": \"Deconnexion\",\n            \"nav_menu_term_id\": 5,\n            \"_invalid\": false,\n            \"type_label\": \"Lien personnalis\\u00e9\"\n        },\n        \"type\": \"nav_menu_item\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:04:59\"\n    }\n}', '', '', 'trash', 'closed', 'closed', '', '1270fb87-77dc-420e-a8fe-0eebfe0ed0bd', '', '', '2019-12-18 09:05:00', '2019-12-18 08:05:00', '', 0, 'http://localhost:8888/?p=65', 0, 'customize_changeset', '', 0),
-(66, 1, '2019-12-18 09:05:00', '2019-12-18 08:05:00', '', 'Deconnexion', '', 'publish', 'closed', 'closed', '', 'deconnexion', '', '', '2019-12-18 09:05:00', '2019-12-18 08:05:00', '', 0, 'http://localhost:8888/2019/12/18/deconnexion/', 2, 'nav_menu_item', '', 0),
 (67, 1, '2019-12-18 09:10:43', '2019-12-18 08:10:43', '{\n    \"blogname\": {\n        \"value\": \"\",\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:10:43\"\n    },\n    \"blogdescription\": {\n        \"value\": \"\",\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:10:43\"\n    },\n    \"site_icon\": {\n        \"value\": 69,\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:10:43\"\n    }\n}', '', '', 'trash', 'closed', 'closed', '', 'f2a1c832-37af-4b9f-ae5d-97910ba43522', '', '', '2019-12-18 09:10:43', '2019-12-18 08:10:43', '', 0, 'http://localhost:8888/?p=67', 0, 'customize_changeset', '', 0),
 (68, 1, '2019-12-18 09:10:22', '2019-12-18 08:10:22', '', 'LogoStudhelp', '', 'inherit', 'open', 'closed', '', 'logosh2', '', '', '2019-12-18 09:47:28', '2019-12-18 08:47:28', '', 0, 'http://localhost:8888/wp-content/uploads/2019/12/LogoSH2.png', 0, 'attachment', 'image/png', 0),
 (69, 1, '2019-12-18 09:10:30', '2019-12-18 08:10:30', 'http://localhost:8888/wp-content/uploads/2019/12/cropped-LogoSH2.png', 'cropped-LogoSH2.png', '', 'inherit', 'open', 'closed', '', 'cropped-logosh2-png', '', '', '2019-12-18 09:10:30', '2019-12-18 08:10:30', '', 0, 'http://localhost:8888/wp-content/uploads/2019/12/cropped-LogoSH2.png', 0, 'attachment', 'image/png', 0),
@@ -526,7 +743,50 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (85, 1, '2019-12-18 09:55:20', '2019-12-18 08:55:20', ' ', '', '', 'publish', 'closed', 'closed', '', '85', '', '', '2019-12-18 09:55:20', '2019-12-18 08:55:20', '', 0, 'http://localhost:8888/2019/12/18/85/', 5, 'nav_menu_item', '', 0),
 (86, 1, '2019-12-18 09:55:20', '2019-12-18 08:55:20', ' ', '', '', 'publish', 'closed', 'closed', '', '86', '', '', '2019-12-18 09:55:20', '2019-12-18 08:55:20', '', 0, 'http://localhost:8888/2019/12/18/86/', 6, 'nav_menu_item', '', 0),
 (87, 1, '2019-12-18 09:55:45', '2019-12-18 08:55:45', '{\n    \"nav_menu_item[80]\": {\n        \"value\": false,\n        \"type\": \"nav_menu_item\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 08:55:45\"\n    }\n}', '', '', 'trash', 'closed', 'closed', '', '8739bb26-f19a-45dd-9b83-a65b07ba4d0d', '', '', '2019-12-18 09:55:45', '2019-12-18 08:55:45', '', 0, 'http://localhost:8888/2019/12/18/8739bb26-f19a-45dd-9b83-a65b07ba4d0d/', 0, 'customize_changeset', '', 0),
-(88, 1, '2019-12-18 10:32:52', '0000-00-00 00:00:00', '{\n    \"custom_css[atreus]\": {\n        \"value\": \"\",\n        \"type\": \"custom_css\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 09:32:52\"\n    },\n    \"atreus::atreus_theme_colour_setting\": {\n        \"value\": \"is-warning\",\n        \"type\": \"theme_mod\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 09:31:54\"\n    }\n}', '', '', 'auto-draft', 'closed', 'closed', '', '5a712e5d-ff99-4098-a1c3-dc98a4989dc5', '', '', '2019-12-18 10:32:52', '2019-12-18 09:32:52', '', 0, 'http://localhost:8888/?p=88', 0, 'customize_changeset', '', 0);
+(88, 1, '2019-12-18 10:32:52', '0000-00-00 00:00:00', '{\n    \"custom_css[atreus]\": {\n        \"value\": \"\",\n        \"type\": \"custom_css\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 09:32:52\"\n    },\n    \"atreus::atreus_theme_colour_setting\": {\n        \"value\": \"is-warning\",\n        \"type\": \"theme_mod\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 09:31:54\"\n    }\n}', '', '', 'auto-draft', 'closed', 'closed', '', '5a712e5d-ff99-4098-a1c3-dc98a4989dc5', '', '', '2019-12-18 10:32:52', '2019-12-18 09:32:52', '', 0, 'http://localhost:8888/?p=88', 0, 'customize_changeset', '', 0),
+(89, 1, '2019-12-18 10:49:31', '2019-12-18 09:49:31', '{\n    \"atreus::atreus_theme_colour_setting\": {\n        \"value\": \"is-success\",\n        \"type\": \"theme_mod\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 09:49:31\"\n    }\n}', '', '', 'trash', 'closed', 'closed', '', 'f0e4edfe-c008-4115-9a76-3ad342a8d043', '', '', '2019-12-18 10:49:31', '2019-12-18 09:49:31', '', 0, 'http://localhost:8888/2019/12/18/f0e4edfe-c008-4115-9a76-3ad342a8d043/', 0, 'customize_changeset', '', 0),
+(90, 1, '2019-12-18 10:50:11', '2019-12-18 09:50:11', '{\n    \"atreus::atreus_theme_colour_setting\": {\n        \"value\": \"is-warning\",\n        \"type\": \"theme_mod\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 09:50:11\"\n    }\n}', '', '', 'trash', 'closed', 'closed', '', 'a4d76316-1c84-408c-8483-7239d4f6e347', '', '', '2019-12-18 10:50:11', '2019-12-18 09:50:11', '', 0, 'http://localhost:8888/2019/12/18/a4d76316-1c84-408c-8483-7239d4f6e347/', 0, 'customize_changeset', '', 0),
+(91, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 'Activités du site', '', 'publish', 'closed', 'closed', '', 'activites-du-site', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/activites-du-site/', 0, 'page', '', 0),
+(92, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 'Membres', '', 'publish', 'closed', 'closed', '', 'membres', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/membres/', 0, 'page', '', 0),
+(93, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', '{{poster.name}} a répondu à une de vos mises à jour:\n\n<blockquote>&quot;{{usermessage}}&quot;</blockquote>\n\n<a href=\"{{{thread.url}}}\">Accès à la discussion</a> pour répondre ou continuer la conversation.', '[{{{site.name}}}] {{poster.name}} a répondu à une de vos mises à jour', '{{poster.name}} a répondu à une de vos mises à jour: \n\n\"{{usermessage}}\"\n\nAccès à la discussion pour répondre ou continuer la conversation: {{{thread.url}}}', 'publish', 'closed', 'closed', '', 'site-name-poster-name-a-repondu-a-une-de-vos-mises-a-jour', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=93', 0, 'bp-email', '', 0),
+(94, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', '{{poster.name}} a répondu à un de vos commentaires: :\n\n<blockquote>&quot;{{usermessage}}&quot;</blockquote>\n\n<a href=\"{{{thread.url}}}\">Afficher la discussion</a> pour répondre ou continuer la conversation.', '[{{{site.name}}}] {{poster.name}} a répondu à un de vos commentaires', '{{poster.name}} a répondu à un de vos commentaires: \n\n\"{{usermessage}}\"\n\nAccès à la discussion pour répondre ou continuer la conversation: {{{thread.url}}}', 'publish', 'closed', 'closed', '', 'site-name-poster-name-a-repondu-a-un-de-vos-commentaires', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=94', 0, 'bp-email', '', 0),
+(95, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', '{{poster.name}} vous a mentionné dans une mise à jour de statut:\n\n<blockquote>&quot;{{usermessage}}&quot;</blockquote>\n\n<a href=\"{{{mentioned.url}}}\">Aller à la discussion</a> pour répondre ou continuer la conversation', '[{{{site.name}}}] {{poster.name}} vous a mentionné dans une mise à jour de statut', '{{poster.name}} vous a mentionné dans une mise à jour de statut: \n\n\"{{usermessage}}\"\n\nPour y répondre ou continuer la conversation, rendez-vous sur: {{{mentioned.url}}}', 'publish', 'closed', 'closed', '', 'site-name-poster-name-vous-a-mentionne-dans-une-mise-a-jour-de-statut', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=95', 0, 'bp-email', '', 0),
+(96, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', '{{poster.name}} vous a cité dans le groupe \"{{group.name}}\":\n\n<blockquote>&quot;{{usermessage}}&quot;</blockquote>\n\n<a href=\"{{{mentioned.url}}}\">Afficher la discussion</a> pour répondre ou continuer la conversation.', '[{{{site.name}}}] {{poster.name}} vous a mentionné dans une mise à jour', '{{poster.name}} vous a cité dans le groupe \"{{group.name}}\":\n\n\"{{usermessage}}\"\n\nAccès à la discussion pour répondre ou continuer la conversation: {{{mentioned.url}}}', 'publish', 'closed', 'closed', '', 'site-name-poster-name-vous-a-mentionne-dans-une-mise-a-jour', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=96', 0, 'bp-email', '', 0),
+(97, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', 'Merci de vous être inscrit·e !\n\nPour activer votre compte, merci de vous rendre à cette adresse et de cliquer sur le bouton <strong>Activer</strong> :\n<a href=\"{{{activate.url}}}\">{{{activate.url}}}</a>\n\nSi le champ \'clé d’activation\' est vide, merci de copier/coller la suite de caractères suivante dans le champ - {{key}}', '[{{{site.name}}}] Activez votre compte', 'Merci de vous être inscrit·e !\n\nPour activer votre compte, merci de vous rendre à cette adresse et de cliquer sur le bouton \'Activer\' : {{{activate.url}}}\n\nSi le champ \'clé d’activation\' est vide, merci de copier/coller la suite de caractères suivante dans le champ - {{key}}', 'publish', 'closed', 'closed', '', 'site-name-activez-votre-compte', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=97', 0, 'bp-email', '', 0),
+(98, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', '<a href=\"{{{initiator.url}}}\">{{initiator.name}}</a> souhaite vous ajouter à sa liste d\'amis.\n\nPour accepter sa demande ou gérer d\'autres demandes en attente, rendez-vous sur: <a href=\"{{{friend-requests.url}}}\">{{{friend-requests.url}}}</a>', '[{{{site.name}}}] Nouvelle demande de contact de la part de {{initiator.name}}', '{{initiator.name}} souhaite vous ajouter à sa liste de contacts. \n\nPour accepter sa demande et gérer d\'autres demandes en attente, rendez-vous sur: {{{friend-requests.url}}}\n\nPour voir le profil de {{initiator.name}}, rendez-vous sur: {{{initiator.url}}}', 'publish', 'closed', 'closed', '', 'site-name-nouvelle-demande-de-contact-de-la-part-de-initiator-name', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=98', 0, 'bp-email', '', 0),
+(99, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', '<a href=\"{{{friendship.url}}}\">{{friend.name}}</a> a accepté votre demande de contact.', '[{{{site.name}}}] {{friend.name}} a accepté votre demande de contact', '{{friend.name}} a accepté votre dmande de contact. \n\nPour en savoir plus, visitez son profil: {{{friendship.url}}}', 'publish', 'closed', 'closed', '', 'site-name-friend-name-a-accepte-votre-demande-de-contact', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=99', 0, 'bp-email', '', 0),
+(100, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', 'Les informations sur le groupe &quot;<a href=\"{{{group.url}}}\">{{group.name}}</a>&quot; ont été mises à jour:\n<blockquote>{{changed_text}}</blockquote>', '[{{{site.name}}}] Mise à jour des informations du groupe', 'Les détails sur le groupe \"{{group.name}}\" ont été mis à jour:\n\n{{changed_text}}\n\nPour voir le groupe, cliquez ici: {{{group.url}}}', 'publish', 'closed', 'closed', '', 'site-name-mise-a-jour-des-informations-du-groupe', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=100', 0, 'bp-email', '', 0),
+(101, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', '<a href=\"{{{inviter.url}}}\">{{inviter.name}}</a> vous invite à rejoindre le groupe: « {{group.name}} ».\n<a href=\"{{{invites.url}}}\">Accepter l\'invitation</a> ou  <a href=\"{{{group.url}}}\">visiter le groupe</a>pour en savoir plus.', '[{{{site.name}}}] Vous êtes invité par le groupe: \"{{group.name}}\"', '{{inviter.name}} vous invite à rejoindre le groupe : \"{{group.name}}\".\n\nPour accepter cette invitation, cliquez sur ce lien : {{{invites.url}}}\n\nPour en savoir plus sur le groupe, cliquez ici {{{group.url}}}.\nPour en savoir plus sur {{inviter.name}}, visitez son profil : {{{inviter.url}}}', 'publish', 'closed', 'closed', '', 'site-name-vous-etes-invite-par-le-groupe-group-name', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=101', 0, 'bp-email', '', 0),
+(102, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', 'Vous avez été promu comme <b>{{promoted_to}}</b> du groupe &quot;<a href=\"{{{group.url}}}\">{{group.name}}</a>&quot;.', '[{{{site.name}}}] Vous êtes promu dans le groupe: \"{{group.name}}\"', 'Vous avez été promu comme {{promoted_to}} du groupe: \"{{group.name}}\".\n\nPour visiter le groupe, cliquez ici: {{{group.url}}}', 'publish', 'closed', 'closed', '', 'site-name-vous-etes-promu-dans-le-groupe-group-name', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=102', 0, 'bp-email', '', 0),
+(103, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', '<a href=\"{{{profile.url}}}\">{{requesting-user.name}}</a> souhaite rejoindre le groupe « {{group.name}} ».\n\nEn tant qu’administrateur de ce groupe, vous pouvez accepter ou rejeter cette demande\n\n<a href=\"{{{group-requests.url}}}\">Gérer cette demande</a> et toutes les autres demandes en attente.', '[{{{site.name}}}] Demande d\'adhésion au groupe: {{group.name}}', '{{requesting-user.name}} demande à rejoindre le groupe \"{{group.name}}\". En tant qu\'administrateur de ce groupe, vous avez la possibilité d\'accepter ou de rejeter cette demande.\n\nPour traiter cette demande et celles qui sont en attente, cliquez ici: {{{group-requests.url}}}\n\nPour en savoir plus sur {{requesting-user.name}}, visitez son profil: {{{profile.url}}}', 'publish', 'closed', 'closed', '', 'site-name-demande-dadhesion-au-groupe-group-name', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=103', 0, 'bp-email', '', 0);
+INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
+(104, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', '{{sender.name}} vous a envoyé un nouveau message: &quot;{{usersubject}}&quot;\n\n<blockquote>&quot;{{usermessage}}&quot;</blockquote>\n\n<a href=\"{{{message.url}}}\">Accès à la discussion</a> pour répondre ou continuer la conversation.', '[{{{site.name}}}] Nouveau message de {{sender.name}}', '{{sender.name}} vous a envoyé un nouveau message intitulé: \"{{usersubject}}\"\n\n\"{{usermessage}}\"\n\nPour lui répondre ou poursuivre la conversation, cliquez ici: {{{message.url}}}', 'publish', 'closed', 'closed', '', 'site-name-nouveau-message-de-sender-name', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=104', 0, 'bp-email', '', 0),
+(105, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', 'Vous avez récemment modifié l\'adresse mail associée à votre compte sur {{site.name}} pour {{user.email}}.  Si elle est correcte,<a href=\"{{{verify.url}}}\">cliquez ici pour confirmer votre modification</a>.\n\nSinon, si vous avez changé d\'avis ou que vous pensez que cet email vous a été adressé par erreur, ne tenez pas compte de ce message et supprimez-le.', '[{{{site.name}}}] Vérifiez votre nouvelle adresse email', 'Vous avez récemment modifié l\'adresse mail associée à votre compte sur {{site.name}} pour {{user.email}}.  Si elle est correcte, suivez ce lien pour confirmer votre modification: {{{verify.url}}}\n\nSinon, si vous avez changé d\'avis ou que vous pensez que cet email vous a été adressé par erreur, ne tenez pas compte de ce message et supprimez-le.', 'publish', 'closed', 'closed', '', 'site-name-verifiez-votre-nouvelle-adresse-email', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=105', 0, 'bp-email', '', 0),
+(106, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', 'Votre demande d\'adhésion au groupe &quot;<a href=\"{{{group.url}}}\">{{group.name}}</a>&quot; a été acceptée.', '[{{{site.name}}}] votre demande d\'adhésion au groupe \"{{group.name}}\" a été acceptée', 'Votre demande d\'adhésion au groupe \"{{group.name}}\" a été acceptée.\n\nPour voir le groupe, cliquez ici: {{{group.url}}}', 'publish', 'closed', 'closed', '', 'site-name-votre-demande-dadhesion-au-groupe-group-name-a-ete-acceptee', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=106', 0, 'bp-email', '', 0),
+(107, 1, '2019-12-18 11:06:10', '2019-12-18 10:06:10', 'Votre demande d\'adhésion au groupe &quot;<a href=\"{{{group.url}}}\">{{group.name}}</a>&quot; a été rejetée.', '[{{{site.name}}}] votre demande d’adhésion au groupe \"{{group.name}}\" a été rejetée', 'Votre demande d’adhésion au groupe \"{{group.name}}\" a été rejetée.\n\nPour solliciter une nouvelle demande, cliquez ici: {{{group.url}}}', 'publish', 'closed', 'closed', '', 'site-name-votre-demande-dadhesion-au-groupe-group-name-a-ete-rejetee', '', '', '2019-12-18 11:06:10', '2019-12-18 10:06:10', '', 0, 'http://localhost:8888/?post_type=bp-email&p=107', 0, 'bp-email', '', 0),
+(108, 1, '2019-12-18 11:12:22', '2019-12-18 10:12:22', '{\n    \"bp_nouveau_appearance[avatar_style]\": {\n        \"value\": true,\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:08:00\"\n    },\n    \"bp_nouveau_appearance[user_nav_display]\": {\n        \"value\": false,\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:08:00\"\n    },\n    \"bp_nouveau_appearance[user_nav_tabs]\": {\n        \"value\": false,\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:08:00\"\n    },\n    \"bp_nouveau_appearance[user_subnav_tabs]\": {\n        \"value\": false,\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:08:00\"\n    },\n    \"bp_nouveau_appearance[members_dir_layout]\": {\n        \"value\": false,\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:08:00\"\n    },\n    \"sidebars_widgets[custom-side-bar]\": {\n        \"value\": [\n            \"nav_menu-8\",\n            \"bp_core_login_widget-4\"\n        ],\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:09:00\"\n    },\n    \"widget_bp_core_login_widget[3]\": {\n        \"value\": [],\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:09:00\"\n    },\n    \"widget_bp_core_login_widget[4]\": {\n        \"value\": {\n            \"encoded_serialized_instance\": \"YToxOntzOjU6InRpdGxlIjtzOjY6IlByb2ZpbCI7fQ==\",\n            \"title\": \"Profil\",\n            \"is_widget_customizer_js_value\": true,\n            \"instance_hash_key\": \"557fb2b918cd6db299460345955676e1\"\n        },\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:10:00\"\n    },\n    \"nav_menu_item[66]\": {\n        \"value\": false,\n        \"type\": \"nav_menu_item\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:12:22\"\n    }\n}', '', '', 'trash', 'closed', 'closed', '', 'b2c6bd16-c35f-47ee-a97d-90e5cbb36624', '', '', '2019-12-18 11:12:22', '2019-12-18 10:12:22', '', 0, 'http://localhost:8888/?p=108', 0, 'customize_changeset', '', 0),
+(109, 1, '2019-12-18 11:14:31', '0000-00-00 00:00:00', '', 'Brouillon auto', '', 'auto-draft', 'open', 'open', '', '', '', '', '2019-12-18 11:14:31', '0000-00-00 00:00:00', '', 0, 'http://localhost:8888/?p=109', 0, 'post', '', 0),
+(110, 1, '2019-12-18 11:18:34', '2019-12-18 10:18:34', '{\n    \"sidebars_widgets[custom-side-bar]\": {\n        \"value\": [\n            \"nav_menu-8\",\n            \"bp_core_login_widget-4\",\n            \"search-4\"\n        ],\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:17:07\"\n    },\n    \"widget_search[4]\": {\n        \"value\": {\n            \"encoded_serialized_instance\": \"YToxOntzOjU6InRpdGxlIjtzOjk6IlJlY2hlcmNoZSI7fQ==\",\n            \"title\": \"Recherche\",\n            \"is_widget_customizer_js_value\": true,\n            \"instance_hash_key\": \"3b3557cfc30c25f7ff710eb54a0a2785\"\n        },\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:17:07\"\n    },\n    \"widget_text[7]\": {\n        \"value\": [],\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:17:07\"\n    },\n    \"bp_nouveau_appearance[avatar_style]\": {\n        \"value\": true,\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:18:07\"\n    },\n    \"bp_nouveau_appearance[user_nav_display]\": {\n        \"value\": false,\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:18:07\"\n    },\n    \"bp_nouveau_appearance[user_nav_tabs]\": {\n        \"value\": true,\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:18:07\"\n    },\n    \"bp_nouveau_appearance[user_subnav_tabs]\": {\n        \"value\": true,\n        \"type\": \"option\",\n        \"user_id\": 1,\n        \"date_modified_gmt\": \"2019-12-18 10:18:34\"\n    }\n}', '', '', 'trash', 'closed', 'closed', '', 'e0c8222e-3acf-4f0a-abd7-fcc4e7a1d8e4', '', '', '2019-12-18 11:18:34', '2019-12-18 10:18:34', '', 0, 'http://localhost:8888/?p=110', 0, 'customize_changeset', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wp_signups`
+--
+
+CREATE TABLE `wp_signups` (
+  `signup_id` bigint(20) NOT NULL,
+  `domain` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `path` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `title` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `user_login` varchar(60) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `user_email` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `registered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `activated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `activation_key` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `meta` longtext COLLATE utf8mb4_unicode_520_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 -- --------------------------------------------------------
 
@@ -566,7 +826,22 @@ INSERT INTO `wp_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
 (8, 'Actualités', 'actualites', 0),
 (9, 'Entraide', 'entraide', 0),
 (10, 'Emploi du temps', 'emploi-du-temps', 0),
-(11, 'Bons plans', 'bons-plans', 0);
+(11, 'Bons plans', 'bons-plans', 0),
+(12, 'activity-comment', 'activity-comment', 0),
+(13, 'activity-comment-author', 'activity-comment-author', 0),
+(14, 'activity-at-message', 'activity-at-message', 0),
+(15, 'groups-at-message', 'groups-at-message', 0),
+(16, 'core-user-registration', 'core-user-registration', 0),
+(17, 'friends-request', 'friends-request', 0),
+(18, 'friends-request-accepted', 'friends-request-accepted', 0),
+(19, 'groups-details-updated', 'groups-details-updated', 0),
+(20, 'groups-invitation', 'groups-invitation', 0),
+(21, 'groups-member-promoted', 'groups-member-promoted', 0),
+(22, 'groups-membership-request', 'groups-membership-request', 0),
+(23, 'messages-unread', 'messages-unread', 0),
+(24, 'settings-verify-email-change', 'settings-verify-email-change', 0),
+(25, 'groups-membership-request-accepted', 'groups-membership-request-accepted', 0),
+(26, 'groups-membership-request-rejected', 'groups-membership-request-rejected', 0);
 
 -- --------------------------------------------------------
 
@@ -587,13 +862,27 @@ CREATE TABLE `wp_term_relationships` (
 INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_order`) VALUES
 (1, 8, 0),
 (41, 5, 0),
-(66, 5, 0),
 (75, 10, 0),
 (82, 6, 0),
 (83, 6, 0),
 (84, 6, 0),
 (85, 6, 0),
-(86, 6, 0);
+(86, 6, 0),
+(93, 12, 0),
+(94, 13, 0),
+(95, 14, 0),
+(96, 15, 0),
+(97, 16, 0),
+(98, 17, 0),
+(99, 18, 0),
+(100, 19, 0),
+(101, 20, 0),
+(102, 21, 0),
+(103, 22, 0),
+(104, 23, 0),
+(105, 24, 0),
+(106, 25, 0),
+(107, 26, 0);
 
 -- --------------------------------------------------------
 
@@ -616,13 +905,28 @@ CREATE TABLE `wp_term_taxonomy` (
 
 INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `description`, `parent`, `count`) VALUES
 (1, 1, 'category', '', 0, 0),
-(5, 5, 'nav_menu', '', 0, 2),
+(5, 5, 'nav_menu', '', 0, 1),
 (6, 6, 'nav_menu', '', 0, 5),
 (7, 7, 'category', '', 0, 0),
 (8, 8, 'category', '', 0, 1),
 (9, 9, 'category', '', 0, 0),
 (10, 10, 'category', '', 0, 1),
-(11, 11, 'category', '', 0, 0);
+(11, 11, 'category', '', 0, 0),
+(12, 12, 'bp-email-type', 'Un membre répond à une mise à jour d\'activité publié par le destinataire.', 0, 1),
+(13, 13, 'bp-email-type', 'Un membre répond à un commentaire d\'activité publié par le destinataire.', 0, 1),
+(14, 14, 'bp-email-type', 'Le destinataire a été mentionné dans une mise à jour d\'activité.', 0, 1),
+(15, 15, 'bp-email-type', 'Le destinataire a été mentionné dans une mise à jour d\'activité d\'un groupe.', 0, 1),
+(16, 16, 'bp-email-type', 'Le destinataire a ouvert un compte.', 0, 1),
+(17, 17, 'bp-email-type', 'Un membre demande à être ajouté comme ami du destinataire.', 0, 1),
+(18, 18, 'bp-email-type', 'Le destinataire a été accepté comme ami par un membre.', 0, 1),
+(19, 19, 'bp-email-type', 'Des informations sur le groupe ont été mises à jour.', 0, 1),
+(20, 20, 'bp-email-type', 'Un membre envoye une invitation à rejoindre un groupe au destinatiare', 0, 1),
+(21, 21, 'bp-email-type', 'Le statut du destinataire dans un groupe a été modifié.', 0, 1),
+(22, 22, 'bp-email-type', 'Un membre demande à rejoindre un groupe.', 0, 1),
+(23, 23, 'bp-email-type', 'Le destinataire a reçu un message privé.', 0, 1),
+(24, 24, 'bp-email-type', 'Le destinataire a modifié son adresse mail.', 0, 1),
+(25, 25, 'bp-email-type', 'Le destinataire est autorisé à rejoindre un groupe.', 0, 1),
+(26, 26, 'bp-email-type', 'Le destinataire n\'est pas autorisé à rejoindre un groupe.', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -655,12 +959,16 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (11, 1, 'locale', ''),
 (12, 1, 'wp_capabilities', 'a:1:{s:13:\"administrator\";b:1;}'),
 (13, 1, 'wp_user_level', '10'),
-(14, 1, 'dismissed_wp_pointers', 'theme_editor_notice'),
+(14, 1, 'dismissed_wp_pointers', 'theme_editor_notice,plugin_editor_notice'),
 (15, 1, 'show_welcome_panel', '1'),
-(16, 1, 'session_tokens', 'a:1:{s:64:\"9e82b92027fe6bbeb13dba10ad3a93aa420e1745cbb383f61cac09cfffd82bf5\";a:4:{s:10:\"expiration\";i:1576826629;s:2:\"ip\";s:3:\"::1\";s:2:\"ua\";s:119:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15\";s:5:\"login\";i:1576653829;}}'),
 (17, 1, 'wp_dashboard_quick_press_last_post_id', '4'),
 (18, 1, 'wp_user-settings', 'libraryContent=browse'),
-(19, 1, 'wp_user-settings-time', '1576656778');
+(19, 1, 'wp_user-settings-time', '1576656778'),
+(20, 1, 'nav_menu_recently_edited', '6'),
+(21, 1, 'managenav-menuscolumnshidden', 'a:5:{i:0;s:11:\"link-target\";i:1;s:11:\"css-classes\";i:2;s:3:\"xfn\";i:3;s:11:\"description\";i:4;s:15:\"title-attribute\";}'),
+(22, 1, 'metaboxhidden_nav-menus', 'a:1:{i:0;s:12:\"add-post_tag\";}'),
+(23, 1, 'last_activity', '2019-12-18 10:23:09'),
+(24, 1, 'session_tokens', 'a:1:{s:64:\"67f240ecc53ea6da5a849f7745711817b413875f2abc9b004bc6806f062cd326\";a:4:{s:10:\"expiration\";i:1576836814;s:2:\"ip\";s:3:\"::1\";s:2:\"ua\";s:119:\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15\";s:5:\"login\";i:1576664014;}}');
 
 -- --------------------------------------------------------
 
@@ -691,6 +999,100 @@ INSERT INTO `wp_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `wp_bp_activity`
+--
+ALTER TABLE `wp_bp_activity`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `date_recorded` (`date_recorded`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `secondary_item_id` (`secondary_item_id`),
+  ADD KEY `component` (`component`),
+  ADD KEY `type` (`type`),
+  ADD KEY `mptt_left` (`mptt_left`),
+  ADD KEY `mptt_right` (`mptt_right`),
+  ADD KEY `hide_sitewide` (`hide_sitewide`),
+  ADD KEY `is_spam` (`is_spam`);
+
+--
+-- Indexes for table `wp_bp_activity_meta`
+--
+ALTER TABLE `wp_bp_activity_meta`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `activity_id` (`activity_id`),
+  ADD KEY `meta_key` (`meta_key`(191));
+
+--
+-- Indexes for table `wp_bp_invitations`
+--
+ALTER TABLE `wp_bp_invitations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `inviter_id` (`inviter_id`),
+  ADD KEY `invitee_email` (`invitee_email`),
+  ADD KEY `class` (`class`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `secondary_item_id` (`secondary_item_id`),
+  ADD KEY `type` (`type`),
+  ADD KEY `invite_sent` (`invite_sent`),
+  ADD KEY `accepted` (`accepted`);
+
+--
+-- Indexes for table `wp_bp_notifications`
+--
+ALTER TABLE `wp_bp_notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `secondary_item_id` (`secondary_item_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `is_new` (`is_new`),
+  ADD KEY `component_name` (`component_name`),
+  ADD KEY `component_action` (`component_action`),
+  ADD KEY `useritem` (`user_id`,`is_new`);
+
+--
+-- Indexes for table `wp_bp_notifications_meta`
+--
+ALTER TABLE `wp_bp_notifications_meta`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `notification_id` (`notification_id`),
+  ADD KEY `meta_key` (`meta_key`(191));
+
+--
+-- Indexes for table `wp_bp_xprofile_data`
+--
+ALTER TABLE `wp_bp_xprofile_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `field_id` (`field_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `wp_bp_xprofile_fields`
+--
+ALTER TABLE `wp_bp_xprofile_fields`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `group_id` (`group_id`),
+  ADD KEY `parent_id` (`parent_id`),
+  ADD KEY `field_order` (`field_order`),
+  ADD KEY `can_delete` (`can_delete`),
+  ADD KEY `is_required` (`is_required`);
+
+--
+-- Indexes for table `wp_bp_xprofile_groups`
+--
+ALTER TABLE `wp_bp_xprofile_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `can_delete` (`can_delete`);
+
+--
+-- Indexes for table `wp_bp_xprofile_meta`
+--
+ALTER TABLE `wp_bp_xprofile_meta`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `object_id` (`object_id`),
+  ADD KEY `meta_key` (`meta_key`(191));
 
 --
 -- Indexes for table `wp_commentmeta`
@@ -745,6 +1147,16 @@ ALTER TABLE `wp_posts`
   ADD KEY `post_author` (`post_author`);
 
 --
+-- Indexes for table `wp_signups`
+--
+ALTER TABLE `wp_signups`
+  ADD PRIMARY KEY (`signup_id`),
+  ADD KEY `activation_key` (`activation_key`),
+  ADD KEY `user_email` (`user_email`),
+  ADD KEY `user_login_email` (`user_login`,`user_email`),
+  ADD KEY `domain_path` (`domain`(140),`path`(51));
+
+--
 -- Indexes for table `wp_termmeta`
 --
 ALTER TABLE `wp_termmeta`
@@ -797,6 +1209,60 @@ ALTER TABLE `wp_users`
 --
 
 --
+-- AUTO_INCREMENT for table `wp_bp_activity`
+--
+ALTER TABLE `wp_bp_activity`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `wp_bp_activity_meta`
+--
+ALTER TABLE `wp_bp_activity_meta`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `wp_bp_invitations`
+--
+ALTER TABLE `wp_bp_invitations`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `wp_bp_notifications`
+--
+ALTER TABLE `wp_bp_notifications`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `wp_bp_notifications_meta`
+--
+ALTER TABLE `wp_bp_notifications_meta`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `wp_bp_xprofile_data`
+--
+ALTER TABLE `wp_bp_xprofile_data`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `wp_bp_xprofile_fields`
+--
+ALTER TABLE `wp_bp_xprofile_fields`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `wp_bp_xprofile_groups`
+--
+ALTER TABLE `wp_bp_xprofile_groups`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `wp_bp_xprofile_meta`
+--
+ALTER TABLE `wp_bp_xprofile_meta`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `wp_commentmeta`
 --
 ALTER TABLE `wp_commentmeta`
@@ -818,19 +1284,25 @@ ALTER TABLE `wp_links`
 -- AUTO_INCREMENT for table `wp_options`
 --
 ALTER TABLE `wp_options`
-  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
+  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
 
 --
 -- AUTO_INCREMENT for table `wp_postmeta`
 --
 ALTER TABLE `wp_postmeta`
-  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=376;
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=389;
 
 --
 -- AUTO_INCREMENT for table `wp_posts`
 --
 ALTER TABLE `wp_posts`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+
+--
+-- AUTO_INCREMENT for table `wp_signups`
+--
+ALTER TABLE `wp_signups`
+  MODIFY `signup_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `wp_termmeta`
@@ -842,19 +1314,19 @@ ALTER TABLE `wp_termmeta`
 -- AUTO_INCREMENT for table `wp_terms`
 --
 ALTER TABLE `wp_terms`
-  MODIFY `term_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `term_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `wp_term_taxonomy`
 --
 ALTER TABLE `wp_term_taxonomy`
-  MODIFY `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `wp_usermeta`
 --
 ALTER TABLE `wp_usermeta`
-  MODIFY `umeta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `umeta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `wp_users`
