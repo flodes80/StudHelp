@@ -2,7 +2,7 @@
 namespace Elementor\Core\Settings\General;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\Settings\Base\CSS_Model;
+use Elementor\Core\Settings\Base\Model as BaseModel;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.6.0
  */
-class Model extends CSS_Model {
+class Model extends BaseModel {
 
 	/**
 	 * Get model name.
@@ -65,6 +65,10 @@ class Model extends CSS_Model {
 	public function get_panel_page_settings() {
 		return [
 			'title' => __( 'Global Settings', 'elementor' ),
+			'menu' => [
+				'icon' => 'eicon-cogs',
+				'beforeItem' => 'elementor-settings',
+			],
 		];
 	}
 
@@ -138,6 +142,12 @@ class Model extends CSS_Model {
 							'type' => Controls_Manager::SWITCHER,
 							'default' => 'yes',
 							'description' => __( 'Open all image links in a lightbox popup window. The lightbox will automatically work on any link that leads to an image file.', 'elementor' ),
+							'frontend_available' => true,
+						],
+						'elementor_enable_lightbox_in_editor' => [
+							'label' => __( 'Enable In Editor', 'elementor' ),
+							'type' => Controls_Manager::SWITCHER,
+							'default' => 'yes',
 							'frontend_available' => true,
 						],
 						'elementor_lightbox_color' => [

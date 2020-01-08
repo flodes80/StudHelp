@@ -106,8 +106,7 @@ class Shapes {
 	public static function get_shape_path( $shape, $is_negative = false ) {
 
 		if ( isset( self::$shapes[ $shape ] ) && isset( self::$shapes[ $shape ]['path'] ) ) {
-			$path = self::$shapes[ $shape ]['path'];
-			return ( $is_negative ) ? str_replace( '.svg', '-negative.svg', $path ) : $path;
+			return self::$shapes[ $shape ]['path'];
 		}
 
 		$file_name = $shape;

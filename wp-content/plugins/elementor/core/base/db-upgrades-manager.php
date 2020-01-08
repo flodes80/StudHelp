@@ -10,7 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 abstract class DB_Upgrades_Manager extends Background_Task_Manager {
 	protected $current_version = null;
-	protected $query_limit = 100;
 
 	abstract public function get_new_version();
 	abstract public function get_version_option_name();
@@ -22,11 +21,7 @@ abstract class DB_Upgrades_Manager extends Background_Task_Manager {
 	}
 
 	public function get_query_limit() {
-		return $this->query_limit;
-	}
-
-	public function set_query_limit( $limit ) {
-		$this->query_limit = $limit;
+		return 100;
 	}
 
 	public function get_current_version() {

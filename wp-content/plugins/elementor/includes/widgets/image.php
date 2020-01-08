@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Schemes;
-
 /**
  * Elementor image widget.
  *
@@ -500,8 +498,8 @@ class Widget_Image extends Widget_Base {
 					'{{WRAPPER}} .widget-image-caption' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_3,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_3,
 				],
 			]
 		);
@@ -522,7 +520,7 @@ class Widget_Image extends Widget_Base {
 			[
 				'name' => 'caption_typography',
 				'selector' => '{{WRAPPER}} .widget-image-caption',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -585,7 +583,7 @@ class Widget_Image extends Widget_Base {
 					$caption = wp_get_attachment_caption( $settings['image']['id'] );
 					break;
 				case 'custom':
-					$caption = ! Utils::is_empty( $settings['caption'] ) ? $settings['caption'] : '';
+					$caption = ! empty( $settings['caption'] ) ? $settings['caption'] : '';
 			}
 		}
 		return $caption;
@@ -617,14 +615,23 @@ class Widget_Image extends Widget_Base {
 		$link = $this->get_link_url( $settings );
 
 		if ( $link ) {
-			$this->add_render_attribute( 'link', 'data-elementor-open-lightbox', $settings['open_lightbox'] );
-
-			$this->add_link_attributes( 'link', $link );
+			$this->add_render_attribute( 'link', [
+				'href' => $link['url'],
+				'data-elementor-open-lightbox' => $settings['open_lightbox'],
+			] );
 
 			if ( Plugin::$instance->editor->is_edit_mode() ) {
 				$this->add_render_attribute( 'link', [
 					'class' => 'elementor-clickable',
 				] );
+			}
+
+			if ( ! empty( $link['is_external'] ) ) {
+				$this->add_render_attribute( 'link', 'target', '_blank' );
+			}
+
+			if ( ! empty( $link['nofollow'] ) ) {
+				$this->add_render_attribute( 'link', 'rel', 'nofollow' );
 			}
 		} ?>
 		<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
@@ -765,7 +772,6 @@ class Widget_Image extends Widget_Base {
 			if ( empty( $settings['link']['url'] ) ) {
 				return false;
 			}
-
 			return $settings['link'];
 		}
 

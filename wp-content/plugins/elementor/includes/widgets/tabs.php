@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Schemes;
-
 /**
  * Elementor tabs widget.
  *
@@ -122,11 +120,11 @@ class Widget_Tabs extends Widget_Base {
 				'default' => [
 					[
 						'tab_title' => __( 'Tab #1', 'elementor' ),
-						'tab_content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
 					],
 					[
 						'tab_title' => __( 'Tab #2', 'elementor' ),
-						'tab_content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
 					],
 				],
 				'title_field' => '{{{ tab_title }}}',
@@ -251,8 +249,8 @@ class Widget_Tabs extends Widget_Base {
 					'{{WRAPPER}} .elementor-tab-title' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_1,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
 				],
 			]
 		);
@@ -266,8 +264,8 @@ class Widget_Tabs extends Widget_Base {
 					'{{WRAPPER}} .elementor-tab-title.elementor-active' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_4,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_4,
 				],
 			]
 		);
@@ -277,7 +275,7 @@ class Widget_Tabs extends Widget_Base {
 			[
 				'name' => 'tab_typography',
 				'selector' => '{{WRAPPER}} .elementor-tab-title',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 			]
 		);
 
@@ -299,8 +297,8 @@ class Widget_Tabs extends Widget_Base {
 					'{{WRAPPER}} .elementor-tab-content' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_3,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_3,
 				],
 			]
 		);
@@ -310,7 +308,7 @@ class Widget_Tabs extends Widget_Base {
 			[
 				'name' => 'content_typography',
 				'selector' => '{{WRAPPER}} .elementor-tab-content',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
 

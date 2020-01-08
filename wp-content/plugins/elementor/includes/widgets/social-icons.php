@@ -118,6 +118,7 @@ class Widget_Social_Icons extends Widget_Base {
 						'github',
 						'gitlab',
 						'globe',
+						'google-plus',
 						'houzz',
 						'instagram',
 						'jsfiddle',
@@ -203,7 +204,7 @@ class Widget_Social_Icons extends Widget_Base {
 					'item_icon_color' => 'custom',
 				],
 				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}}.elementor-social-icon' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} {{CURRENT_ITEM}}' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -217,8 +218,8 @@ class Widget_Social_Icons extends Widget_Base {
 					'item_icon_color' => 'custom',
 				],
 				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}}.elementor-social-icon i' => 'color: {{VALUE}};',
-					'{{WRAPPER}} {{CURRENT_ITEM}}.elementor-social-icon svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} {{CURRENT_ITEM}} i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} {{CURRENT_ITEM}} svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
@@ -244,7 +245,7 @@ class Widget_Social_Icons extends Widget_Base {
 					],
 					[
 						'social_icon' => [
-							'value' => 'fab fa-youtube',
+							'value' => 'fab fa-google-plus',
 							'library' => 'fa-brands',
 						],
 					],
@@ -474,7 +475,7 @@ class Widget_Social_Icons extends Widget_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-social-icon:hover i' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-social-icon:hover svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .elementor-social-icon:hover svg' => 'color: {{VALUE}};',
 				],
 			]
 		);

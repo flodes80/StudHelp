@@ -41,8 +41,7 @@ class Control_Raw_Html extends Base_UI_Control {
 	 */
 	public function content_template() {
 		?>
-		<# data.raw = elementor.compileTemplate( data.raw, { view } );
-		if ( data.label ) { #>
+		<# if ( data.label ) { #>
 		<span class="elementor-control-title">{{{ data.label }}}</span>
 		<# } #>
 		<div class="elementor-control-raw-html {{ data.content_classes }}">{{{ data.raw }}}</div>

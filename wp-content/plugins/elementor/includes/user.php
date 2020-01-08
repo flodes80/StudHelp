@@ -249,7 +249,7 @@ class User {
 
 	public static function register_as_beta_tester( array $data ) {
 		update_user_meta( get_current_user_id(), self::BETA_TESTER_META_KEY, true );
-		$response = wp_safe_remote_post(
+		wp_safe_remote_post(
 			self::BETA_TESTER_API_URL,
 			[
 				'timeout' => 25,
@@ -260,33 +260,18 @@ class User {
 				],
 			]
 		);
-
-		$body = wp_remote_retrieve_body( $response );
-
-		if ( 'success' === $body ) {
-			self::set_introduction_viewed( [
-				'introductionKey' => 'beta_tester_signup',
-			] );
-		}
 	}
 
 	/**
-	 * @param string $key
-	 *
-	 * @return array|mixed|string
-	 * @since  2.1.0
-	 * @access public
+	 * @since 2.1.0
+	 * @access private
 	 * @static
 	 */
-	public static function get_introduction_meta( $key = '' ) {
+	public static function get_introduction_meta() {
 		$user_introduction_meta = get_user_meta( get_current_user_id(), self::INTRODUCTION_KEY, true );
 
 		if ( ! $user_introduction_meta ) {
 			$user_introduction_meta = [];
-		}
-
-		if ( $key ) {
-			return empty( $user_introduction_meta[ $key ] ) ? '' : $user_introduction_meta[ $key ];
 		}
 
 		return $user_introduction_meta;

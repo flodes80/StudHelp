@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Schemes;
-
 /**
  * Elementor heading widget.
  *
@@ -55,7 +53,7 @@ class Widget_Heading extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-t-letter';
+		return 'eicon-type-tool';
 	}
 
 	/**
@@ -224,8 +222,8 @@ class Widget_Heading extends Widget_Base {
 				'label' => __( 'Text Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_1,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
 				],
 				'selectors' => [
 					// Stronger selector to avoid section style from overwriting
@@ -238,7 +236,7 @@ class Widget_Heading extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'typography',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementor-heading-title',
 			]
 		);
@@ -292,7 +290,7 @@ class Widget_Heading extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		if ( '' === $settings['title'] ) {
+		if ( empty( $settings['title'] ) ) {
 			return;
 		}
 

@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Schemes;
-
 /**
  * Elementor icon widget.
  *
@@ -218,8 +216,8 @@ class Widget_Icon extends Widget_Base {
 					'{{WRAPPER}}.elementor-view-framed .elementor-icon, {{WRAPPER}}.elementor-view-default .elementor-icon svg' => 'fill: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_1,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
 				],
 			]
 		);
@@ -335,15 +333,8 @@ class Widget_Icon extends Widget_Base {
 			[
 				'label' => __( 'Rotate', 'elementor' ),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'deg' ],
 				'default' => [
 					'size' => 0,
-					'unit' => 'deg',
-				],
-				'tablet_default' => [
-					'unit' => 'deg',
-				],
-				'mobile_default' => [
 					'unit' => 'deg',
 				],
 				'selectors' => [

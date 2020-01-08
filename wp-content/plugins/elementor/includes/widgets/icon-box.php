@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Schemes;
-
 /**
  * Elementor icon box widget.
  *
@@ -156,7 +154,7 @@ class Widget_Icon_Box extends Widget_Base {
 				'dynamic' => [
 					'active' => true,
 				],
-				'default' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+				'default' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
 				'placeholder' => __( 'Enter your description', 'elementor' ),
 				'rows' => 10,
 				'separator' => 'none',
@@ -267,8 +265,8 @@ class Widget_Icon_Box extends Widget_Base {
 				'label' => __( 'Primary Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_1,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
 				],
 				'default' => '',
 				'selectors' => [
@@ -538,8 +536,8 @@ class Widget_Icon_Box extends Widget_Base {
 					'{{WRAPPER}} .elementor-icon-box-content .elementor-icon-box-title' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_1,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
 				],
 			]
 		);
@@ -549,7 +547,7 @@ class Widget_Icon_Box extends Widget_Base {
 			[
 				'name' => 'title_typography',
 				'selector' => '{{WRAPPER}} .elementor-icon-box-content .elementor-icon-box-title',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 			]
 		);
 
@@ -572,8 +570,8 @@ class Widget_Icon_Box extends Widget_Base {
 					'{{WRAPPER}} .elementor-icon-box-content .elementor-icon-box-description' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_3,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_3,
 				],
 			]
 		);
@@ -583,7 +581,7 @@ class Widget_Icon_Box extends Widget_Base {
 			[
 				'name' => 'description_typography',
 				'selector' => '{{WRAPPER}} .elementor-icon-box-content .elementor-icon-box-description',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -661,7 +659,7 @@ class Widget_Icon_Box extends Widget_Base {
 				<<?php echo $settings['title_size']; ?> class="elementor-icon-box-title">
 					<<?php echo implode( ' ', [ $icon_tag, $link_attributes ] ); ?><?php echo $this->get_render_attribute_string( 'title_text' ); ?>><?php echo $settings['title_text']; ?></<?php echo $icon_tag; ?>>
 				</<?php echo $settings['title_size']; ?>>
-				<?php if ( ! Utils::is_empty( $settings['description_text'] ) ) : ?>
+				<?php if ( ! empty( $settings['description_text'] ) ) : ?>
 				<p <?php echo $this->get_render_attribute_string( 'description_text' ); ?>><?php echo $settings['description_text']; ?></p>
 				<?php endif; ?>
 			</div>

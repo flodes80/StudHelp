@@ -182,8 +182,6 @@ class Preview {
 
 		Plugin::$instance->frontend->enqueue_styles();
 
-		Plugin::$instance->widgets_manager->enqueue_widgets_styles();
-
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		$direction_suffix = is_rtl() ? '-rtl' : '';

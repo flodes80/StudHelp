@@ -1,7 +1,7 @@
 <?php
 namespace Elementor\Core\Settings\Page;
 
-use Elementor\Core\Settings\Base\CSS_Model;
+use Elementor\Core\Settings\Base\Model as BaseModel;
 use Elementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.6.0
  */
-class Model extends CSS_Model {
+class Model extends BaseModel {
 
 	/**
 	 * WordPress post object.

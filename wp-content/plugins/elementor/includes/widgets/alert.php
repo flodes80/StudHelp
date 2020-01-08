@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Schemes;
-
 /**
  * Elementor alert widget.
  *
@@ -113,9 +111,6 @@ class Widget_Alert extends Widget_Base {
 				'placeholder' => __( 'Enter your title', 'elementor' ),
 				'default' => __( 'This is an Alert', 'elementor' ),
 				'label_block' => true,
-				'dynamic' => [
-					'active' => true,
-				],
 			]
 		);
 
@@ -128,9 +123,6 @@ class Widget_Alert extends Widget_Base {
 				'default' => __( 'I am a description. Click the edit button to change this text.', 'elementor' ),
 				'separator' => 'none',
 				'show_label' => false,
-				'dynamic' => [
-					'active' => true,
-				],
 			]
 		);
 
@@ -231,7 +223,7 @@ class Widget_Alert extends Widget_Base {
 			[
 				'name' => 'alert_title',
 				'selector' => '{{WRAPPER}} .elementor-alert-title',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 			]
 		);
 
@@ -261,7 +253,7 @@ class Widget_Alert extends Widget_Base {
 			[
 				'name' => 'alert_description',
 				'selector' => '{{WRAPPER}} .elementor-alert-description',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -280,7 +272,7 @@ class Widget_Alert extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		if ( Utils::is_empty( $settings['alert_title'] ) ) {
+		if ( empty( $settings['alert_title'] ) ) {
 			return;
 		}
 
@@ -297,7 +289,7 @@ class Widget_Alert extends Widget_Base {
 		<div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
 			<span <?php echo $this->get_render_attribute_string( 'alert_title' ); ?>><?php echo $settings['alert_title']; ?></span>
 			<?php
-			if ( ! Utils::is_empty( $settings['alert_description'] ) ) :
+			if ( ! empty( $settings['alert_description'] ) ) :
 				$this->add_render_attribute( 'alert_description', 'class', 'elementor-alert-description' );
 
 				$this->add_inline_editing_attributes( 'alert_description' );

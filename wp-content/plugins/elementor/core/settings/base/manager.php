@@ -2,6 +2,7 @@
 namespace Elementor\Core\Settings\Base;
 
 use Elementor\Core\Common\Modules\Ajax\Module as Ajax;
+use Elementor\Core\Files\CSS\Base;
 use Elementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -43,6 +44,10 @@ abstract class Manager {
 		add_action( 'elementor/editor/init', [ $this, 'on_elementor_editor_init' ] );
 
 		add_action( 'elementor/ajax/register_actions', [ $this, 'register_ajax_actions' ] );
+
+		$name = $this->get_css_file_name();
+
+		add_action( "elementor/css-file/{$name}/parse", [ $this, 'add_settings_css_rules' ] );
 	}
 
 	/**
@@ -59,7 +64,6 @@ abstract class Manager {
 	 */
 	public function register_ajax_actions( $ajax_manager ) {
 		$name = $this->get_name();
-
 		$ajax_manager->register_ajax_action( "save_{$name}_settings", [ $this, 'ajax_save_settings' ] );
 	}
 
@@ -129,7 +133,6 @@ abstract class Manager {
 		}
 
 		$this->ajax_before_save_settings( $data, $id );
-
 		$this->save_settings( $data, $id );
 
 		$settings_name = $this->get_name();
@@ -173,7 +176,7 @@ abstract class Manager {
 	/**
 	 * Save settings.
 	 *
-	 * Save settings to the database.
+	 * Save settings to the database and update the CSS file.
 	 *
 	 * @since 1.6.0
 	 * @access public
@@ -181,7 +184,7 @@ abstract class Manager {
 	 * @param array $settings Settings.
 	 * @param int   $id       Optional. Post ID. Default is `0`.
 	 */
-	public function save_settings( array $settings, $id = 0 ) {
+	final public function save_settings( array $settings, $id = 0 ) {
 		$special_settings = $this->get_special_settings_names();
 
 		$settings_to_save = $settings;
@@ -198,6 +201,36 @@ abstract class Manager {
 		if ( isset( $this->models_cache[ $id ] ) ) {
 			unset( $this->models_cache[ $id ] );
 		}
+
+		$css_file = $this->get_css_file_for_update( $id );
+
+		if ( $css_file ) {
+			$css_file->update();
+		}
+	}
+
+	/**
+	 * Add settings CSS rules.
+	 *
+	 * Add new CSS rules to the settings manager.
+	 *
+	 * Fired by `elementor/css-file/{$name}/parse` action.
+	 *
+	 * @since 1.6.0
+	 * @access public
+	 *
+	 * @param Base $css_file The requested CSS file.
+	 */
+	public function add_settings_css_rules( Base $css_file ) {
+		$model = $this->get_model_for_css_file( $css_file );
+
+		$css_file->add_controls_stack_style_rules(
+			$model,
+			$model->get_style_controls(),
+			$model->get_settings(),
+			[ '{{WRAPPER}}' ],
+			[ $model->get_css_wrapper_selector() ]
+		);
 	}
 
 	/**
@@ -228,6 +261,17 @@ abstract class Manager {
 	abstract protected function get_saved_settings( $id );
 
 	/**
+	 * Get CSS file name.
+	 *
+	 * Retrieve CSS file name for the settings base manager.
+	 *
+	 * @since 1.6.0
+	 * @access protected
+	 * @abstract
+	 */
+	abstract protected function get_css_file_name();
+
+	/**
 	 * Save settings to DB.
 	 *
 	 * Save settings to the database.
@@ -240,6 +284,32 @@ abstract class Manager {
 	 * @param int   $id       Post ID.
 	 */
 	abstract protected function save_settings_to_db( array $settings, $id );
+
+	/**
+	 * Get model for CSS file.
+	 *
+	 * Retrieve the model for the CSS file.
+	 *
+	 * @since 1.6.0
+	 * @access protected
+	 * @abstract
+	 *
+	 * @param Base $css_file The requested CSS file.
+	 */
+	abstract protected function get_model_for_css_file( Base $css_file );
+
+	/**
+	 * Get CSS file for update.
+	 *
+	 * Retrieve the CSS file before updating it.
+	 *
+	 * @since 1.6.0
+	 * @access protected
+	 * @abstract
+	 *
+	 * @param int $id Post ID.
+	 */
+	abstract protected function get_css_file_for_update( $id );
 
 	/**
 	 * Get special settings names.
@@ -283,20 +353,14 @@ abstract class Manager {
 	 */
 	protected function print_editor_template_content( $name ) {
 		?>
-		<#
-		const tabs = elementor.config.settings.<?php echo $name; ?>.tabs;
-
-		if ( Object.values( tabs ).length > 1 ) { #>
-			<div class="elementor-panel-navigation">
-				<# _.each( tabs, function( tabTitle, tabSlug ) {
-					$e.bc.ensureTab( 'panel/<?php echo $name; ?>-settings', tabSlug ); #>
-					<div class="elementor-component-tab elementor-panel-navigation-tab elementor-tab-control-{{ tabSlug }}" data-tab="{{ tabSlug }}">
-						<a href="#">{{{ tabTitle }}}</a>
-					</div>
+		<div class="elementor-panel-navigation">
+			<# _.each( elementor.config.settings.<?php echo esc_html( $name ); ?>.tabs, function( tabTitle, tabSlug ) { #>
+				<div class="elementor-panel-navigation-tab elementor-tab-control-{{ tabSlug }}" data-tab="{{ tabSlug }}">
+					<a href="#">{{{ tabTitle }}}</a>
+				</div>
 				<# } ); #>
-			</div>
-		<# } #>
-		<div id="elementor-panel-<?php echo $name; ?>-settings-controls"></div>
+		</div>
+		<div id="elementor-panel-<?php echo esc_attr( $name ); ?>-settings-controls"></div>
 		<?php
 	}
 

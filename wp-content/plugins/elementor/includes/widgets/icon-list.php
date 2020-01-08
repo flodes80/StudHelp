@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Schemes;
-
 /**
  * Elementor icon list widget.
  *
@@ -356,8 +354,8 @@ class Widget_Icon_List extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'default' => '#ddd',
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_3,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_3,
 				],
 				'condition' => [
 					'divider' => 'yes',
@@ -389,8 +387,8 @@ class Widget_Icon_List extends Widget_Base {
 					'{{WRAPPER}} .elementor-icon-list-icon svg' => 'fill: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_1,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
 				],
 			]
 		);
@@ -422,8 +420,8 @@ class Widget_Icon_List extends Widget_Base {
 					],
 				],
 				'selectors' => [
+					'{{WRAPPER}} .elementor-icon-list-icon' => 'width: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .elementor-icon-list-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .elementor-icon-list-icon svg' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -474,8 +472,8 @@ class Widget_Icon_List extends Widget_Base {
 					'{{WRAPPER}} .elementor-icon-list-text' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_2,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_2,
 				],
 			]
 		);
@@ -513,7 +511,7 @@ class Widget_Icon_List extends Widget_Base {
 			[
 				'name' => 'icon_typography',
 				'selector' => '{{WRAPPER}} .elementor-icon-list-item',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
 

@@ -10,11 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Canary_Deployment extends Module {
 
-	const CURRENT_VERSION = ELEMENTOR_VERSION;
-	const PLUGIN_BASE = ELEMENTOR_PLUGIN_BASE;
-
 	private $canary_deployment_info = null;
-
 	/**
 	 * Get module name.
 	 *
@@ -48,8 +44,8 @@ class Canary_Deployment extends Module {
 		// Placeholder
 		$stable_version = '0.0.0';
 
-		if ( ! empty( $transient->response[ static::PLUGIN_BASE ]->new_version ) ) {
-			$stable_version = $transient->response[ static::PLUGIN_BASE ]->new_version;
+		if ( ! empty( $transient->response[ ELEMENTOR_PLUGIN_BASE ]->new_version ) ) {
+			$stable_version = $transient->response[ ELEMENTOR_PLUGIN_BASE ]->new_version;
 		}
 
 		if ( null === $this->canary_deployment_info ) {
@@ -68,17 +64,13 @@ class Canary_Deployment extends Module {
 		$canary_deployment_info = $this->canary_deployment_info;
 
 		// Most of plugin info comes from the $transient but on first check - the response is empty.
-		if ( ! empty( $transient->response[ static::PLUGIN_BASE ] ) ) {
-			$canary_deployment_info = array_merge( (array) $transient->response[ static::PLUGIN_BASE ], $canary_deployment_info );
+		if ( ! empty( $transient->response[ ELEMENTOR_PLUGIN_BASE ] ) ) {
+			$canary_deployment_info = array_merge( (array) $transient->response[ ELEMENTOR_PLUGIN_BASE ], $canary_deployment_info );
 		}
 
-		$transient->response[ static::PLUGIN_BASE ] = (object) $canary_deployment_info;
+		$transient->response[ ELEMENTOR_PLUGIN_BASE ] = (object) $canary_deployment_info;
 
 		return $transient;
-	}
-
-	protected function get_canary_deployment_remote_info( $force ) {
-		return Api::get_canary_deployment_info( $force );
 	}
 
 	private function get_canary_deployment_info() {
@@ -86,7 +78,7 @@ class Canary_Deployment extends Module {
 
 		$force = 'update-core.php' === $pagenow && isset( $_GET['force-check'] ); // WPCS: XSS ok.
 
-		$canary_deployment = $this->get_canary_deployment_remote_info( $force );
+		$canary_deployment = Api::get_canary_deployment_info( $force );
 
 		if ( empty( $canary_deployment['plugin_info']['new_version'] ) ) {
 			return false;
@@ -94,7 +86,7 @@ class Canary_Deployment extends Module {
 
 		$canary_version = $canary_deployment['plugin_info']['new_version'];
 
-		if ( version_compare( $canary_version, static::CURRENT_VERSION, '<=' ) ) {
+		if ( version_compare( $canary_version, ELEMENTOR_VERSION, '<=' ) ) {
 			return false;
 		}
 

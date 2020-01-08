@@ -4,8 +4,9 @@ namespace Elementor\Core\Settings\Page;
 use Elementor\Core\Files\CSS\Base;
 use Elementor\Core\Files\CSS\Post;
 use Elementor\Core\Files\CSS\Post_Preview;
-use Elementor\Core\Settings\Base\CSS_Manager;
 use Elementor\Core\Utils\Exceptions;
+use Elementor\Core\Settings\Manager as SettingsManager;
+use Elementor\Core\Settings\Base\Manager as BaseManager;
 use Elementor\Core\Settings\Base\Model as BaseModel;
 use Elementor\DB;
 use Elementor\Plugin;
@@ -23,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.6.0
  */
-class Manager extends CSS_Manager {
+class Manager extends BaseManager {
 
 	/**
 	 * Meta key for the page settings.

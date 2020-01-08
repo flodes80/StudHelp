@@ -23,10 +23,6 @@ class Db extends Base {
 		update_option( self::LOG_NAME, $log, 'no' );
 	}
 
-	public function clear() {
-		delete_option( self::LOG_NAME );
-	}
-
 	private function maybe_truncate_log() {
 		/** @var Log_Item[] $log */
 		$log = $this->get_log();
@@ -42,13 +38,6 @@ class Db extends Base {
 		// Clear cache.
 		wp_cache_delete( self::LOG_NAME, 'options' );
 
-		$log = get_option( self::LOG_NAME, [] );
-
-		// In case the DB log is corrupted.
-		if ( ! is_array( $log ) ) {
-			$log = [];
-		}
-
-		return $log;
+		return get_option( self::LOG_NAME, [] );
 	}
 }

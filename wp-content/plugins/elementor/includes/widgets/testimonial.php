@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Schemes;
-
 /**
  * Elementor testimonial widget.
  *
@@ -97,7 +95,7 @@ class Widget_Testimonial extends Widget_Base {
 					'active' => true,
 				],
 				'rows' => '10',
-				'default' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+				'default' => 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.',
 			]
 		);
 
@@ -229,8 +227,8 @@ class Widget_Testimonial extends Widget_Base {
 				'label' => __( 'Text Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_3,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_3,
 				],
 				'default' => '',
 				'selectors' => [
@@ -243,7 +241,7 @@ class Widget_Testimonial extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'content_typography',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .elementor-testimonial-content',
 			]
 		);
@@ -318,8 +316,8 @@ class Widget_Testimonial extends Widget_Base {
 				'label' => __( 'Text Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_1,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
 				],
 				'default' => '',
 				'selectors' => [
@@ -332,7 +330,7 @@ class Widget_Testimonial extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'name_typography',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementor-testimonial-name',
 			]
 		);
@@ -354,8 +352,8 @@ class Widget_Testimonial extends Widget_Base {
 				'label' => __( 'Text Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_2,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_2,
 				],
 				'default' => '',
 				'selectors' => [
@@ -368,7 +366,7 @@ class Widget_Testimonial extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'job_typography',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_2,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_2,
 				'selector' => '{{WRAPPER}} .elementor-testimonial-job',
 			]
 		);
@@ -428,6 +426,7 @@ class Widget_Testimonial extends Widget_Base {
 			<?php
 			if ( $has_content ) :
 				$this->add_render_attribute( 'testimonial_content', 'class', 'elementor-testimonial-content' );
+
 				$this->add_inline_editing_attributes( 'testimonial_content' );
 				?>
 				<div <?php echo $this->get_render_attribute_string( 'testimonial_content' ); ?>><?php echo $settings['testimonial_content']; ?></div>
@@ -453,20 +452,16 @@ class Widget_Testimonial extends Widget_Base {
 						<?php
 						if ( $has_name ) :
 							$this->add_render_attribute( 'testimonial_name', 'class', 'elementor-testimonial-name' );
+
 							$this->add_inline_editing_attributes( 'testimonial_name', 'none' );
 
 							$testimonial_name_html = $settings['testimonial_name'];
-
 							if ( ! empty( $settings['link']['url'] ) ) :
-								?>
-								<a <?php echo $this->get_render_attribute_string( 'testimonial_name' ) . ' ' . $this->get_render_attribute_string( 'link' ); ?>><?php echo $testimonial_name_html; ?></a>
-								<?php
-							else :
-								?>
-								<div <?php echo $this->get_render_attribute_string( 'testimonial_name' ); ?>><?php echo $testimonial_name_html; ?></div>
-								<?php
+								$testimonial_name_html = '<a ' . $this->get_render_attribute_string( 'link' ) . '>' . $testimonial_name_html . '</a>';
 							endif;
-						endif; ?>
+							?>
+							<div <?php echo $this->get_render_attribute_string( 'testimonial_name' ); ?>><?php echo $testimonial_name_html; ?></div>
+						<?php endif; ?>
 						<?php
 						if ( $has_job ) :
 							$this->add_render_attribute( 'testimonial_job', 'class', 'elementor-testimonial-job' );
@@ -474,17 +469,12 @@ class Widget_Testimonial extends Widget_Base {
 							$this->add_inline_editing_attributes( 'testimonial_job', 'none' );
 
 							$testimonial_job_html = $settings['testimonial_job'];
-
 							if ( ! empty( $settings['link']['url'] ) ) :
-								?>
-								<a <?php echo $this->get_render_attribute_string( 'testimonial_job' ) . ' ' . $this->get_render_attribute_string( 'link' ); ?>><?php echo $testimonial_job_html; ?></a>
-								<?php
-							else :
-								?>
-								<div <?php echo $this->get_render_attribute_string( 'testimonial_job' ); ?>><?php echo $testimonial_job_html; ?></div>
-								<?php
+								$testimonial_job_html = '<a ' . $this->get_render_attribute_string( 'link' ) . '>' . $testimonial_job_html . '</a>';
 							endif;
-						endif; ?>
+							?>
+							<div <?php echo $this->get_render_attribute_string( 'testimonial_job' ); ?>><?php echo $testimonial_job_html; ?></div>
+						<?php endif; ?>
 					</div>
 					<?php endif; ?>
 				</div>
@@ -538,52 +528,39 @@ class Widget_Testimonial extends Widget_Base {
 			<div class="elementor-testimonial-meta{{ hasImage }}{{ testimonial_image_position }}">
 				<div class="elementor-testimonial-meta-inner">
 					<# if ( imageUrl ) { #>
-						<div class="elementor-testimonial-image">{{{ imageHtml }}}</div>
+					<div class="elementor-testimonial-image">{{{ imageHtml }}}</div>
 					<# } #>
+
 					<div class="elementor-testimonial-details">
-						<?php $this->render_testimonial_description(); ?>
+						<# if ( '' !== settings.testimonial_name ) {
+							view.addRenderAttribute( 'testimonial_name', 'class', 'elementor-testimonial-name' );
+
+							view.addInlineEditingAttributes( 'testimonial_name', 'none' );
+
+							var testimonialNameHtml = settings.testimonial_name;
+							if ( settings.link.url ) {
+								testimonialNameHtml = '<a href="' + settings.link.url + '">' + testimonialNameHtml + '</a>';
+							}
+							#>
+							<div {{{ view.getRenderAttributeString( 'testimonial_name' ) }}}>{{{ testimonialNameHtml }}}</div>
+						<# } #>
+
+						<# if ( '' !== settings.testimonial_job ) {
+							view.addRenderAttribute( 'testimonial_job', 'class', 'elementor-testimonial-job' );
+
+							view.addInlineEditingAttributes( 'testimonial_job', 'none' );
+
+							var testimonialJobHtml = settings.testimonial_job;
+							if ( settings.link.url ) {
+								testimonialJobHtml = '<a href="' + settings.link.url + '">' + testimonialJobHtml + '</a>';
+							}
+							#>
+							<div {{{ view.getRenderAttributeString( 'testimonial_job' ) }}}>{{{ testimonialJobHtml }}}</div>
+						<# } #>
 					</div>
 				</div>
 			</div>
 		</div>
-		<?php
-	}
-
-	protected function render_testimonial_description() {
-		?>
-		<#
-		if ( '' !== settings.testimonial_name ) {
-			view.addRenderAttribute( 'testimonial_name', 'class', 'elementor-testimonial-name' );
-
-			view.addInlineEditingAttributes( 'testimonial_name', 'none' );
-
-			if ( settings.link.url ) {
-				#>
-				<a href="{{{ settings.link.url }}}" {{{ view.getRenderAttributeString( 'testimonial_name' ) }}}>{{{ settings.testimonial_name }}}</a>
-				<#
-			} else {
-				#>
-				<div {{{ view.getRenderAttributeString( 'testimonial_name' ) }}}>{{{ settings.testimonial_name }}}</div>
-				<#
-			}
-		}
-
-		if ( '' !== settings.testimonial_job ) {
-			view.addRenderAttribute( 'testimonial_job', 'class', 'elementor-testimonial-job' );
-
-			view.addInlineEditingAttributes( 'testimonial_job', 'none' );
-
-			if ( settings.link.url ) {
-				#>
-				<a href="{{{ settings.link.url }}}" {{{ view.getRenderAttributeString( 'testimonial_job' ) }}}>{{{ settings.testimonial_job }}}</a>
-				<#
-			} else {
-				#>
-				<div {{{ view.getRenderAttributeString( 'testimonial_job' ) }}}>{{{ settings.testimonial_job }}}</div>
-				<#
-			}
-		}
-		#>
 		<?php
 	}
 }

@@ -48,7 +48,7 @@ class General extends Base_Category {
 			],
 			'system-info' => [
 				'title' => __( 'System Info', 'elementor' ),
-				'icon' => 'info-circle-o',
+				'icon' => 'info',
 				'url' => admin_url( 'admin.php?page=elementor-system-info' ),
 				'keywords' => [ 'system', 'info', 'environment', 'elementor' ],
 			],

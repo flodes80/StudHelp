@@ -124,10 +124,6 @@ class Widget_WordPress extends Widget_Base {
 		return [ 'wordpress', 'widget' ];
 	}
 
-	public function get_help_url() {
-		return '';
-	}
-
 	/**
 	 * Whether the reload preview is required or not.
 	 *

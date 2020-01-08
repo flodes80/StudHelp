@@ -23,7 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 </head>
 <body <?php body_class(); ?>>
 	<?php
-	Elementor\Modules\PageTemplates\Module::body_open();
 	/**
 	 * Before canvas page template content.
 	 *

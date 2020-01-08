@@ -5,7 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Schemes;
 /**
  * Elementor accordion widget.
  *
@@ -122,11 +121,11 @@ class Widget_Accordion extends Widget_Base {
 				'default' => [
 					[
 						'tab_title' => __( 'Accordion #1', 'elementor' ),
-						'tab_content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
 					],
 					[
 						'tab_title' => __( 'Accordion #2', 'elementor' ),
-						'tab_content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
 					],
 				],
 				'title_field' => '{{{ tab_title }}}',
@@ -153,20 +152,6 @@ class Widget_Accordion extends Widget_Base {
 					'value' => 'fas fa-plus',
 					'library' => 'fa-solid',
 				],
-				'recommended' => [
-					'fa-solid' => [
-						'chevron-down',
-						'angle-down',
-						'angle-double-down',
-						'caret-down',
-						'caret-square-down',
-					],
-					'fa-regular' => [
-						'caret-square-down',
-					],
-				],
-				'skin' => 'inline',
-				'label_block' => false,
 			]
 		);
 
@@ -180,20 +165,6 @@ class Widget_Accordion extends Widget_Base {
 					'value' => 'fas fa-minus',
 					'library' => 'fa-solid',
 				],
-				'recommended' => [
-					'fa-solid' => [
-						'chevron-up',
-						'angle-up',
-						'angle-double-up',
-						'caret-up',
-						'caret-square-up',
-					],
-					'fa-regular' => [
-						'caret-square-up',
-					],
-				],
-				'skin' => 'inline',
-				'label_block' => false,
 				'condition' => [
 					'selected_icon[value]!' => '',
 				],
@@ -291,8 +262,8 @@ class Widget_Accordion extends Widget_Base {
 					'{{WRAPPER}} .elementor-accordion .elementor-tab-title' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_1,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
 				],
 			]
 		);
@@ -306,8 +277,8 @@ class Widget_Accordion extends Widget_Base {
 					'{{WRAPPER}} .elementor-accordion .elementor-tab-title.elementor-active' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_4,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_4,
 				],
 			]
 		);
@@ -317,7 +288,7 @@ class Widget_Accordion extends Widget_Base {
 			[
 				'name' => 'title_typography',
 				'selector' => '{{WRAPPER}} .elementor-accordion .elementor-tab-title',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 			]
 		);
 
@@ -439,8 +410,8 @@ class Widget_Accordion extends Widget_Base {
 					'{{WRAPPER}} .elementor-accordion .elementor-tab-content' => 'color: {{VALUE}};',
 				],
 				'scheme' => [
-					'type' => Schemes\Color::get_type(),
-					'value' => Schemes\Color::COLOR_3,
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_3,
 				],
 			]
 		);
@@ -450,7 +421,7 @@ class Widget_Accordion extends Widget_Base {
 			[
 				'name' => 'content_typography',
 				'selector' => '{{WRAPPER}} .elementor-accordion .elementor-tab-content',
-				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
 

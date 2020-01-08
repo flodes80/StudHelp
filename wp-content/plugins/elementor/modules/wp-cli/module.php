@@ -49,7 +49,6 @@ class Module extends BaseModule {
 		add_action( 'elementor/loggers/register', [ $this, 'register_cli_logger' ] );
 		\WP_CLI::add_command( 'elementor', '\Elementor\Modules\WpCli\Command' );
 		\WP_CLI::add_command( 'elementor update', '\Elementor\Modules\WpCli\Update' );
-		\WP_CLI::add_command( 'elementor library', '\Elementor\Modules\WpCli\Library' );
 	}
 
 }

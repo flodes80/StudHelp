@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Schemes;
-
 /**
  * Elementor column element.
  *
@@ -115,7 +113,6 @@ class Element_Column extends Element_Base {
 			]
 		);
 
-		// Element Name for the Navigator
 		$this->add_control(
 			'_title',
 			[
@@ -173,10 +170,8 @@ class Element_Column extends Element_Base {
 					'bottom' => 'flex-end',
 				],
 				'selectors' => [
-					// TODO: The following line is for BC since 2.7.0
-					'.elementor-bc-flex-widget {{WRAPPER}}.elementor-column .elementor-column-wrap' => 'align-items: {{VALUE}}',
-					// This specificity is intended to make sure column css overwrites section css on vertical alignment (content_position)
-					'{{WRAPPER}}.elementor-column.elementor-element[data-element_type="column"] > .elementor-column-wrap.elementor-element-populated > .elementor-widget-wrap' => 'align-content: {{VALUE}}; align-items: {{VALUE}};',
+					'{{WRAPPER}}.elementor-column .elementor-column-wrap' => 'align-items: {{VALUE}}',
+					'{{WRAPPER}}.elementor-column > .elementor-column-wrap > .elementor-widget-wrap' => 'align-content: {{VALUE}}',
 				],
 			]
 		);
@@ -262,13 +257,7 @@ class Element_Column extends Element_Base {
 			Group_Control_Background::get_type(),
 			[
 				'name' => 'background',
-				'types' => [ 'classic', 'gradient', 'slideshow' ],
 				'selector' => '{{WRAPPER}}:not(.elementor-motion-effects-element-type-background) > .elementor-element-populated, {{WRAPPER}} > .elementor-column-wrap > .elementor-motion-effects-container > .elementor-motion-effects-layer',
-				'fields_options' => [
-					'background' => [
-						'frontend_available' => true,
-					],
-				],
 			]
 		);
 
@@ -502,7 +491,7 @@ class Element_Column extends Element_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} > .elementor-element-populated, {{WRAPPER}} > .elementor-element-populated > .elementor-background-overlay, {{WRAPPER}} > .elementor-background-slideshow' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} > .elementor-element-populated, {{WRAPPER}} > .elementor-element-populated > .elementor-background-overlay' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -605,7 +594,7 @@ class Element_Column extends Element_Base {
 			]
 		);
 
-		if ( in_array( Schemes\Color::get_type(), Schemes\Manager::get_enabled_schemes(), true ) ) {
+		if ( in_array( Scheme_Color::get_type(), Schemes_Manager::get_enabled_schemes(), true ) ) {
 			$this->add_control(
 				'colors_warning',
 				[

@@ -73,7 +73,6 @@ class Modules_Manager {
 			'gutenberg',
 			'wp-cli',
 			'safe-mode',
-			'usage',
 		];
 	}
 

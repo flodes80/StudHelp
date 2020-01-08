@@ -4,7 +4,6 @@ namespace Elementor\Core\Common\Modules\Connect;
 use Elementor\Core\Base\Module as BaseModule;
 use Elementor\Core\Common\Modules\Connect\Apps\Base_App;
 use Elementor\Core\Common\Modules\Connect\Apps\Connect;
-use Elementor\Core\Common\Modules\Connect\Apps\Library;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -58,7 +57,6 @@ class Module extends BaseModule {
 	public function __construct() {
 		$this->registered_apps = [
 			'connect' => Connect::get_class_name(),
-			'library' => Library::get_class_name(),
 		];
 
 		// Note: The priority 11 is for allowing plugins to add their register callback on elementor init.
@@ -92,17 +90,6 @@ class Module extends BaseModule {
 		foreach ( $this->registered_apps as $slug => $class ) {
 			$this->apps[ $slug ] = new $class();
 		}
-
-		add_filter( 'elementor/editor/localize_settings', [ $this, 'localize_settings' ] );
-	}
-
-	public function localize_settings( $settings ) {
-		return array_replace_recursive( $settings, [
-			'i18n' => [
-				'connect_error' => __( 'Unable to connect', 'elementor' ),
-				'connected_successfully' => __( 'Connected successfully', 'elementor' ),
-			],
-		] );
 	}
 
 	/**
