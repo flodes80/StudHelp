@@ -245,7 +245,7 @@ function Display_FAQs($atts) {
 		$Display_FAQ_ID = $FAQ->ID;
 	}
 	elseif (isset($_GET['Display_FAQ'])) {
-		$ReturnString .= "<script>var Display_FAQ_ID = '" . $_GET['Display_FAQ'] . "-%Counter_Placeholder%';</script>";
+		$ReturnString .= "<script>var Display_FAQ_ID = '" . intval($_GET['Display_FAQ']) . "-%Counter_Placeholder%';</script>";
 		$Display_FAQ_ID = $_GET['Display_FAQ'];
 	}
 	else {$Display_FAQ_ID = "";}

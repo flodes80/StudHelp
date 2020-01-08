@@ -281,6 +281,9 @@ Video 3 - FAQs Ordering
 
 == Changelog ==
 
+= 1.8.30 =
+- Small update to the sanitization of an FAQ URL parameter
+
 = 1.8.29 =
 - Update for the admin dashboard
 
