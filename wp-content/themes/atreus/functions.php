@@ -138,3 +138,5 @@ function atreus_customize_register($wp_customize)
 }
 
 add_action( 'customize_register', 'atreus_customize_register' );
+
+add_action( 'wp_logout', create_function( '', 'wp_redirect( wp_login_url() ); exit();' ) );
