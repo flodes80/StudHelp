@@ -2,11 +2,10 @@
 namespace ElementorPro\Modules\Posts\Skins;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Schemes;
 use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
 use Elementor\Skin_Base as Elementor_Skin_Base;
 use Elementor\Widget_Base;
 use ElementorPro\Plugin;
@@ -20,7 +19,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	/**
 	 * @var string Save current permalink to avoid conflict with plugins the filters the permalink during the post render.
 	 */
-	private $current_permalink;
+	protected $current_permalink;
 
 	protected function _register_controls_actions() {
 		add_action( 'elementor/element/posts/section_layout/before_section_end', [ $this, 'register_controls' ] );
@@ -526,8 +525,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_2,
+					'type' => Schemes\Color::get_type(),
+					'value' => Schemes\Color::COLOR_2,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__title, {{WRAPPER}} .elementor-post__title a' => 'color: {{VALUE}};',
@@ -542,7 +541,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementor-post__title, {{WRAPPER}} .elementor-post__title a',
 				'condition' => [
 					$this->get_control_id( 'show_title' ) => 'yes',
@@ -613,7 +612,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'meta_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_2,
+				'scheme' => Schemes\Typography::TYPOGRAPHY_2,
 				'selector' => '{{WRAPPER}} .elementor-post__meta-data',
 				'condition' => [
 					$this->get_control_id( 'meta_data!' ) => [],
@@ -670,7 +669,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'excerpt_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .elementor-post__excerpt p',
 				'condition' => [
 					$this->get_control_id( 'show_excerpt' ) => 'yes',
@@ -715,8 +714,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_4,
+					'type' => Schemes\Color::get_type(),
+					'value' => Schemes\Color::COLOR_4,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-post__read-more' => 'color: {{VALUE}};',
@@ -732,7 +731,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			[
 				'name' => 'read_more_typography',
 				'selector' => '{{WRAPPER}} .elementor-post__read-more',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+				'scheme' => Schemes\Typography::TYPOGRAPHY_4,
 				'condition' => [
 					$this->get_control_id( 'show_read_more' ) => 'yes',
 				],
@@ -900,14 +899,24 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	}
 
 	protected function render_loop_header() {
+		$classes = [
+			'elementor-posts-container',
+			'elementor-posts',
+			$this->get_container_class(),
+		];
+
+		/** @var \WP_Query $wp_query */
+		$wp_query = $this->parent->get_query();
+
+		// Use grid only if found posts.
+		if ( $wp_query->found_posts ) {
+			$classes[] = 'elementor-grid';
+		}
+
 		$this->parent->add_render_attribute( 'container', [
-			'class' => [
-				'elementor-posts-container',
-				'elementor-posts',
-				'elementor-grid',
-				$this->get_container_class(),
-			],
+			'class' => $classes,
 		] );
+
 		?>
 		<div <?php echo $this->parent->get_render_attribute_string( 'container' ); ?>>
 		<?php

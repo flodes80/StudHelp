@@ -94,9 +94,8 @@ class Recaptcha_Handler {
 	}
 
 	public function register_scripts() {
-		$render_param = static::get_script_render_param();
 		$script_name = static::get_script_name();
-		$src = 'https://www.google.com/recaptcha/api.js?render=' . $render_param;
+		$src = 'https://www.google.com/recaptcha/api.js?render=explicit';
 		wp_register_script( $script_name, $src, [], ELEMENTOR_PRO_VERSION, true );
 	}
 
@@ -178,16 +177,18 @@ class Recaptcha_Handler {
 			}
 
 			$this->add_error( $ajax_handler, $field, $message );
+
 		}
 
 		// If success - remove the field form list (don't send it in emails and etc )
 		$record->remove_field( $field['id'] );
+
 	}
 
 	/**
 	 * @param Ajax_Handler $ajax_handler
-	 * @param              $field
-	 * @param              $message
+	 * @param $field
+	 * @param $message
 	 */
 	protected function add_error( $ajax_handler, $field, $message ) {
 		$ajax_handler->add_error( $field['id'], $message );

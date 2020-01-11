@@ -1,4 +1,4 @@
-/*! elementor-pro - v2.6.1 - 24-07-2019 */
+/*! elementor-pro - v2.8.3 - 01-01-2020 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,23 +82,23 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 56);
+/******/ 	return __webpack_require__(__webpack_require__.s = 57);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 56:
+/***/ 57:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var modules = {
-	widget_template_edit_button: __webpack_require__(57),
-	forms_integrations: __webpack_require__(59),
-	AssetsManager: __webpack_require__(61),
-	RoleManager: __webpack_require__(69),
-	ThemeBuilder: __webpack_require__(71)
+	widget_template_edit_button: __webpack_require__(58),
+	forms_integrations: __webpack_require__(60),
+	AssetsManager: __webpack_require__(62),
+	RoleManager: __webpack_require__(70),
+	ThemeBuilder: __webpack_require__(72)
 };
 
 window.elementorProAdmin = {
@@ -116,20 +116,20 @@ jQuery(function () {
 
 /***/ }),
 
-/***/ 57:
+/***/ 58:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = function () {
-	var EditButton = __webpack_require__(58);
+	var EditButton = __webpack_require__(59);
 	this.editButton = new EditButton();
 };
 
 /***/ }),
 
-/***/ 58:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -163,14 +163,14 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 59:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = function () {
-	var ApiValidations = __webpack_require__(60);
+	var ApiValidations = __webpack_require__(61);
 
 	this.dripButton = new ApiValidations('drip_api_token');
 	this.getResponse = new ApiValidations('getresponse_api_key');
@@ -182,7 +182,7 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 60:
+/***/ 61:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -259,17 +259,17 @@ module.exports = function (key, fieldID) {
 
 /***/ }),
 
-/***/ 61:
+/***/ 62:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = function () {
-	var FontManager = __webpack_require__(62),
-	    TypekitAdmin = __webpack_require__(65),
-	    CustomIcon = __webpack_require__(66).default,
-	    FontAwesomeProAdmin = __webpack_require__(68).default;
+	var FontManager = __webpack_require__(63),
+	    TypekitAdmin = __webpack_require__(66),
+	    CustomIcon = __webpack_require__(67).default,
+	    FontAwesomeProAdmin = __webpack_require__(69).default;
 	this.fontManager = new FontManager();
 	this.typekit = new TypekitAdmin();
 	this.fontAwesomePro = new FontAwesomeProAdmin();
@@ -278,7 +278,7 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 62:
+/***/ 63:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -288,8 +288,8 @@ module.exports = function () {
 	var self = this;
 
 	self.fields = {
-		upload: __webpack_require__(63),
-		repeater: __webpack_require__(64)
+		upload: __webpack_require__(64),
+		repeater: __webpack_require__(65)
 	};
 
 	self.selectors = {
@@ -425,11 +425,13 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 63:
+/***/ 64:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 module.exports = {
 	$btn: null,
@@ -441,7 +443,8 @@ module.exports = {
 		uploadBtnClass: 'elementor-upload-btn',
 		clearBtnClass: 'elementor-upload-clear-btn',
 		uploadBtn: '.elementor-upload-btn',
-		clearBtn: '.elementor-upload-clear-btn'
+		clearBtn: '.elementor-upload-clear-btn',
+		inputURLField: '.elementor-field-file input[type="text"]'
 	},
 
 	hasValue: function hasValue() {
@@ -463,15 +466,16 @@ module.exports = {
 	},
 
 	setUploadParams: function setUploadParams(ext, name) {
-		var self = this;
-		self.fileFrame[name].uploader.uploader.param('uploadType', ext);
-		self.fileFrame[name].uploader.uploader.param('uploadTypeCaller', 'elementor-admin-font-upload');
-		self.fileFrame[name].uploader.uploader.param('post_id', self.getPostId());
+		var uploader = this.fileFrame[name].uploader.uploader;
+		uploader.param('uploadType', ext);
+		uploader.param('uploadTypeCaller', 'elementor-admin-font-upload');
+		uploader.param('post_id', this.getPostId());
 	},
 
 	setUploadMimeType: function setUploadMimeType(frame, ext) {
-		// Set svg as only allowed upload extensions
-		var oldExtensions = _wpPluploadSettings.defaults.filters.mime_types[0].extensions;
+		// Set {ext} as only allowed upload extensions
+		var oldExtensions = _wpPluploadSettings.defaults.filters.mime_types[0].extensions,
+		    self = this;
 		frame.on('ready', function () {
 			_wpPluploadSettings.defaults.filters.mime_types[0].extensions = ext;
 		});
@@ -479,6 +483,7 @@ module.exports = {
 		frame.on('close', function () {
 			// restore allowed upload extensions
 			_wpPluploadSettings.defaults.filters.mime_types[0].extensions = oldExtensions;
+			self.replaceButtonClass(self.$btn);
 		});
 	},
 
@@ -492,6 +497,8 @@ module.exports = {
 	},
 
 	uploadFile: function uploadFile(el) {
+		var _this = this;
+
 		var self = this,
 		    $el = jQuery(el),
 		    mime = $el.attr('data-mime_type') || '',
@@ -511,7 +518,7 @@ module.exports = {
 		// Create the media frame.
 		self.fileFrame[name] = wp.media({
 			library: {
-				type: mime.split(',')
+				type: [].concat(_toConsumableArray(mime.split(',')), [mime.split(',').join('')])
 			},
 			title: $el.data('box_title'),
 			button: {
@@ -529,6 +536,16 @@ module.exports = {
 			jQuery(self.fileUrl).val(attachment.url);
 			self.replaceButtonClass(el);
 			self.updatePreview(el);
+		});
+
+		self.fileFrame[name].on('open', function () {
+			var selectedId = _this.fileId.val();
+			if (!selectedId) {
+				return;
+			}
+
+			var selection = self.fileFrame[name].state().get('selection');
+			selection.add(wp.media.attachment(selectedId));
 		});
 
 		self.setUploadMimeType(self.fileFrame[name], ext);
@@ -572,25 +589,47 @@ module.exports = {
 	getPostId: function getPostId() {
 		return jQuery('#post_ID').val();
 	},
+	handleUploadClick: function handleUploadClick(event) {
+		event.preventDefault();
+		var $element = jQuery(event.target);
+		if ('text' === $element.attr('type')) {
+			return $element.next().removeClass(this.selectors.clearBtnClass).addClass(this.selectors.uploadBtnClass).click();
+		}
+		this.$btn = $element;
+		this.setFields($element);
+		this.uploadFile($element);
+	},
 
 
 	init: function init() {
-		var self = this;
+		var _this2 = this;
 
-		jQuery(document).on('click', self.selectors.uploadBtn, function (event) {
-			event.preventDefault();
-			self.setFields(jQuery(this));
-			self.uploadFile(jQuery(this));
+		var self = this,
+		    _selectors = this.selectors,
+		    uploadBtn = _selectors.uploadBtn,
+		    inputURLField = _selectors.inputURLField,
+		    clearBtn = _selectors.clearBtn,
+		    handleUpload = function handleUpload(event) {
+			return _this2.handleUploadClick(event);
+		};
+
+
+		jQuery(document).on('click', uploadBtn, handleUpload);
+		jQuery(document).on('click', inputURLField, function (event) {
+			if ('' !== event.target.value) {
+				handleUpload(event);
+			}
 		});
 
-		jQuery(document).on('click', self.selectors.clearBtn, function (event) {
+		jQuery(document).on('click', clearBtn, function (event) {
 			event.preventDefault();
-			self.setFields(jQuery(this));
+			var $element = jQuery(this);
+			self.setFields($element);
 			jQuery(self.fileUrl).val('');
 			jQuery(self.fileId).val('');
 
-			self.updatePreview(jQuery(this));
-			self.replaceButtonClass(jQuery(this));
+			self.updatePreview($element);
+			self.replaceButtonClass($element);
 		});
 
 		this.setup();
@@ -603,7 +642,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 64:
+/***/ 65:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -762,7 +801,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 65:
+/***/ 66:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -838,7 +877,7 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 66:
+/***/ 67:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -884,7 +923,7 @@ var CustomIcons = function (_elementorModules$Vie) {
 		value: function getDefaultSettings() {
 			return {
 				fields: {
-					dropzone: __webpack_require__(67).default
+					dropzone: __webpack_require__(68).default
 				},
 				classes: {
 					editPageClass: 'post-type-elementor_icons',
@@ -1144,7 +1183,7 @@ exports.default = CustomIcons;
 
 /***/ }),
 
-/***/ 67:
+/***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1292,7 +1331,7 @@ var DropZoneField = function (_elementorModules$Vie) {
 				contentType: false,
 				processData: false,
 				xhr: function xhr() {
-					var xhr = $.ajaxSettings.xhr();
+					var xhr = jQuery.ajaxSettings.xhr();
 					//Upload progress
 					xhr.upload.onprogress = function (evt) {
 						if (evt.lengthComputable) {
@@ -1341,7 +1380,7 @@ exports.default = DropZoneField;
 
 /***/ }),
 
-/***/ 68:
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1460,20 +1499,20 @@ exports.default = _class;
 
 /***/ }),
 
-/***/ 69:
+/***/ 70:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = function () {
-	var AdvancedRoleManager = __webpack_require__(70);
+	var AdvancedRoleManager = __webpack_require__(71);
 	this.advancedRoleManager = new AdvancedRoleManager();
 };
 
 /***/ }),
 
-/***/ 70:
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1513,20 +1552,20 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 71:
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = function () {
-	var CreateTemplateDialog = __webpack_require__(72);
+	var CreateTemplateDialog = __webpack_require__(73);
 	this.createTemplateDialog = new CreateTemplateDialog();
 };
 
 /***/ }),
 
-/***/ 72:
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

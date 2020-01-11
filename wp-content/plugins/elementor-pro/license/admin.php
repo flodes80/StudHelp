@@ -195,7 +195,7 @@ class Admin {
 						</a>
 					</div>
 				<?php else :
-					$license_data = API::get_license_data( true ); ?>
+					$license_data = API::get_license_data(); ?>
 					<h3><?php _e( 'Status', 'elementor-pro' ); ?>:
 						<?php if ( API::STATUS_EXPIRED === $license_data['license'] ) : ?>
 							<span style="color: #ff0000; font-style: italic;"><?php _e( 'Expired', 'elementor-pro' ); ?></span>
@@ -272,13 +272,7 @@ class Admin {
 	}
 
 	public function is_license_about_to_expire() {
-		$license_data = API::get_license_data();
-
-		if ( 'lifetime' === $license_data['expires'] ) {
-			return false;
-		}
-
-		return time() > strtotime( '-28 days', strtotime( $license_data['expires'] ) );
+		return false;
 	}
 
 	public function admin_license_details() {
@@ -290,7 +284,7 @@ class Admin {
 			return;
 		}
 
-		$renew_url = API::RENEW_URL;
+		//$renew_url = API::RENEW_URL;
 
 		$license_key = self::get_license_key();
 
@@ -337,10 +331,6 @@ class Admin {
 		}
 
 		if ( API::STATUS_VALID === $license_data['license'] ) {
-			if ( ! empty( $license_data['subscriptions'] ) && 'enable' === $license_data['subscriptions'] ) {
-				return;
-			}
-
 			if ( $this->is_license_about_to_expire() ) {
 				$title = sprintf( __( 'Your License Will Expire in %s.', 'elementor-pro' ), human_time_diff( current_time( 'timestamp' ), strtotime( $license_data['expires'] ) ) );
 				$description = sprintf( __( '<a href="%s" target="_blank">Renew your license today</a>, to keep getting feature updates, premium support and unlimited access to the template library.', 'elementor-pro' ), $renew_url );
@@ -464,7 +454,7 @@ class Admin {
 					<p class="description"><?php printf( __( 'Your license key should look something like this: %s', 'elementor-pro' ), '<code>fb351f05958872E193feb37a505a84be</code>' ); ?></p>
 
 				<?php else :
-					$license_data = API::get_license_data( true ); ?>
+					$license_data = API::get_license_data(); ?>
 					<input type="hidden" name="action" value="elementor_pro_deactivate_license"/>
 
 					<label for="elementor-pro-license-key"><?php _e( 'Your License Key', 'elementor-pro' ); ?>:</label>
@@ -509,10 +499,10 @@ class Admin {
 		return $this->get_app()->is_connected();
 	}
 
-	public function get_connect_url() {
+	public function get_connect_url( $params = [] ) {
 		$action = $this->is_connected() ? 'activate_pro' : 'authorize';
 
-		return $this->get_app()->get_admin_url( $action );
+		return $this->get_app()->get_admin_url( $action, $params );
 	}
 
 	private function get_activate_manually_url() {

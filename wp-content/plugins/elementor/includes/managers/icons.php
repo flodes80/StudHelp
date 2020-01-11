@@ -185,6 +185,7 @@ class Icons_Manager {
 		if ( ! isset( $value['id'] ) ) {
 			return '';
 		}
+
 		return Svg_Handler::get_inline_svg( $value['id'] );
 	}
 
@@ -227,7 +228,9 @@ class Icons_Manager {
 		} else {
 			$output = self::render_icon_html( $icon, $attributes, $tag );
 		}
+
 		echo $output;
+
 		return true;
 	}
 
@@ -273,7 +276,7 @@ class Icons_Manager {
 	 */
 	public static function on_import_migration( array $element, $old_control = '', $new_control = '', $remove_old = false ) {
 
-		if ( ! isset( $element['settings'][ $old_control ] ) ) {
+		if ( ! isset( $element['settings'][ $old_control ] ) || isset( $element['settings'][ $new_control ] ) ) {
 			return $element;
 		}
 

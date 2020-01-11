@@ -7,7 +7,6 @@ use Elementor\Icons_Manager;
 use Elementor\Repeater;
 use ElementorPro\Base\Base_Widget;
 use ElementorPro\Modules\ShareButtons\Module;
-use Elementor\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -117,9 +116,6 @@ class Share_Buttons extends Base_Widget {
 				'default' => [
 					[
 						'button' => 'facebook',
-					],
-					[
-						'button' => 'google',
 					],
 					[
 						'button' => 'twitter',
@@ -441,8 +437,8 @@ class Share_Buttons extends Base_Widget {
 				'type' => Controls_Manager::SELECT,
 				'label_block' => false,
 				'options' => [
-					'official' => 'Official Color',
-					'custom' => 'Custom Color',
+					'official' => __( 'Official', 'elementor-pro' ),
+					'custom' => __( 'Custom', 'elementor-pro' ),
 				],
 				'default' => 'official',
 				'prefix_class' => 'elementor-share-buttons--color-',
@@ -450,15 +446,19 @@ class Share_Buttons extends Base_Widget {
 			]
 		);
 
-		$this->start_controls_tabs( 'tabs_button_style' );
+		$this->start_controls_tabs(
+			'tabs_button_style',
+			[
+				'condition' => [
+					'color_source' => 'custom',
+				],
+			]
+		);
 
 		$this->start_controls_tab(
 			'tab_button_normal',
 			[
 				'label' => __( 'Normal', 'elementor-pro' ),
-				'condition' => [
-					'color_source' => 'custom',
-				],
 			]
 		);
 
@@ -477,9 +477,6 @@ class Share_Buttons extends Base_Widget {
 					 {{WRAPPER}}.elementor-share-buttons--skin-minimal .elementor-share-btn,
 					 {{WRAPPER}}.elementor-share-buttons--skin-boxed .elementor-share-btn' => 'color: {{VALUE}}; border-color: {{VALUE}}',
 				],
-				'condition' => [
-					'color_source' => 'custom',
-				],
 			]
 		);
 
@@ -496,9 +493,6 @@ class Share_Buttons extends Base_Widget {
 					 {{WRAPPER}}.elementor-share-buttons--skin-boxed .elementor-share-btn__icon,
 					 {{WRAPPER}}.elementor-share-buttons--skin-minimal .elementor-share-btn__icon' => 'color: {{VALUE}}',
 				],
-				'condition' => [
-					'color_source' => 'custom',
-				],
 				'separator' => 'after',
 			]
 		);
@@ -509,9 +503,6 @@ class Share_Buttons extends Base_Widget {
 			'tab_button_hover',
 			[
 				'label' => __( 'Hover', 'elementor-pro' ),
-				'condition' => [
-					'color_source' => 'custom',
-				],
 			]
 		);
 
@@ -529,9 +520,6 @@ class Share_Buttons extends Base_Widget {
 					'{{WRAPPER}}.elementor-share-buttons--skin-boxed .elementor-share-btn:hover .elementor-share-btn__icon, 
 					 {{WRAPPER}}.elementor-share-buttons--skin-minimal .elementor-share-btn:hover .elementor-share-btn__icon' => 'background-color: {{VALUE}}',
 				],
-				'condition' => [
-					'color_source' => 'custom',
-				],
 			]
 		);
 
@@ -547,9 +535,6 @@ class Share_Buttons extends Base_Widget {
 					 {{WRAPPER}}.elementor-share-buttons--skin-gradient .elementor-share-btn:hover .elementor-share-btn__text,
 					 {{WRAPPER}}.elementor-share-buttons--skin-boxed .elementor-share-btn:hover .elementor-share-btn__icon,
 					 {{WRAPPER}}.elementor-share-buttons--skin-minimal .elementor-share-btn:hover .elementor-share-btn__icon' => 'color: {{VALUE}}',
-				],
-				'condition' => [
-					'color_source' => 'custom',
 				],
 				'separator' => 'after',
 			]

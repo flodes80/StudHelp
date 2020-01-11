@@ -2,11 +2,10 @@
 namespace ElementorPro\Modules\ThemeElements\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Schemes;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -272,7 +271,7 @@ class Search_Form extends Base {
 			[
 				'name' => 'input_typography',
 				'selector' => '{{WRAPPER}} input[type="search"].elementor-search-form__input',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -291,8 +290,8 @@ class Search_Form extends Base {
 				'label' => __( 'Text Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_3,
+					'type' => Schemes\Color::get_type(),
+					'value' => Schemes\Color::COLOR_3,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-search-form__input,
@@ -470,7 +469,7 @@ class Search_Form extends Base {
 			[
 				'name' => 'button_typography',
 				'selector' => '{{WRAPPER}} .elementor-search-form__submit',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
 				'condition' => [
 					'button_type' => 'text',
 				],
@@ -503,8 +502,8 @@ class Search_Form extends Base {
 				'label' => __( 'Background Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_2,
+					'type' => Schemes\Color::get_type(),
+					'value' => Schemes\Color::COLOR_2,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-search-form__submit' => 'background-color: {{VALUE}}',
@@ -750,6 +749,7 @@ class Search_Form extends Base {
 		];
 		?>
 		<form class="elementor-search-form" role="search" action="<?php echo home_url(); ?>" method="get">
+			<?php do_action( 'elementor_pro/search_form/before_input', $this ); ?> 
 			<?php if ( 'full_screen' === $settings['skin'] ) : ?>
 			<div class="elementor-search-form__toggle">
 				<?php if ( ! $migration_allowed || ! Icons_Manager::render_icon( $icon, [ 'aria-hidden' => 'true' ] ) ) { ?>
@@ -766,15 +766,16 @@ class Search_Form extends Base {
 					</div>
 				<?php endif; ?>
 				<input <?php echo $this->get_render_attribute_string( 'input' ); ?>>
+				<?php do_action( 'elementor_pro/search_form/after_input', $this ); ?>
 				<?php if ( 'classic' === $settings['skin'] ) : ?>
-				<button class="elementor-search-form__submit" type="submit">
-					<?php if ( 'icon' === $settings['button_type'] ) : ?>
-						<i <?php echo $this->get_render_attribute_string( 'icon' ); ?> aria-hidden="true"></i>
-						<span class="elementor-screen-only"><?php esc_html_e( 'Search', 'elementor-pro' ); ?></span>
-					<?php elseif ( ! empty( $settings['button_text'] ) ) : ?>
-						<?php echo $settings['button_text']; ?>
-					<?php endif; ?>
-				</button>
+					<button class="elementor-search-form__submit" type="submit" title="<?php esc_attr_e( 'Search', 'elementor-pro' ); ?>" aria-label="<?php esc_attr_e( 'Search', 'elementor-pro' ); ?>">
+						<?php if ( 'icon' === $settings['button_type'] ) : ?>
+							<i <?php echo $this->get_render_attribute_string( 'icon' ); ?> aria-hidden="true"></i>
+							<span class="elementor-screen-only"><?php esc_html_e( 'Search', 'elementor-pro' ); ?></span>
+						<?php elseif ( ! empty( $settings['button_text'] ) ) : ?>
+							<?php echo $settings['button_text']; ?>
+						<?php endif; ?>
+					</button>
 				<?php endif; ?>
 				<?php if ( 'full_screen' === $settings['skin'] ) : ?>
 				<div class="dialog-lightbox-close-button dialog-close-button">

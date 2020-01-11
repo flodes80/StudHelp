@@ -2,9 +2,9 @@
 namespace ElementorPro\Modules\Woocommerce\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Schemes;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
 use ElementorPro\Modules\Woocommerce\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -279,7 +279,7 @@ class Menu_Cart extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'toggle_button_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementor-menu-cart__toggle .elementor-button',
 				'separator' => 'before',
 			]
@@ -506,7 +506,7 @@ class Menu_Cart extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'product_title_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementor-menu-cart__product-name, {{WRAPPER}} .elementor-menu-cart__product-name a',
 			]
 		);
@@ -536,7 +536,7 @@ class Menu_Cart extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'product_price_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementor-menu-cart__product-price',
 			]
 		);
@@ -629,7 +629,7 @@ class Menu_Cart extends Widget_Base {
 			'buttons_layout',
 			[
 				'label' => __( 'Layout', 'elementor-pro' ),
-				'type' => Controls_Manager::SELECT2,
+				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'inline' => __( 'Inline', 'elementor-pro' ),
 					'stacked' => __( 'Stacked', 'elementor-pro' ),
@@ -660,7 +660,7 @@ class Menu_Cart extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'product_buttons_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+				'scheme' => Schemes\Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementor-menu-cart__footer-buttons .elementor-button',
 				'separator' => 'before',
 			]
@@ -764,7 +764,19 @@ class Menu_Cart extends Widget_Base {
 		$this->end_controls_section();
 	}
 
+	/**
+	 * Check if user did not explicitly disabled the use of our mini-cart template and set the option accordingly.
+	 * The option value is later used by Module::woocommerce_locate_template().
+	 */
+	private function maybe_use_mini_cart_template() {
+		$option_value = get_option( 'elementor_' . Module::OPTION_NAME_USE_MINI_CART, '' );
+		if ( empty( $option_value ) || 'initial' === $option_value ) {
+			update_option( 'elementor_' . Module::OPTION_NAME_USE_MINI_CART, 'yes' );
+		}
+	}
+
 	protected function render() {
+		$this->maybe_use_mini_cart_template();
 		Module::render_menu_cart();
 	}
 

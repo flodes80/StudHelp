@@ -32,8 +32,6 @@ abstract class Document extends Controls_Stack {
 	 */
 	const TYPE_META_KEY = '_elementor_template_type';
 	const PAGE_META_KEY = '_elementor_page_settings';
-	const ELEMENTS_USAGE_META_KEY = '_elementor_elements_usage';
-	const ELEMENTS_USAGE_OPTION_NAME = 'elementor_elements_usage';
 
 	private $main_id;
 
@@ -84,6 +82,7 @@ abstract class Document extends Controls_Stack {
 	 */
 	public static function get_editor_panel_config() {
 		return [
+			'title' => static::get_title(), // JS Container title.
 			'widgets_settings' => [],
 			'elements_categories' => static::get_editor_panel_categories(),
 			'messages' => [
@@ -164,7 +163,7 @@ abstract class Document extends Controls_Stack {
 	 * @access public
 	 */
 	public function get_remote_library_type() {
-		// _deprecated_function( __METHOD__, '2.4.0', __CLASS__ . '::get_remote_library_config()' );
+		_deprecated_function( __METHOD__, '2.4.0', __CLASS__ . '::get_remote_library_config()' );
 	}
 
 	/**
@@ -229,7 +228,7 @@ abstract class Document extends Controls_Stack {
 	 * @access public
 	 */
 	public function get_container_classes() {
-		// _deprecated_function( __METHOD__, '2.4.0', __CLASS__ . '::get_container_attributes()' );
+		_deprecated_function( __METHOD__, '2.4.0', __CLASS__ . '::get_container_attributes()' );
 
 		return '';
 	}
@@ -547,7 +546,7 @@ abstract class Document extends Controls_Stack {
 		$this->save_version();
 
 		// Remove Post CSS
-		$post_css = new Post_CSS( $this->post->ID );
+		$post_css = Post_CSS::create( $this->post->ID );
 
 		$post_css->delete();
 
@@ -886,8 +885,6 @@ abstract class Document extends Controls_Stack {
 	protected function save_elements( $elements ) {
 		$editor_data = $this->get_elements_raw_data( $elements );
 
-		$this->save_usage( $editor_data );
-
 		// We need the `wp_slash` in order to avoid the unslashing during the `update_post_meta`
 		$json_value = wp_slash( wp_json_encode( $editor_data ) );
 
@@ -1165,67 +1162,5 @@ abstract class Document extends Controls_Stack {
 
 			$element->print_element();
 		}
-	}
-
-	private function save_usage( $elements ) {
-		if ( DB::STATUS_PUBLISH !== $this->post->post_status ) {
-			return;
-		}
-
-		if ( ! self::get_property( 'is_editable' ) ) {
-			return;
-		}
-
-		$usage = [];
-		Plugin::$instance->db->iterate_data( $elements, function ( $element ) use ( & $usage ) {
-			if ( empty( $element['widgetType'] ) ) {
-				$type = $element['elType'];
-			} else {
-				$type = $element['widgetType'];
-			}
-
-			if ( ! isset( $usage[ $type ] ) ) {
-				$usage[ $type ] = 0;
-			}
-
-			$usage[ $type ]++;
-
-			return $element;
-		} );
-
-		// Keep prev usage, before updating the new usage meta.
-		$prev_usage = $this->get_meta( self::ELEMENTS_USAGE_META_KEY );
-
-		$this->update_meta( self::ELEMENTS_USAGE_META_KEY, $usage );
-
-		// Handle global usage.
-		$doc_type = $this->get_name();
-
-		$global_usage = get_option( self::ELEMENTS_USAGE_OPTION_NAME, [] );
-
-		if ( $prev_usage ) {
-			foreach ( $prev_usage as $type => $count ) {
-				if ( isset( $global_usage[ $doc_type ][ $type ] ) ) {
-					$global_usage[ $doc_type ][ $type ] -= $prev_usage[ $type ];
-					if ( 0 === $global_usage[ $doc_type ][ $type ] ) {
-						unset( $global_usage[ $doc_type ][ $type ] );
-					}
-				}
-			}
-		}
-
-		foreach ( $usage as $type => $count ) {
-			if ( ! isset( $global_usage[ $doc_type ] ) ) {
-				$global_usage[ $doc_type ] = [];
-			}
-
-			if ( ! isset( $global_usage[ $doc_type ][ $type ] ) ) {
-				$global_usage[ $doc_type ][ $type ] = 0;
-			}
-
-			$global_usage[ $doc_type ][ $type ] += $usage[ $type ];
-		}
-
-		update_option( self::ELEMENTS_USAGE_OPTION_NAME, $global_usage );
 	}
 }

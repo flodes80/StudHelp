@@ -1,8 +1,6 @@
 <?php
 namespace Elementor;
 
-use Elementor\Core\Base\Document;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -10,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Elementor tracker.
  *
- * Elementor tracker handler class is responsible for sending anonymous plugin
+ * Elementor tracker handler class is responsible for sending non-sensitive plugin
  * data to Elementor servers for users that actively allowed data tracking.
  *
  * @since 1.0.0
@@ -133,29 +131,7 @@ class Tracker {
 		// Update time first before sending to ensure it is set.
 		update_option( 'elementor_tracker_last_send', time() );
 
-		// Send here..
-		$params = [
-			'system' => self::get_system_reports_data(),
-			'site_lang' => get_bloginfo( 'language' ),
-			'email' => get_option( 'admin_email' ),
-			'usages' => [
-				'posts' => self::get_posts_usage(),
-				'elements' => self::get_elements_usage(),
-				'library' => self::get_library_usage(),
-			],
-			'is_first_time' => empty( $last_send ),
-		];
-
-		/**
-		 * Tracker send tracking data params.
-		 *
-		 * Filters the data parameters when sending tracking request.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array $params Variable to encode as JSON.
-		 */
-		$params = apply_filters( 'elementor/tracker/send_tracking_data_params', $params );
+		$params = self::get_tracking_data( empty( $last_send ) );
 
 		add_filter( 'https_ssl_verify', '__return_false' );
 
@@ -202,17 +178,15 @@ class Tracker {
 		}
 
 		if ( 'opt_into' === $_GET['elementor_tracker'] ) {
-			check_admin_referer( 'opt_into' );
+			check_admin_referer( 'opt_out' );
 
-			update_option( 'elementor_allow_tracking', 'yes' );
-			self::send_tracking_data( true );
+			self::set_opt_in( false );
 		}
 
 		if ( 'opt_out' === $_GET['elementor_tracker'] ) {
 			check_admin_referer( 'opt_out' );
 
-			update_option( 'elementor_allow_tracking', 'no' );
-			update_option( 'elementor_tracker_notice', '1' );
+			self::set_opt_in( false );
 		}
 
 		wp_redirect( remove_query_arg( 'elementor_tracker' ) );
@@ -268,12 +242,12 @@ class Tracker {
 		$optin_url = wp_nonce_url( add_query_arg( 'elementor_tracker', 'opt_into' ), 'opt_into' );
 		$optout_url = wp_nonce_url( add_query_arg( 'elementor_tracker', 'opt_out' ), 'opt_out' );
 
-		$tracker_description_text = __( 'Love using Elementor? Become a super contributor by opting in to our anonymous plugin data collection and to our updates. We guarantee no sensitive data is collected.', 'elementor' );
+		$tracker_description_text = __( 'Love using Elementor? Become a super contributor by opting in to our non-sensitive plugin data collection and to our updates. We guarantee no sensitive data is collected.', 'elementor' );
 
 		/**
 		 * Tracker admin description text.
 		 *
-		 * Filters the admin notice text for anonymous data collection.
+		 * Filters the admin notice text for non-sensitive data collection.
 		 *
 		 * @since 1.0.0
 		 *
@@ -306,6 +280,16 @@ class Tracker {
 	 */
 	public static function is_notice_shown() {
 		return self::$notice_shown;
+	}
+
+	public static function set_opt_in( $value ) {
+		if ( $value ) {
+			update_option( 'elementor_allow_tracking', 'no' );
+			self::send_tracking_data( false );
+		} else {
+			update_option( 'elementor_allow_tracking', 'no' );
+			update_option( 'elementor_tracker_notice', '1' );
+		}
 	}
 
 	/**
@@ -368,13 +352,13 @@ class Tracker {
 	 * Retrieve the number of posts using Elementor.
 	 *
 	 * @since 2.0.0
-	 * @access private
+	 * @access public
 	 * @static
 	 *
 	 * @return array The number of posts using Elementor grouped by post types
 	 *               and post status.
 	 */
-	private static function get_posts_usage() {
+	public static function get_posts_usage() {
 		global $wpdb;
 
 		$usage = [];
@@ -399,34 +383,18 @@ class Tracker {
 	}
 
 	/**
-	 * Get elements usage.
-	 *
-	 * Retrieve the usage of elements in Elementor.
-	 *
-	 * @since 2.6.0
-	 * @access private
-	 * @static
-	 *
-	 * @return array The usage of elements in Elementor grouped by document types.
-	 */
-	private static function get_elements_usage() {
-		return get_option( Document::ELEMENTS_USAGE_OPTION_NAME );
-
-	}
-
-	/**
 	 * Get library usage.
 	 *
 	 * Retrieve the number of Elementor library items saved.
 	 *
 	 * @since 2.0.0
-	 * @access private
+	 * @access public
 	 * @static
 	 *
 	 * @return array The number of Elementor library items grouped by post types
 	 *               and meta value.
 	 */
-	private static function get_library_usage() {
+	public static function get_library_usage() {
 		global $wpdb;
 
 		$usage = [];
@@ -448,5 +416,44 @@ class Tracker {
 
 		return $usage;
 
+	}
+
+	/**
+	 * Get the tracking data
+	 *
+	 * Retrieve tracking data and apply filter
+	 *
+	 * @access private
+	 * @static
+	 *
+	 * @param bool $is_first_time
+	 *
+	 * @return array
+	 */
+	private static function get_tracking_data( $is_first_time = false ) {
+		$params = [
+			'system' => self::get_system_reports_data(),
+			'site_lang' => get_bloginfo( 'language' ),
+			'email' => get_option( 'admin_email' ),
+			'usages' => [
+				'posts' => self::get_posts_usage(),
+				'library' => self::get_library_usage(),
+			],
+			'is_first_time' => $is_first_time,
+		];
+
+		/**
+		 * Tracker send tracking data params.
+		 *
+		 * Filters the data parameters when sending tracking request.
+		 *
+		 * @param array $params Variable to encode as JSON.
+		 *
+		 * @since 1.0.0
+		 *
+		 */
+		$params = apply_filters( 'elementor/tracker/send_tracking_data_params', $params );
+
+		return $params;
 	}
 }

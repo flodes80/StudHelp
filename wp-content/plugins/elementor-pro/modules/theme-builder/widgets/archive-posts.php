@@ -2,9 +2,8 @@
 namespace ElementorPro\Modules\ThemeBuilder\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Core\Schemes;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Color;
-use Elementor\Scheme_Typography;
 use ElementorPro\Modules\Posts\Widgets\Posts_Base;
 use ElementorPro\Modules\ThemeBuilder\Skins;
 use ElementorPro\Modules\QueryControl\Module as Query_Control;
@@ -41,6 +40,7 @@ class Archive_Posts extends Posts_Base {
 	protected function _register_skins() {
 		$this->add_skin( new Skins\Posts_Archive_Skin_Classic( $this ) );
 		$this->add_skin( new Skins\Posts_Archive_Skin_Cards( $this ) );
+		$this->add_skin( new Skins\Posts_Archive_Skin_Full_Content( $this ) );
 	}
 
 	protected function _register_controls() {
@@ -97,8 +97,8 @@ class Archive_Posts extends Posts_Base {
 				'label' => __( 'Color', 'elementor-pro' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_3,
+					'type' => Schemes\Color::get_type(),
+					'value' => Schemes\Color::COLOR_3,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-posts-nothing-found' => 'color: {{VALUE}};',
@@ -110,7 +110,7 @@ class Archive_Posts extends Posts_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'nothing_found_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+				'scheme' => Schemes\Typography::TYPOGRAPHY_3,
 				'selector' => '{{WRAPPER}} .elementor-posts-nothing-found',
 			]
 		);

@@ -26,7 +26,7 @@ class Child_Of_Term extends Taxonomy {
 	public function is_term() {
 		$taxonomy = $this->taxonomy->name;
 		$current = get_queried_object();
-		return ( ! $current || ! isset( $current->taxonomy ) || $taxonomy !== $current->taxonomy );
+		return ( $current && isset( $current->taxonomy ) && $taxonomy === $current->taxonomy );
 	}
 
 	public function check( $args ) {

@@ -1,4 +1,4 @@
-/*! elementor-pro - v2.6.1 - 24-07-2019 */
+/*! elementor-pro - v2.8.3 - 01-01-2020 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -198,7 +198,7 @@ module.exports = elementorModules.editor.utils.Module.extend({
 		var $controlEl = this.getEditorControlView(name).$el;
 
 		$controlEl.find(':input').attr('disabled', false);
-		$controlEl.find('elementor-control-spinner').remove();
+		$controlEl.find('.elementor-control-spinner').remove();
 	},
 
 	addSectionListener: function addSectionListener(section, callback) {
@@ -302,22 +302,51 @@ var ElementorPro = Marionette.Application.extend({
 	},
 
 	onStart: function onStart() {
+		var _this = this;
+
 		this.config = elementorProEditorConfig;
 
 		this.initModules();
 
-		jQuery(window).on('elementor:init', this.onElementorInit);
+		jQuery(window).on('elementor:init', function () {
+			return _this.onElementorInit();
+		}).on('elementor/connect/success/editor-pro-activate', this.onActivateSuccess);
 	},
 
 	onElementorInit: function onElementorInit() {
+		var _this2 = this;
+
+		elementor.on('preview:loaded', function () {
+			return _this2.onElementorPreviewLoaded();
+		});
+
 		elementorPro.libraryRemoveGetProButtons();
 
 		elementor.debug.addURLToWatch('elementor-pro/assets');
 	},
 
+	onElementorPreviewLoaded: function onElementorPreviewLoaded() {
+		elementor.$preview[0].contentWindow.elementorPro = this;
+	},
+
 	libraryRemoveGetProButtons: function libraryRemoveGetProButtons() {
 		elementor.hooks.addFilter('elementor/editor/template-library/template/action-button', function (viewID, templateData) {
 			return templateData.isPro && !elementorPro.config.isActive ? '#tmpl-elementor-pro-template-library-activate-license-button' : '#tmpl-elementor-template-library-insert-button';
+		});
+	},
+
+	onActivateSuccess: function onActivateSuccess() {
+		// Hide notice.
+		elementor.noticeBar.onCloseClick();
+
+		// Mark site connect for insert templates connect screen.
+		elementor.config.library_connect.is_connected = true;
+
+		// Mark pro is active - for `this.libraryRemoveGetProButtons`.
+		elementorPro.config.isActive = true;
+
+		elementor.notifications.showToast({
+			message: elementor.translate('connected_successfully')
 		});
 	}
 });
@@ -465,17 +494,7 @@ exports.default = _class;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _displaySettings = __webpack_require__(15);
-
-var _displaySettings2 = _interopRequireDefault(_displaySettings);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -483,19 +502,21 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _class = function (_elementorModules$edi) {
-	_inherits(_class, _elementorModules$edi);
+var DisplaySettingsControlsStack = __webpack_require__(15);
 
-	function _class() {
+var Module = function (_elementorModules$edi) {
+	_inherits(Module, _elementorModules$edi);
+
+	function Module() {
 		var _ref;
 
-		_classCallCheck(this, _class);
+		_classCallCheck(this, Module);
 
 		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 			args[_key] = arguments[_key];
 		}
 
-		var _this = _possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args)));
+		var _this = _possibleConstructorReturn(this, (_ref = Module.__proto__ || Object.getPrototypeOf(Module)).call.apply(_ref, [this].concat(args)));
 
 		_this.displaySettingsTypes = {
 			triggers: {
@@ -508,28 +529,24 @@ var _class = function (_elementorModules$edi) {
 		return _this;
 	}
 
-	_createClass(_class, [{
-		key: 'initDisplaySettingsModels',
-		value: function initDisplaySettingsModels() {
-			var config = elementor.config.document.displaySettings;
+	_createClass(Module, [{
+		key: 'addPublishTabs',
+		value: function addPublishTabs() {
+			var config = elementor.config.document.displaySettings,
+			    component = $e.components.get('theme-builder-publish');
 
 			jQuery.each(this.displaySettingsTypes, function (type, data) {
+				// Init models for editor save.
 				data.model = new elementorModules.editor.elements.models.BaseSettings(config[type].settings, { controls: config[type].controls });
-			});
-		}
-	}, {
-		key: 'addDisplaySettingsPublishScreens',
-		value: function addDisplaySettingsPublishScreens(publishLayout) {
-			jQuery.each(this.displaySettingsTypes, function (type, data) {
-				var model = data.model;
 
-				publishLayout.addScreen({
-					View: _displaySettings2.default,
+				component.addTab(type, {
+					// Todo: use import instead of require.
+					View: DisplaySettingsControlsStack.default,
 					viewOptions: {
 						name: type,
 						id: 'elementor-popup-' + type + '__controls',
-						model: model,
-						controls: model.controls
+						model: data.model,
+						controls: data.model.controls
 					},
 					name: type,
 					title: elementorPro.translate(type),
@@ -541,8 +558,7 @@ var _class = function (_elementorModules$edi) {
 	}, {
 		key: 'addPanelFooterSubmenuItems',
 		value: function addPanelFooterSubmenuItems() {
-			var _this2 = this;
-
+			var component = $e.components.get('theme-builder-publish');
 			jQuery.each(this.displaySettingsTypes, function (type, data) {
 				elementor.getPanelView().footer.currentView.addSubMenuItem('saver-options', {
 					before: 'save-template',
@@ -550,25 +566,27 @@ var _class = function (_elementorModules$edi) {
 					icon: data.icon,
 					title: elementorPro.translate(type),
 					callback: function callback() {
-						return _this2.onPanelFooterSubmenuItemClick(type);
+						return $e.route(component.getTabRoute(type));
 					}
 				});
 			});
 		}
 	}, {
-		key: 'addLibraryScreen',
-		value: function addLibraryScreen() {
-			var screens = elementor.templates.getScreens(),
-			    pagesIndex = screens.indexOf(_.findWhere(screens, { type: 'pages' }));
+		key: 'addLibraryTab',
+		value: function addLibraryTab() {
+			var library = $e.components.get('library');
 
-			screens.splice(pagesIndex - 1, 1, {
-				name: 'popups',
-				source: 'remote',
-				type: 'popup',
-				title: elementorPro.translate('popups')
-			});
+			library.removeTab('templates/pages');
 
-			elementor.templates.setDefaultScreen('popups');
+			library.addTab('templates/popups', {
+				title: elementorPro.translate('popups'),
+				filter: {
+					source: 'remote',
+					type: 'popup'
+				}
+			}, 1);
+
+			library.setDefaultRoute('templates/popups');
 		}
 	}, {
 		key: 'initIntroduction',
@@ -603,28 +621,26 @@ var _class = function (_elementorModules$edi) {
 	}, {
 		key: 'onElementorInit',
 		value: function onElementorInit() {
-			var _this3 = this;
+			var _this2 = this;
 
 			if ('popup' !== elementor.config.document.type) {
 				return;
 			}
 
 			elementor.on('panel:init', function () {
-				return _this3.onElementorPanelInit();
+				return _this2.onElementorPanelInit();
 			});
 
 			elementor.saver.on('save', function () {
-				return _this3.onEditorSave();
+				return _this2.onEditorSave();
 			});
 
-			this.addLibraryScreen();
+			this.addLibraryTab();
 		}
 	}, {
 		key: 'onElementorPanelInit',
 		value: function onElementorPanelInit() {
-			this.initDisplaySettingsModels();
-
-			elementorPro.modules.themeBuilder.on('publish-layout:init', this.addDisplaySettingsPublishScreens.bind(this));
+			this.addPublishTabs();
 
 			this.addPanelFooterSubmenuItems();
 
@@ -639,12 +655,10 @@ var _class = function (_elementorModules$edi) {
 				return;
 			}
 
-			var panel = elementor.getPanelView();
-
-			panel.footer.currentView.showSettingsPage('page_settings');
+			$e.route('panel/page-settings/settings');
 
 			if (!elementor.config.user.introduction.popupSettings) {
-				panel.getCurrentPageView().on('destroy', this.onPageSettingsDestroy.bind(this));
+				elementor.getPanelView().getCurrentPageView().on('destroy', this.onPageSettingsDestroy.bind(this));
 			}
 		}
 	}, {
@@ -671,19 +685,12 @@ var _class = function (_elementorModules$edi) {
 				}
 			});
 		}
-	}, {
-		key: 'onPanelFooterSubmenuItemClick',
-		value: function onPanelFooterSubmenuItemClick(type) {
-			elementorPro.modules.themeBuilder.showPublishModal();
-
-			elementorPro.modules.themeBuilder.getPublishLayout().modalContent.currentView.showScreenByName(type);
-		}
 	}]);
 
-	return _class;
+	return Module;
 }(elementorModules.editor.utils.Module);
 
-exports.default = _class;
+module.exports = Module;
 
 /***/ }),
 /* 15 */
@@ -857,7 +864,8 @@ module.exports = elementor.modules.controls.Select2.extend({
 
 
 	getQueryData: function getQueryData() {
-		var autocomplete = this.model.get('autocomplete');
+		// Use a clone to keep model data unchanged:
+		var autocomplete = elementorCommon.helpers.cloneObject(this.model.get('autocomplete'));
 
 		if (_.isEmpty(autocomplete.query)) {
 			autocomplete.query = {};
@@ -1138,23 +1146,22 @@ module.exports = elementorModules.editor.utils.Module.extend({
 		return inputField;
 	},
 	getDataSettings: function getDataSettings(item) {
-		var config = elementorPro.config.forms[item.field_type];
+		var config = elementorPro.config.forms[item.field_type],
+		    srcURL = 'https://www.google.com/recaptcha/api.js?render=explicit';
+
 		if (!config.enabled) {
-			return '<div class="elementor-alert">' + config.setup_message + '</div>';
+			return '<div class="elementor-alert elementor-alert-info">' + config.setup_message + '</div>';
 		}
 
-		var recaptchaData = 'data-sitekey="' + config.site_key + '" ';
-		var srcURL = 'https://www.google.com/recaptcha/api.js?render=';
+		var recaptchaData = 'data-sitekey="' + config.site_key + '" data-type="' + config.type + '"';
 
 		switch (config.type) {
 			case 'v3':
-				recaptchaData += 'data-action="form" style="display:none;"';
-				srcURL += config.site_key;
+				recaptchaData += ' data-action="form" data-size="invisible" data-badge="' + item.recaptcha_badge + '"';
 				break;
 			case 'v2_checkbox':
-				recaptchaData += '" data-theme="' + item.recaptcha_style;
+				recaptchaData += ' data-theme="' + item.recaptcha_style + '"';
 				recaptchaData += ' data-size="' + item.recaptcha_size + '"';
-				srcURL += 'explicit';
 				break;
 		}
 		this.enqueueRecaptchaJs(srcURL, config.type);
@@ -2443,8 +2450,13 @@ module.exports = elementorModules.editor.utils.Module.extend({
 
 	setWidgetContextMenuSaveAction: function setWidgetContextMenuSaveAction() {
 		elementor.hooks.addFilter('elements/widget/contextMenuGroups', function (groups, widget) {
-			var saveGroup = _.findWhere(groups, { name: 'save' }),
-			    saveAction = _.findWhere(saveGroup.actions, { name: 'save' });
+			var saveGroup = _.findWhere(groups, { name: 'save' });
+
+			if (!saveGroup) {
+				return groups;
+			}
+
+			var saveAction = _.findWhere(saveGroup.actions, { name: 'save' });
 
 			saveAction.callback = widget.save.bind(widget);
 
@@ -2466,9 +2478,17 @@ module.exports = elementorModules.editor.utils.Module.extend({
 		this.addSavedWidgetsToPanel();
 	},
 
-	onElementorPreviewLoaded: function onElementorPreviewLoaded() {
+	onElementorPreviewLoaded: function onElementorPreviewLoaded(isFirst) {
+		if (!isFirst) {
+			return;
+		}
+
 		this.addPanelPage();
 		this.setSaveButton();
+
+		$e.routes.register('panel/editor', 'global', function (args) {
+			elementor.getPanelView().setPage('globalWidget', 'Global Editing', { editedView: args.view });
+		});
 	},
 
 	onWidgetTemplateSaved: function onWidgetTemplateSaved(data) {
@@ -2477,10 +2497,10 @@ module.exports = elementorModules.editor.utils.Module.extend({
 			type: elementorPro.translate('linked_to_global')
 		});
 
-		var widgetModel = elementor.templates.getLayout().modalContent.currentView.model,
+		var widgetModel = elementor.templates.layout.modalContent.currentView.model,
 		    widgetModelIndex = widgetModel.collection.indexOf(widgetModel);
 
-		elementor.templates.closeModal();
+		elementor.templates.layout.hideModal();
 
 		data.elType = data.type;
 		data.settings = widgetModel.get('settings').attributes;
@@ -2497,13 +2517,9 @@ module.exports = elementorModules.editor.utils.Module.extend({
 
 		widgetModel.destroy();
 
-		var panel = elementor.getPanelView();
-
-		panel.setPage('elements');
-
-		panel.getCurrentPageView().activateTab('global');
-
 		elementor.history.history.endItem();
+
+		$e.route('panel/elements/global');
 	}
 });
 
@@ -2588,7 +2604,9 @@ GlobalWidgetView = WidgetView.extend({
 	},
 
 	edit: function edit() {
-		elementor.getPanelView().setPage('globalWidget', 'Global Editing', { editedView: this });
+		$e.route('panel/editor/global', {
+			view: this
+		});
 	},
 
 	unlink: function unlink() {
@@ -2623,7 +2641,7 @@ GlobalWidgetView = WidgetView.extend({
 	},
 
 	onEditRequest: function onEditRequest() {
-		elementor.getPanelView().setPage('globalWidget', 'Global Editing', { editedView: this });
+		this.edit();
 	}
 });
 
@@ -2689,11 +2707,9 @@ module.exports = elementor.modules.elements.models.Element.extend({
 	},
 
 	onDestroy: function onDestroy() {
-		var panel = elementor.getPanelView(),
-		    currentPageName = panel.getCurrentPageName();
-
-		if (-1 !== ['editor', 'globalWidget'].indexOf(currentPageName)) {
-			panel.setPage('elements');
+		// Can be also 'panel/editor/global'.
+		if ($e.routes.isPartOf('panel/editor')) {
+			$e.route('panel/elements/categories');
 		}
 	}
 });
@@ -2799,7 +2815,10 @@ module.exports = Marionette.ItemView.extend({
 	editGlobalModel: function editGlobalModel() {
 		var editedView = this.getOption('editedView');
 
-		elementor.getPanelView().openEditor(editedView.getEditModel(), editedView);
+		$e.run('panel/editor/open', {
+			model: editedView.getEditModel(),
+			view: editedView
+		});
 	},
 
 	onEditButtonClick: function onEditButtonClick() {
@@ -3016,15 +3035,7 @@ module.exports = function () {
 "use strict";
 
 
-var _layout = __webpack_require__(49);
-
-var _layout2 = _interopRequireDefault(_layout);
-
-var _view = __webpack_require__(51);
-
-var _view2 = _interopRequireDefault(_view);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var Component = __webpack_require__(49);
 
 module.exports = elementorModules.editor.utils.Module.extend({
 
@@ -3035,18 +3046,20 @@ module.exports = elementorModules.editor.utils.Module.extend({
 
 		elementor.channels.editor.on('page_settings:preview_settings:activated', this.onSectionPreviewSettingsActive);
 
-		elementor.addControlView('Conditions_repeater', __webpack_require__(53));
+		elementor.addControlView('Conditions_repeater', __webpack_require__(54));
 
 		elementor.hooks.addFilter('panel/footer/behaviors', this.addFooterBehavior);
 
 		elementor.saver.on('save', this.onEditorSave);
 
-		this.initPublishLayout();
+		this.setConditionsModel();
+
+		this.component = $e.components.register(new Component.default({ manager: this }));
 	},
 
 	addFooterBehavior: function addFooterBehavior(behaviors) {
 		behaviors.saver = {
-			behaviorClass: __webpack_require__(55)
+			behaviorClass: __webpack_require__(56)
 		};
 
 		return behaviors;
@@ -3076,7 +3089,7 @@ module.exports = elementorModules.editor.utils.Module.extend({
 				preview_search_term: ''
 			});
 
-			if ('page_settings' === elementor.getPanelView().getCurrentPageName()) {
+			if ($e.routes.is('panel/page-settings/settings')) {
 				this.updatePreviewIdOptions(true);
 			}
 		}
@@ -3087,7 +3100,7 @@ module.exports = elementorModules.editor.utils.Module.extend({
 					elementor.reloadPreview();
 
 					elementor.once('preview:loaded', function () {
-						elementor.getPanelView().setPage('page_settings');
+						$e.route('panel/page-settings/settings');
 					});
 				}
 			});
@@ -3168,51 +3181,17 @@ module.exports = elementorModules.editor.utils.Module.extend({
 		}, 500);
 	},
 
-	showPublishModal: function showPublishModal() {
-		this.getPublishLayout().showModal();
-	},
-
-	initPublishLayout: function initPublishLayout() {
-		var _this = this;
-
-		var publishLayout = void 0;
-
-		this.getPublishLayout = function () {
-			if (!publishLayout) {
-				publishLayout = new _layout2.default();
-
-				_this.trigger('publish-layout:init', publishLayout);
-			}
-
-			return publishLayout;
-		};
-
-		this.on('publish-layout:init', this.addConditionsScreen);
-	},
-
-	addConditionsScreen: function addConditionsScreen(publishLayout) {
+	setConditionsModel: function setConditionsModel() {
 		var themeBuilderModuleConfig = elementorPro.config.theme_builder,
 		    settings = themeBuilderModuleConfig.settings;
 
 		this.conditionsModel = new elementorModules.editor.elements.models.BaseSettings(settings, {
 			controls: themeBuilderModuleConfig.template_conditions.controls
 		});
-
-		publishLayout.addScreen({
-			View: _view2.default,
-			viewOptions: {
-				model: this.conditionsModel,
-				controls: this.conditionsModel.controls
-			},
-			name: 'conditions',
-			title: elementorPro.translate('conditions'),
-			description: elementorPro.translate('conditions_publish_screen_description'),
-			image: elementorPro.config.urls.modules + 'theme-builder/assets/images/conditions-tab.svg'
-		});
 	},
 
 	onEditorSave: function onEditorSave() {
-		var _this2 = this;
+		var _this = this;
 
 		if (!this.conditionsModel) {
 			return;
@@ -3221,7 +3200,7 @@ module.exports = elementorModules.editor.utils.Module.extend({
 		elementorPro.ajax.addRequest('theme_builder_save_conditions', {
 			data: this.conditionsModel.toJSON({ remove: ['default'] }),
 			success: function success() {
-				elementorPro.config.theme_builder.settings.conditions = _this2.conditionsModel.get('conditions');
+				elementorPro.config.theme_builder.settings.conditions = _this.conditionsModel.get('conditions');
 			}
 		});
 	}
@@ -3246,6 +3225,14 @@ var _content = __webpack_require__(50);
 
 var _content2 = _interopRequireDefault(_content);
 
+var _layout = __webpack_require__(51);
+
+var _layout2 = _interopRequireDefault(_layout);
+
+var _view = __webpack_require__(52);
+
+var _view2 = _interopRequireDefault(_view);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3264,122 +3251,100 @@ var _class = function (_elementorModules$com) {
 	}
 
 	_createClass(_class, [{
-		key: 'initialize',
-		value: function initialize() {
-			var _get2;
-
-			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-				args[_key] = arguments[_key];
-			}
-
-			(_get2 = _get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), 'initialize', this)).call.apply(_get2, [this].concat(args));
-
-			this.screens = [];
+		key: 'getNamespace',
+		value: function getNamespace() {
+			return 'theme-builder-publish';
 		}
 	}, {
-		key: 'getModalOptions',
-		value: function getModalOptions() {
+		key: 'getModalLayout',
+		value: function getModalLayout() {
+			return _layout2.default;
+		}
+	}, {
+		key: 'defaultTabs',
+		value: function defaultTabs() {
 			return {
-				id: 'elementor-publish__modal',
-				hide: {
-					onButtonClick: false
+				conditions: {
+					title: elementorPro.translate('conditions'),
+					View: _view2.default,
+					viewOptions: {
+						model: this.manager.conditionsModel,
+						controls: this.manager.conditionsModel.controls
+					},
+					name: 'conditions',
+					description: elementorPro.translate('conditions_publish_screen_description'),
+					image: elementorPro.config.urls.modules + 'theme-builder/assets/images/conditions-tab.svg'
 				}
 			};
 		}
 	}, {
-		key: 'getLogoOptions',
-		value: function getLogoOptions() {
-			return {
-				title: elementorPro.translate('publish_settings')
-			};
-		}
-	}, {
-		key: 'initModal',
-		value: function initModal() {
+		key: 'defaultCommands',
+		value: function defaultCommands() {
 			var _this2 = this;
 
-			_get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), 'initModal', this).call(this);
+			return {
+				next: function next() {
+					var tabs = Object.keys(_this2.tabs),
+					    next = tabs[_this2.currentTabIndex + 1];
 
-			this.modal.addButton({
-				name: 'publish',
-				text: elementorPro.translate('save_and_close'),
-				callback: function callback() {
-					return _this2.onPublishButtonClick();
+					if (next) {
+						$e.route(_this2.getTabRoute(next));
+					}
+				},
+
+				save: function save() {
+					elementor.saver.defaultSave();
+
+					_this2.layout.hideModal();
 				}
-			});
-
-			this.modal.addButton({
-				name: 'next',
-				text: elementorPro.translate('next'),
-				callback: function callback() {
-					return _this2.onNextButtonClick();
-				}
-			});
-
-			var $publishButton = this.modal.getElements('publish');
-
-			this.modal.getElements('next').addClass('elementor-button-success').add($publishButton).addClass('elementor-button').removeClass('dialog-button');
+			};
 		}
 	}, {
-		key: 'addScreen',
-		value: function addScreen(screenData, at) {
-			var index = undefined !== at ? at : this.screens.length;
-
-			this.screens.splice(index, 0, screenData);
+		key: 'getTabsWrapperSelector',
+		value: function getTabsWrapperSelector() {
+			return '#elementor-publish__tabs';
 		}
 	}, {
-		key: 'showModal',
-		value: function showModal() {
-			if (!this.layoutInitialized) {
-				this.showLogo();
+		key: 'renderTab',
+		value: function renderTab(tab) {
+			var tabs = this.getTabs(),
+			    keys = Object.keys(tabs),
+			    tabArgs = tabs[tab];
 
-				this.showContentView();
+			this.currentTabIndex = keys.indexOf(tab);
 
-				this.layoutInitialized = true;
+			var isLastTab = !keys[this.currentTabIndex + 1];
+
+			this.layout.modalContent.currentView.screen.show(new tabArgs.View(tabArgs.viewOptions));
+
+			this.layout.modal.getElements('next').toggle(!isLastTab);
+
+			this.layout.modal.getElements('publish').toggleClass('elementor-button-success', isLastTab);
+		}
+	}, {
+		key: 'activateTab',
+		value: function activateTab(tab) {
+			$e.routes.saveState(this.getNamespace());
+
+			_get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), 'activateTab', this).call(this, tab);
+		}
+	}, {
+		key: 'open',
+		value: function open() {
+			_get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), 'open', this).call(this);
+
+			if (!this.layoutContent) {
+				this.layout.showLogo();
+				this.layout.modalContent.show(new _content2.default({ component: this }));
+				this.layoutContent = true;
 			}
 
-			_get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), 'showModal', this).call(this);
-		}
-	}, {
-		key: 'showContentView',
-		value: function showContentView() {
-			var _this3 = this;
-
-			var contentView = new _content2.default({ screens: this.screens });
-
-			contentView.on('screen:change', function (screen) {
-				return _this3.onContentViewScreenChange(screen);
-			});
-
-			this.modalContent.show(contentView);
-		}
-	}, {
-		key: 'onNextButtonClick',
-		value: function onNextButtonClick() {
-			var currentScreenIndex = this.screens.indexOf(this.modalContent.currentView.currentScreen);
-
-			this.modalContent.currentView.showScreenByIndex(currentScreenIndex + 1);
-		}
-	}, {
-		key: 'onPublishButtonClick',
-		value: function onPublishButtonClick() {
-			elementor.saver.defaultSave();
-
-			this.hideModal();
-		}
-	}, {
-		key: 'onContentViewScreenChange',
-		value: function onContentViewScreenChange(screen) {
-			var isLastScreen = this.screens.indexOf(screen) === this.screens.length - 1;
-
-			this.modal.getElements('next').toggle(!isLastScreen);
-
-			this.modal.getElements('publish').toggleClass('elementor-button-success', isLastScreen);
+			return true;
 		}
 	}]);
 
 	return _class;
-}(elementorModules.common.views.modal.Layout);
+}(elementorModules.common.ComponentModal);
 
 exports.default = _class;
 
@@ -3419,21 +3384,7 @@ var _class = function (_Marionette$LayoutVie) {
 	}, {
 		key: 'getTemplate',
 		value: function getTemplate() {
-			return Marionette.TemplateCache.get('#tmpl-elementor-publish');
-		}
-	}, {
-		key: 'ui',
-		value: function ui() {
-			return {
-				tabs: '.elementor-publish__tab'
-			};
-		}
-	}, {
-		key: 'events',
-		value: function events() {
-			return {
-				'click @ui.tabs': 'onTabClick'
-			};
+			return Marionette.TemplateCache.get('#tmpl-elementor-component-publish');
 		}
 	}, {
 		key: 'regions',
@@ -3446,54 +3397,8 @@ var _class = function (_Marionette$LayoutVie) {
 		key: 'templateHelpers',
 		value: function templateHelpers() {
 			return {
-				screens: this.screens
+				tabs: this.getOption('component').getTabs()
 			};
-		}
-	}, {
-		key: 'initialize',
-		value: function initialize() {
-			this.screens = this.getOption('screens');
-		}
-	}, {
-		key: 'showScreenByName',
-		value: function showScreenByName(screenName) {
-			var screen = _.findWhere(this.screens, { name: screenName });
-
-			this.showScreen(screen);
-		}
-	}, {
-		key: 'showScreenByIndex',
-		value: function showScreenByIndex(index) {
-			this.showScreen(this.screens[index]);
-		}
-	}, {
-		key: 'showScreen',
-		value: function showScreen(screen) {
-			this.screen.show(new screen.View(screen.viewOptions));
-
-			if (this.ui.tabs.length) {
-				if (this.$currentTab) {
-					this.$currentTab.removeClass('elementor-active');
-				}
-
-				this.$currentTab = this.ui.tabs.filter('[data-screen="' + screen.name + '"]');
-
-				this.$currentTab.addClass('elementor-active');
-			}
-
-			this.currentScreen = screen;
-
-			this.trigger('screen:change', screen);
-		}
-	}, {
-		key: 'onRender',
-		value: function onRender() {
-			this.showScreenByIndex(0);
-		}
-	}, {
-		key: 'onTabClick',
-		value: function onTabClick(event) {
-			this.showScreenByName(event.currentTarget.dataset.screen);
 		}
 	}]);
 
@@ -3509,7 +3414,86 @@ exports.default = _class;
 "use strict";
 
 
-var inlineControlsStack = __webpack_require__(52);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _class = function (_elementorModules$com) {
+	_inherits(_class, _elementorModules$com);
+
+	function _class() {
+		_classCallCheck(this, _class);
+
+		return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+	}
+
+	_createClass(_class, [{
+		key: 'getModalOptions',
+		value: function getModalOptions() {
+			return {
+				id: 'elementor-publish__modal',
+				hide: {
+					onButtonClick: false
+				}
+			};
+		}
+	}, {
+		key: 'getLogoOptions',
+		value: function getLogoOptions() {
+			return {
+				title: elementorPro.translate('publish_settings')
+			};
+		}
+	}, {
+		key: 'initModal',
+		value: function initModal() {
+			_get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), 'initModal', this).call(this);
+
+			this.modal.addButton({
+				name: 'publish',
+				text: elementorPro.translate('save_and_close'),
+				callback: function callback() {
+					return $e.run('theme-builder-publish/save');
+				}
+			});
+
+			this.modal.addButton({
+				name: 'next',
+				text: elementorPro.translate('next'),
+				callback: function callback() {
+					return $e.run('theme-builder-publish/next');
+				}
+			});
+
+			var $publishButton = this.modal.getElements('publish');
+
+			this.modal.getElements('next').addClass('elementor-button-success').add($publishButton).addClass('elementor-button').removeClass('dialog-button');
+		}
+	}]);
+
+	return _class;
+}(elementorModules.common.views.modal.Layout);
+
+exports.default = _class;
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var inlineControlsStack = __webpack_require__(53);
 
 module.exports = inlineControlsStack.extend({
 	id: 'elementor-theme-builder-conditions-view',
@@ -3526,7 +3510,7 @@ module.exports = inlineControlsStack.extend({
 });
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3559,13 +3543,13 @@ module.exports = elementorModules.editor.views.ControlsStack.extend({
 });
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _repeaterRow = __webpack_require__(54);
+var _repeaterRow = __webpack_require__(55);
 
 var _repeaterRow2 = _interopRequireDefault(_repeaterRow);
 
@@ -3658,7 +3642,7 @@ module.exports = elementor.modules.controls.Repeater.extend({
 });
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3708,7 +3692,7 @@ module.exports = elementor.modules.controls.RepeaterRow.extend({
 		}
 
 		if (this.model.changed.name || this.model.changed.sub_name) {
-			this.model.set('sub_id', '');
+			this.model.set('sub_id', '', { silent: true });
 
 			var subIdModel = this.collection.findWhere({
 				name: 'sub_id'
@@ -3823,7 +3807,7 @@ module.exports = elementor.modules.controls.RepeaterRow.extend({
 });
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3872,7 +3856,7 @@ module.exports = SaverBehavior.extend({
 			icon: 'eicon-flow',
 			title: elementorPro.translate('display_conditions'),
 			callback: function callback() {
-				return elementorPro.modules.themeBuilder.showPublishModal();
+				return $e.route('theme-builder-publish/conditions');
 			}
 		});
 
@@ -3896,15 +3880,14 @@ module.exports = SaverBehavior.extend({
 		if (hasConditions && !isDraft || !hasLocation) {
 			SaverBehavior.prototype.onClickButtonPublish.apply(this, arguments);
 		} else {
-			elementorPro.modules.themeBuilder.showPublishModal();
+			$e.route('theme-builder-publish/conditions');
 		}
 	},
 
 	onClickButtonPreviewSettings: function onClickButtonPreviewSettings() {
 		var panel = elementor.getPanelView();
-		panel.setPage('page_settings');
-		panel.getCurrentPageView().activateSection('preview_settings');
-		panel.getCurrentPageView()._renderChildren();
+		$e.route('panel/page-settings/settings');
+		panel.getCurrentPageView().activateSection('preview_settings')._renderChildren();
 	}
 });
 

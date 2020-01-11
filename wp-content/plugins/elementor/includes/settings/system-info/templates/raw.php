@@ -36,10 +36,10 @@ foreach ( $reports as $report_name => $report ) :
 		if ( $is_plugins ) {
 			echo "== {$field['label']} ==" . PHP_EOL;
 
-			foreach ( $field['value'] as $plugin ) :
-				$plugin_properties = array_intersect_key( $plugin, $required_plugins_properties );
+			foreach ( $field['value'] as $plugin_info ) :
+				$plugin_properties = array_intersect_key( $plugin_info, $required_plugins_properties );
 
-				echo $sub_indent . $plugin['Name'];
+				echo $sub_indent . $plugin_info['Name'];
 
 				foreach ( $plugin_properties as $property_name => $property ) :
 					echo PHP_EOL . "{$sub_indent}\t{$property_name}: {$property}";
@@ -48,7 +48,12 @@ foreach ( $reports as $report_name => $report ) :
 				echo PHP_EOL . PHP_EOL;
 			endforeach;
 		} else {
-			echo "{$sub_indent}{$field['label']}: {$field['value']}" . PHP_EOL;
+			$label = $field['label'];
+
+			if ( ! empty( $label ) ) {
+				$label .= ': ';
+			}
+			echo "{$sub_indent}{$label}{$field['value']}" . PHP_EOL;
 		}
 	endforeach;
 

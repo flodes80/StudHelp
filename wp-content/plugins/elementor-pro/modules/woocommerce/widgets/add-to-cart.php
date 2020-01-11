@@ -72,6 +72,7 @@ class Add_To_Cart extends Widget_Button {
 				'type' => Controls_Manager::SWITCHER,
 				'label_off' => __( 'Hide', 'elementor-pro' ),
 				'label_on' => __( 'Show', 'elementor-pro' ),
+				'description' => __( 'Please note that switching on this option will disable some of the design controls.', 'elementor-pro' ),
 			]
 		);
 
@@ -120,9 +121,11 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->update_control(
-			'background_color',
+			'size',
 			[
-				'default' => '#61ce70',
+				'condition' => [
+					'show_quantity' => '',
+				],
 			]
 		);
 	}

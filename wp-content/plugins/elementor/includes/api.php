@@ -1,6 +1,8 @@
 <?php
 namespace Elementor;
 
+use Elementor\Core\Common\Modules\Connect\Apps\Library;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -146,6 +148,14 @@ class Api {
 		return $data['upgrade_notice'];
 	}
 
+	/*public static function get_admin_notice() {
+		$data = self::get_info_data();
+		if ( empty( $data['admin_notice'] ) ) {
+			return false;
+		}
+		return $data['admin_notice'];
+	}*/
+
 	public static function get_canary_deployment_info( $force = false ) {
 		$data = self::get_info_data( $force );
 
@@ -219,7 +229,7 @@ class Api {
 	 *
 	 * @param int $template_id The template ID.
 	 *
-	 * @return array The template content.
+	 * @return object|\WP_Error The template content.
 	 */
 	public static function get_template_content( $template_id ) {
 		$url = sprintf( self::$api_get_template_content_url, $template_id );
@@ -228,6 +238,7 @@ class Api {
 		if ( file_exists( $template_path ) ) {
 			$url = ELEMENTOR_URL . 'templates/' . $template_id . '.json';
 		}
+
 		$body_args = [
 			// Which API version is used.
 			'api_version' => ELEMENTOR_VERSION,

@@ -65,6 +65,78 @@ class Module extends Module_Base {
 		add_action( 'widgets_init', [ $this, 'register_wp_widgets' ] );
 	}
 
+	/**
+	 * @deprecated 2.6.0 No longer used by internal code. See Autocomplete documentation in Query-Control Module.
+	 * @param array $results
+	 * @param array $data
+	 *
+	 * @return array
+	 */
+	public function get_autocomplete_for_library_widget_templates( array $results, array $data ) {
+		$document_types = Plugin::elementor()->documents->get_document_types( [
+			'show_in_library' => true,
+		] );
+
+		$query_params = [
+			's' => $data['q'],
+			'post_type' => Source_Local::CPT,
+			'posts_per_page' => -1,
+			'orderby' => 'meta_value',
+			'order' => 'ASC',
+			'meta_query' => [
+				[
+					'key' => Document::TYPE_META_KEY,
+					'value' => array_keys( $document_types ),
+					'compare' => 'IN',
+				],
+			],
+		];
+
+		$query = new \WP_Query( $query_params );
+
+		$results = [];
+
+		foreach ( $query->posts as $post ) {
+			$document = Plugin::elementor()->documents->get( $post->ID );
+			if ( $document ) {
+				$results[] = [
+					'id' => $post->ID,
+					'text' => $post->post_title . ' (' . $document->get_post_type_title() . ')',
+				];
+			}
+		}
+
+		return $results;
+	}
+
+	/**
+	 * @deprecated 2.6.0 No longer used by internal code. See Autocomplete documentation in Query-Control Module.
+	 * @param $results
+	 * @param $request
+	 *
+	 * @return mixed
+	 */
+	public function get_value_title_for_library_widget_templates( $results, $request ) {
+		$ids = (array) $request['id'];
+
+		$query = new \WP_Query(
+			[
+				'post_type' => Source_Local::CPT,
+				'post__in' => $ids,
+				'posts_per_page' => -1,
+			]
+		);
+
+		foreach ( $query->posts as $post ) {
+			$document = Plugin::elementor()->documents->get( $post->ID );
+			if ( $document ) {
+				$results[ $post->ID ] = $post->post_title . ' (' . $document->get_post_type_title() . ')';
+			}
+		}
+
+		return $results;
+	}
+
 	public function add_filters() {
 		add_filter( 'elementor_pro/editor/localize_settings', [ $this, 'localize_settings' ] );
 		add_filter( 'elementor_pro/admin/localize_settings', [ $this, 'localize_settings' ] ); // For WordPress Widgets and Customizer
@@ -73,6 +145,11 @@ class Module extends Module_Base {
 
 			return $black_list;
 		} );
+		/**
+		 * @deprecated 2.6.0 The following filters will be removed in Elementor Pro 2.9.0:
+		 */
+		add_filter( 'elementor_pro/query_control/get_autocomplete/library_widget_templates', [ $this, 'get_autocomplete_for_library_widget_templates' ], 10, 2 );
+		add_filter( 'elementor_pro/query_control/get_value_titles/library_widget_templates', [ $this, 'get_value_title_for_library_widget_templates' ], 10, 2 );
 	}
 
 	public static function get_templates() {

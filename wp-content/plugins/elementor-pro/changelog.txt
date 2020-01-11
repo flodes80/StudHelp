@@ -1,5 +1,170 @@
 # Elementor Pro - by Elementor.com
 
+#### 2.8.3 - 2020-01-01
+* Tweak: Updated Table of Contents widget panel location
+* Fix: ACF URL Dynamic field throws `undefined index` PHP notice ([#9929](https://github.com/elementor/elementor/issues/9929))
+* Fix: Gallery lightbox pagination shows images from all tabs
+* Fix: "Reply To" option not working in Form widget "Email 2" Action
+* Fix: ACF Dynamic tag not working in Form widget Redirect action
+* Fix: Underline option not working in Table of Contents widget Normal state
+* Fix: Query Control `Undefined index: autocomplete` notice in some cases
+* Fix: Missing display condition to Read More Spacing control in Posts widget
+
+#### 2.8.2 - 2019-12-19
+* Tweak: Improved scroll-spy and collapsing functionality in Table of Contents widget
+* Fix: "No products were found" message not being displayed in an empty Products Archive
+* Fix: Redundant `<br>` tags in Single theme template ([#9927](https://github.com/elementor/elementor/issues/9927), [#9928](https://github.com/elementor/elementor/issues/9928))
+* Fix: Draft Popup shows up in Dynamic tag dropdown
+
+#### 2.8.1 - 2019-12-18
+* Fix: Share Buttons widget not working ([#9920](https://github.com/elementor/elementor/issues/9920))
+* Fix: Redundant `<p>` tags added to Single Template posts
+
+#### 2.8.0 - 2019-12-18
+* New: Table of Contents Widget ([#5171](https://github.com/elementor/elementor/issues/5171))
+* New: Added Font Awesome Pro Duotone font family support ([#9578](https://github.com/elementor/elementor/issues/9578))
+* Tweak: Added Lazy Load option to Gallery widget ([#9763](https://github.com/elementor/elementor/issues/9763))
+* Tweak: Added Random order option to Gallery widget ([#9269](https://github.com/elementor/elementor/issues/9269))
+* Tweak: Updated Font Awesome Pro to v5.11.2 ([#9578](https://github.com/elementor/elementor/issues/9578))
+* Tweak: Added preselect support for multiple default select values in Forms Widget ([#9324](https://github.com/elementor/elementor/issues/9324))
+* Tweak: Avoid duplicate queries for Custom Icons ([#9579](https://github.com/elementor/elementor/issues/9579))
+* Tweak: Major performance improvements to Gallery widget
+* Tweak: Avoid non-existing images in Gallery widget
+* Tweak: Added `tabindex`, `aria-expanded`, `aria-hidden` and `role="navigation"` accessibility attributes to Nav Menu widget
+* Tweak: Changed button HTML tag from `button` to `span` in Call to Action and Flip Box widgets for better W3C compliance and accessibility
+* Tweak: Removed Google+ from default networks in Share Buttons widget
+* Tweak: Added compatibility for Library Connect
+* Tweak: Added i18n to Toolset date dynamic tag
+* Tweak: Added external link support to Gallery widget
+* Tweak: Changed the link external attributes implementation to use `add_link_attributes()` in Gallery widget
+* Tweak: Updated references to the new Schemes system location
+* Tweak: Avoid running Gallery handler when the gallery is empty
+* Tweak: UI Tweaks in Editor Panel
+* Tweak: Added responsive capabilities to Pointer Width control in Nav Menu widget
+* Tweak: Added mobile support for responsive controls in Nav Menu widget
+* Tweak: Refactor `register_controls()` method in Posts widget skin trait
+* Fix: ACF URL "undefined Index" notice ([#7646](https://github.com/elementor/elementor/issues/7646))
+* Fix: WooCommerce Mini-Cart widget causes fatal error in edge cases ([#9304](https://github.com/elementor/elementor/issues/9304))
+* Fix: `PHP Notice: Undefined index` display for Author query ([#9864](https://github.com/elementor/elementor/issues/9864))
+* Fix: Added compatibility for Button widget placed inside Swiper carousel ([Topic](https://wordpress.org/support/topic/broken-buttons-since-elementor-2-8/))
+* Fix: Avoid empty spaces in Post info widget
+* Tweak: Always show "Custom label" control in Login widget
+* Fix: Nav Menu item typography selector in Nav Menu widget
+* Fix: Facebook Like Button widget causes flickering
+* Fix: WooCommerce mini-cart behaviour when using `plain` permalinks format
+* Fix: Avoid running Popup triggers when set without conditions
+* Fix: Removed "Date" query from Products widget
+* Fix: Slides widget when used as a Shortcode and is hidden
+* Fix: Custom URL being accessed on swipe in Media Carousel
+* Fix: Media Carousel widget Cube effect glitch
+* Fix: Lightbox shows images from multiple Gallery widgets in the same page
+* Fix: Image `alt` Text not displayed on overlay in Gallery widget
+* Fix: Gallery widget not visible in Posts widget Full Content skin
+* Fix: WooCommerce mini-cart remove unnecessary hooks registration when WooCommerce integration set to `Disable`
+* Fix: Slides widget button wrapping breaks in mobile view
+* Fix: Dynamic capabilities with the Reviews widget
+* Fix: Disabling autoplay doesn't work in Slides widget
+* Fix: Posts widget Full Content skin not working on Single template
+* Fix: Autocomplete not working for "By Author" condition in Display Conditions screen
+* Fix: Posts widget alignment issue
+* Fix: Product Variations Clear button not working in edge cases
+* Fix: Styling issues in Form widget submit button
+
+#### 2.7.3 - 2019-10-28
+* Tweak: Added RTL support to Galleries widget ([#9213](https://github.com/elementor/elementor/issues/9213))
+* Tweak: Added Custom Icons compatibility for WordPress 5.3
+* Fix: Missing template function declaration causes fatal error in WC mini-cart widget
+* Fix: Pause on hover doesn't work in Carousel widgets
+* Fix: Link-actions conflict with `?action=` parameter in the URL
+* Fix: Lightbox navigation not working in Gallery widget Single mode
+* Fix: Ken burns effect not working on the 1st slide if Infinite Loop option is turned off in Carousel widgets
+* Fix: Popup Advanced Rules detects internal links as external if current URL starts with `www`
+
+#### 2.7.2 - 2019-10-06
+* Fix: Slide Overlay not working when applying Ken burns effect in Slides widget ([#9209](https://github.com/elementor/elementor/issues/9209))
+* Fix: Content width glitch in Slides widget ([#9180](https://github.com/elementor/elementor/issues/9180))
+* Fix: Horizontal Alignment not working when applying custom style per slide in Slides widget ([#9180](https://github.com/elementor/elementor/issues/9180))
+* Fix: Missing semicolon in Custom Fonts `font-display` CSS
+
+#### 2.7.1 - 2019-09-26
+* Fix: Background Overlay layer is over the slide content in Slides widget ([#9180](https://github.com/elementor/elementor/issues/9180))
+* Fix: Duplicate images under "All" filter in Multiple Gallery
+
+#### 2.7.0 - 2019-09-24
+* New: Enhanced Galleries widget ([#1898](https://github.com/elementor/elementor/issues/1898), [#3103](https://github.com/elementor/elementor/issues/3103), [#4279](https://github.com/elementor/elementor/issues/4279), [#7631](https://github.com/elementor/elementor/issues/7631))
+* New: Dynamic Number ([#5952](https://github.com/elementor/elementor/issues/5952))
+* New: Full content skin for Posts and Archive-posts widgets ([#4617](https://github.com/elementor/elementor/issues/4617))
+* Tweak: Added dynamic number capability to Price List, Price Table, Counter, Star Rating, Progress Bar widgets
+* Tweak: Added tags support to forms Mailchimp action ([#5418](https://github.com/elementor/elementor/issues/5418))
+* Tweak: User Profile Picture Dynamic Tag ([#7947](https://github.com/elementor/elementor/issues/7947), [#8740](https://github.com/elementor/elementor/issues/8740))
+* Tweak: Added `font-display` support to custom fonts ([#5993](https://github.com/elementor/elementor/issues/5993), [Developers Blog Post](https://developers.elementor.com/elementor-pro-2-7-custom-fonts-font-display-support/))
+* Tweak: Added Text Shadow control to Slides widget ([#8800](https://github.com/elementor/elementor/issues/8800))
+* Tweak: Added Re-subscribe support to MailerLite ([#8799](https://github.com/elementor/elementor/issues/8799))
+* Tweak: Added Dynamic capabilities to Facebook Embed widget ([#9030](https://github.com/elementor/elementor/issues/9030))
+* Tweak: Use `swiper.js` instead of `slick.js` in Slides widget ([Developers Blog Post](https://developers.elementor.com/elementor-2-7-moving-sliders-from-slick-to-swiper/))
+* Tweak: Added `elementor_pro/search_form/before_input` action hook to Search Form widget ([#5598](https://github.com/elementor/elementor/issues/5598))
+* Tweak: Added `elementor_pro/search_form/after_input` action hook to Search Form widget ([#5598](https://github.com/elementor/elementor/issues/5598))
+* Tweak: Added dynamic support for Custom field key ([#7789](https://github.com/elementor/elementor/issues/7789))
+* Tweak: Increased expired license notice bar frequency
+* Tweak: Changed the icon name of Slides widget
+* Tweak: Added designated Finder's Icons for Custom icons & Custom fonts
+* Tweak: Use Ken Burns Effect as an external module
+* Tweak: Remove Fontello conflicting CSS on import to Custom Icons sets
+* Tweak: Editor Panel UI tweaks
+* Tweak: Added DOM events on Popup show/hide ([Developers Blog Post](https://developers.elementor.com/elementor-pro-2-7-popup-events/))
+* Tweak: Added option to change the variations field width in Add to Cart widget
+* Tweak: Use select control instead of select2 in Menu Cart widget
+* Tweak: Added conditions to the tabs instead of to each control in Share Buttons widget
+* Tweak: Added Typography controls to HTML field in Forms widget
+* Tweak: Allow edit selected Font file in Custom Font
+* Tweak: Changed reCAPTCHA v3 error message
+* Tweak: Remove the "Save as Global" option on Global widget context menu
+* Fix: Corrected selector for `removeControlSpinner()` ([#8790](https://github.com/elementor/elementor/issues/8790))
+* Fix: Slides widget navigation icons misplacement ([#8533](https://github.com/elementor/elementor/issues/8533))
+* Fix: Horizontal Scrollbar when Slider widget is set to Full Width ([#8527](https://github.com/elementor/elementor/issues/8527))
+* Fix: Inconsistent behavior when "Infinite Loop" enabled with "Autoplay" in Slides widget ([#6726](https://github.com/elementor/elementor/issues/6726))
+* Fix: Ken Burns effect on Chrome transition glitches ([#1671](https://github.com/elementor/elementor/issues/1671))
+* Fix: Nothing found message shows up inside the columns set in Posts Archive widget ([#7347](https://github.com/elementor/elementor/issues/7347))
+* Fix: Responsive UI glitch in Popup Conditions modal tabs
+* Fix: Removed unnecessary divider in Call to Action widget
+* Fix: Custom Add To Cart * button style (size, position and background color) when `quantity` is enabled.
+* Fix: Add support for Document/PageBase in Theme Builder (Core >=2.7.0)
+* Fix: Ampersand character breaks email link in Share Buttons widget
+* Fix: Correct custom font attachment `mime-type` to show uploaded Custom Fonts
+* Fix: Mini-Cart not refreshing in Menu Cart widget
+* Fix: Cart drawer not working when WC Subscriptions plugin is activated
+* Fix:  Querying CPT with custom taxonomies does not show the taxonomies before saving
+* Fix: Double rendering on change caused console error in Theme Builder's conditions screen
+* Fix: Translations and Strings in Share Buttons widget
+* Fix: Avoid using offset if the source is Manual selection in Query Control
+* Fix: Form being submitted although reCAPTCHA v3 validation failed in Forms widget
+
+#### 2.6.5 - 2019-08-26
+* Tweak: Added compatibility for the upcoming release of Elementor v2.7
+* Fix: Button style not working when `quantity` is enabled in Custom Add To Cart widget
+* Fix: Updated minified JS file fixed WhatsApp base URL in Share Buttons widget
+
+#### 2.6.4 - 2019-08-21
+* Tweak: Added compatibility for the upcoming release of Elementor v2.7
+* Fix: Changed WhatsApp base URL in Share Buttons widget for cross-device compatibility
+* Fix: Random slides order after several clicks on pagination in Testimonial Carousel widget
+
+#### 2.6.3 - 2019-08-18
+* Fix: Core version rollback to `>2.6.0` causes a fatal error
+* Fix: Duplicate images when slideshow skin is selected in Media Carousel lightbox
+* Fix: Default bottom margin added to reCAPTCHA V3 badge
+* Fix: Input glitch in reCAPTCHA V3 threshold settings
+
+#### 2.6.2 - 2019-07-30
+* Tweak: Better accessibility support in Search Form widget
+* Fix: UI glitched in Popup publish screen ([#8616](https://github.com/elementor/elementor/issues/8616))
+* Fix: "Child of Term" and "Any child of term" conditions ([#8695](https://github.com/elementor/elementor/issues/8695))
+* Fix: Restored `library_widget_templates` action hook for 3rd party compatibility ([#8687](https://github.com/elementor/elementor/issues/8687))
+* Fix: Twitter Icon missing in Blockquote widget
+* Fix: Form reCAPTCHA v3 badge position not working
+* Fix: Renewal notice bar appears in wrong situations
+* Fix: Draft Icon Set loads empty Icon Library
+
 #### 2.6.1 - 2019-07-24
 * Fix: Query Control autocomplete not retrieving results ([#8672](https://github.com/elementor/elementor/issues/8672), [#8661](https://github.com/elementor/elementor/issues/8661))
 * Fix: Price Table features section not working ([#8660](https://github.com/elementor/elementor/issues/8660))

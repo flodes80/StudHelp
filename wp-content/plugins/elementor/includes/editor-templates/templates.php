@@ -21,14 +21,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 </script>
 
 <script type="text/template" id="tmpl-elementor-template-library-header-menu">
-	<# screens.forEach( ( screen ) => { #>
-		<div class="elementor-template-library-menu-item" data-template-source="{{{ screen.source }}}"{{{ screen.type ? ' data-template-type="' + screen.type + '"' : '' }}}>{{{ screen.title }}}</div>
+	<# jQuery.each( tabs, ( tab, args ) => { #>
+		<div class="elementor-component-tab elementor-template-library-menu-item" data-tab="{{{ tab }}}">{{{ args.title }}}</div>
 	<# } ); #>
 </script>
 
 <script type="text/template" id="tmpl-elementor-template-library-header-preview">
 	<div id="elementor-template-library-header-preview-insert-wrapper" class="elementor-templates-modal__header__item">
-		{{{ elementor.templates.getLayout().getTemplateActionButton( obj ) }}}
+		{{{ elementor.templates.layout.getTemplateActionButton( obj ) }}}
 	</div>
 </script>
 
@@ -146,7 +146,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	</div>
 	<div class="elementor-template-library-template-footer">
-		{{{ elementor.templates.getLayout().getTemplateActionButton( obj ) }}}
+		{{{ elementor.templates.layout.getTemplateActionButton( obj ) }}}
 		<div class="elementor-template-library-template-name">{{{ title }}} - {{{ type }}}</div>
 		<div class="elementor-template-library-favorite">
 			<input id="elementor-template-library-template-{{ template_id }}-favorite-input" class="elementor-template-library-template-favorite-input" type="checkbox"{{ favorite ? " checked" : "" }}>
@@ -192,14 +192,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 </script>
 
 <script type="text/template" id="tmpl-elementor-template-library-insert-button">
-	<a class="elementor-template-library-template-action elementor-template-library-template-insert elementor-button">
+	<a class="elementor-template-library-template-action elementor-template-library-template-insert">
 		<i class="eicon-file-download" aria-hidden="true"></i>
 		<span class="elementor-button-title"><?php echo __( 'Insert', 'elementor' ); ?></span>
 	</a>
 </script>
 
 <script type="text/template" id="tmpl-elementor-template-library-get-pro-button">
-	<a class="elementor-template-library-template-action elementor-button elementor-button-go-pro" href="<?php echo Utils::get_pro_link( 'https://elementor.com/pro/?utm_source=panel-library&utm_campaign=gopro&utm_medium=wp-dash' ); ?>" target="_blank">
+	<a class="elementor-template-library-template-action elementor-button-go-pro" href="<?php echo Utils::get_pro_link( 'https://elementor.com/pro/?utm_source=panel-library&utm_campaign=gopro&utm_medium=wp-dash' ); ?>" target="_blank">
 		<i class="eicon-external-link-square" aria-hidden="true"></i>
 		<span class="elementor-button-title"><?php echo __( 'Go Pro', 'elementor' ); ?></span>
 	</a>
@@ -259,4 +259,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <script type="text/template" id="tmpl-elementor-template-library-preview">
 	<iframe></iframe>
+</script>
+
+<script type="text/template" id="tmpl-elementor-template-library-connect">
+	<div id="elementor-template-library-connect-logo" class="elementor-gradient-logo">
+		<i class="eicon-elementor" aria-hidden="true"></i>
+	</div>
+	<div class="elementor-template-library-blank-title">
+		{{{ title }}}
+	</div>
+	<div class="elementor-template-library-blank-message">
+		{{{ message }}}
+	</div>
+	<?php $url = Plugin::$instance->common->get_component( 'connect' )->get_app( 'library' )->get_admin_url( 'authorize' ); ?>
+	<a id="elementor-template-library-connect__button" class="elementor-button elementor-button-success" href="<?php echo esc_attr( $url ); ?>">
+		{{{ button }}}
+	</a>
+	<?php
+	$base_images_url = $this->get_assets_base_url() . '/assets/images/library-connect/';
+
+	$images = [ 'left-1', 'left-2', 'right-1', 'right-2' ];
+
+	foreach ( $images as $image ) : ?>
+		<img id="elementor-template-library-connect__background-image-<?php echo $image; ?>" class="elementor-template-library-connect__background-image" src="<?php echo $base_images_url . $image; ?>.png" draggable="false"/>
+	<?php endforeach; ?>
 </script>

@@ -5,6 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use Elementor\Core\Schemes;
+
 /**
  * Elementor section element.
  *
@@ -230,6 +232,7 @@ class Element_Section extends Element_Base {
 			]
 		);
 
+		// Element Name for the Navigator
 		$this->add_control(
 			'_title',
 			[
@@ -426,7 +429,19 @@ class Element_Section extends Element_Base {
 					'top' => __( 'Top', 'elementor' ),
 					'middle' => __( 'Middle', 'elementor' ),
 					'bottom' => __( 'Bottom', 'elementor' ),
+					'space-between' => __( 'Space Between', 'elementor' ),
+					'space-around' => __( 'Space Around', 'elementor' ),
+					'space-evenly' => __( 'Space Evenly', 'elementor' ),
 				],
+				'selectors_dictionary' => [
+					'top' => 'flex-start',
+					'middle' => 'center',
+					'bottom' => 'flex-end',
+				],
+				'selectors' => [
+					'{{WRAPPER}} > .elementor-container > .elementor-row > .elementor-column > .elementor-column-wrap > .elementor-widget-wrap' => 'align-content: {{VALUE}}; align-items: {{VALUE}};',
+				],
+				// TODO: The following line is for BC since 2.7.0
 				'prefix_class' => 'elementor-section-content-',
 			]
 		);
@@ -472,6 +487,17 @@ class Element_Section extends Element_Base {
 			]
 		);
 
+		$this->end_controls_section();
+
+		// Section Structure
+		$this->start_controls_section(
+			'section_structure',
+			[
+				'label' => __( 'Structure', 'elementor' ),
+				'tab' => Controls_Manager::TAB_LAYOUT,
+			]
+		);
+
 		$this->add_control(
 			'structure',
 			[
@@ -479,6 +505,7 @@ class Element_Section extends Element_Base {
 				'type' => Controls_Manager::STRUCTURE,
 				'default' => '10',
 				'render_type' => 'none',
+				'style_transfer' => false,
 			]
 		);
 
@@ -506,21 +533,9 @@ class Element_Section extends Element_Base {
 			Group_Control_Background::get_type(),
 			[
 				'name' => 'background',
-				'types' => [ 'classic', 'gradient', 'video' ],
+				'types' => [ 'classic', 'gradient', 'video', 'slideshow' ],
 				'fields_options' => [
 					'background' => [
-						'frontend_available' => true,
-					],
-					'video_link' => [
-						'frontend_available' => true,
-					],
-					'video_start' => [
-						'frontend_available' => true,
-					],
-					'video_end' => [
-						'frontend_available' => true,
-					],
-					'play_once' => [
 						'frontend_available' => true,
 					],
 				],
@@ -575,9 +590,6 @@ class Element_Section extends Element_Base {
 			[
 				'label' => __( 'Background Overlay', 'elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'background_background' => [ 'classic', 'gradient', 'video' ],
-				],
 			]
 		);
 
@@ -1011,7 +1023,7 @@ class Element_Section extends Element_Base {
 			]
 		);
 
-		if ( in_array( Scheme_Color::get_type(), Schemes_Manager::get_enabled_schemes(), true ) ) {
+		if ( in_array( Schemes\Color::get_type(), Schemes\Manager::get_enabled_schemes(), true ) ) {
 			$this->add_control(
 				'colors_warning',
 				[
@@ -1342,13 +1354,20 @@ class Element_Section extends Element_Base {
 	protected function _content_template() {
 		?>
 		<#
-			if ( settings.background_video_link ) {
-				let videoAttributes = 'autoplay muted playsinline';
-				if ( ! settings.background_play_once ) {
-					videoAttributes += ' loop';
-				}
+		if ( settings.background_video_link ) {
+			let videoAttributes = 'autoplay muted playsinline';
+
+			if ( ! settings.background_play_once ) {
+				videoAttributes += ' loop';
+			}
+
+			view.addRenderAttribute( 'background-video-container', 'class', 'elementor-background-video-container' );
+
+			if ( ! settings.background_play_on_mobile ) {
+				view.addRenderAttribute( 'background-video-container', 'class', 'elementor-hidden-phone' );
+			}
 		#>
-			<div class="elementor-background-video-container elementor-hidden-phone">
+			<div {{{ view.getRenderAttributeString( 'background-video-container' ) }}}>
 				<div class="elementor-background-video-embed"></div>
 				<video class="elementor-background-video-hosted elementor-html5-video" {{ videoAttributes }}></video>
 			</div>
@@ -1379,8 +1398,14 @@ class Element_Section extends Element_Base {
 			if ( 'video' === $settings['background_background'] ) :
 				if ( $settings['background_video_link'] ) :
 					$video_properties = Embed::get_video_properties( $settings['background_video_link'] );
+
+					$this->add_render_attribute( 'background-video-container', 'class', 'elementor-background-video-container' );
+
+					if ( ! $settings['background_play_on_mobile'] ) {
+						$this->add_render_attribute( 'background-video-container', 'class', 'elementor-hidden-phone' );
+					}
 					?>
-					<div class="elementor-background-video-container elementor-hidden-phone">
+					<div <?php echo $this->get_render_attribute_string( 'background-video-container' ); ?>>
 						<?php if ( $video_properties ) : ?>
 							<div class="elementor-background-video-embed"></div>
 							<?php
@@ -1506,9 +1531,13 @@ class Element_Section extends Element_Base {
 		$settings = $this->get_active_settings();
 		$base_setting_key = "shape_divider_$side";
 		$negative = ! empty( $settings[ $base_setting_key . '_negative' ] );
+		$shape_path = Shapes::get_shape_path( $settings[ $base_setting_key ], $negative );
+		if ( ! is_file( $shape_path ) || ! is_readable( $shape_path ) ) {
+			return;
+		}
 		?>
 		<div class="elementor-shape elementor-shape-<?php echo esc_attr( $side ); ?>" data-negative="<?php echo var_export( $negative ); ?>">
-			<?php include Shapes::get_shape_path( $settings[ $base_setting_key ], ! empty( $settings[ $base_setting_key . '_negative' ] ) ); ?>
+			<?php echo file_get_contents( $shape_path ); ?>
 		</div>
 		<?php
 	}

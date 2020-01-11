@@ -3,22 +3,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+// TODO: Remove after moving to Route API
 ?>
 <script type="text/template" id="tmpl-elementor-publish">
 	<# if ( screens.length > 1 ) { #>
-		<div id="elementor-publish__tabs" class="elementor-templates-modal__sidebar">
-			<# screens.forEach( function( screen ) { #>
-				<div class="elementor-publish__tab" data-screen="{{ screen.name }}">
-					<div class="elementor-publish__tab__image">
-						<img src="{{ screen.image }}">
-					</div>
-					<div class="elementor-publish__tab__content">
-						<div class="elementor-publish__tab__title">{{{ screen.title }}}</div>
-						<div class="elementor-publish__tab__description">{{{ screen.description }}}</div>
-					</div>
-				</div>
-			<# } ); #>
+	<div id="elementor-publish__tabs" class="elementor-templates-modal__sidebar">
+		<# screens.forEach( function( screen ) { #>
+		<div class="elementor-publish__tab" data-screen="{{ screen.name }}">
+			<div class="elementor-publish__tab__image">
+				<img src="{{ screen.image }}">
+			</div>
+			<div class="elementor-publish__tab__content">
+				<div class="elementor-publish__tab__title">{{{ screen.title }}}</div>
+				<div class="elementor-publish__tab__description">{{{ screen.description }}}</div>
+			</div>
 		</div>
+		<# } ); #>
+	</div>
+	<# } #>
+	<div id="elementor-publish__screen" class="elementor-templates-modal__content"></div>
+</script>
+
+<script type="text/template" id="tmpl-elementor-component-publish">
+	<# if ( Object.keys( tabs ).length > 1 ) { #>
+	<div id="elementor-publish__tabs" class="elementor-templates-modal__sidebar">
+		<# jQuery.each( tabs, ( tab, args ) => { #>
+		<div class="elementor-component-tab elementor-publish__tab" data-tab="{{ tab }}">
+			<div class="elementor-publish__tab__image">
+				<img src="{{ args.image }}">
+			</div>
+			<div class="elementor-publish__tab__content">
+				<div class="elementor-publish__tab__title">{{{ args.title }}}</div>
+				<div class="elementor-publish__tab__description">{{{ args.description }}}</div>
+			</div>
+		</div>
+		<# } ); #>
+	</div>
 	<# } #>
 	<div id="elementor-publish__screen" class="elementor-templates-modal__content"></div>
 </script>

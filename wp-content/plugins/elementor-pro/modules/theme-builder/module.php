@@ -219,9 +219,18 @@ class Module extends Module_Base {
 
 					foreach ( $post_types as $post_type => $label ) {
 						$doc_type = Plugin::elementor()->documents->get_document_type( $post_type );
-						$doc_name = ( new $doc_type() )->get_name();
+						$doc_class = new $doc_type();
 
-						if ( 'post' === $doc_name || 'page' === $doc_name ) {
+						// New: Core >=2.7.0
+						$is_base_page = class_exists( '\Elementor\Core\DocumentTypes\PageBase' ) && $doc_class instanceof \Elementor\Core\DocumentTypes\PageBase;
+
+						// Old: Core < 2.7.0. TODO: Remove on 2.7.0.
+						if ( ! $is_base_page ) {
+							$doc_name = $doc_class->get_name();
+							$is_base_page = in_array( $doc_name, [ 'post', 'page', 'wp-post', 'wp-page' ] );
+						}
+
+						if ( $is_base_page ) {
 							$post_type_object = get_post_type_object( $post_type );
 							echo sprintf( '<option value="%1$s">%2$s</option>', $post_type, $post_type_object->labels->singular_name );
 						}
@@ -284,7 +293,7 @@ class Module extends Module_Base {
 
 		$categories['create']['items']['theme-template'] = [
 			'title' => __( 'Add New Theme Template', 'elementor-pro' ),
-			'icon' => 'plus-circle',
+			'icon' => 'plus-circle-o',
 			'url' => $this->get_admin_templates_url() . '#add_new',
 			'keywords' => [ 'template', 'theme', 'new', 'create' ],
 		];

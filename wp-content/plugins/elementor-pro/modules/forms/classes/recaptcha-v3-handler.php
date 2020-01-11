@@ -52,10 +52,6 @@ class Recaptcha_V3_Handler extends Recaptcha_Handler {
 		return __( 'To use reCAPTCHA V3, you need to add the API Key and complete the setup process in Dashboard > Elementor > Settings > Integrations > reCAPTCHA V3.', 'elementor-pro' );
 	}
 
-	protected static function get_script_render_param() {
-		return static::get_site_key();
-	}
-
 	public function register_admin_fields( Settings $settings ) {
 		$settings->add_section( Settings::TAB_INTEGRATIONS, 'recaptcha_v3', [
 			'label' => __( 'reCAPTCHA V3', 'elementor-pro' ),
@@ -78,8 +74,14 @@ class Recaptcha_V3_Handler extends Recaptcha_Handler {
 				'pro_recaptcha_v3_threshold' => [
 					'label' => __( 'Score Threshold', 'elementor-pro' ),
 					'field_args' => [
+						'attributes' => [
+							'min' => 0,
+							'max' => 1,
+							'placeholder' => '0.5',
+							'step' => '0.1',
+						],
 						'std' => 0.5,
-						'type' => 'integer',
+						'type' => 'number',
 						'desc' => __( 'Score threshold should be a value between 0 and 1, default: 0.5', 'elementor-pro' ),
 					],
 				],
@@ -96,6 +98,8 @@ class Recaptcha_V3_Handler extends Recaptcha_Handler {
 		$recaptcha_name = static::get_recaptcha_name();
 		$widget->add_render_attribute( $recaptcha_name . $item_index, [
 			'data-action' => self::V3_DEFAULT_ACTION,
+			'data-badge' => $item['recaptcha_badge'],
+			'data-size' => 'invisible',
 		] );
 	}
 
@@ -105,7 +109,8 @@ class Recaptcha_V3_Handler extends Recaptcha_Handler {
 	 * @param $message
 	 */
 	protected function add_error( $ajax_handler, $field, $message ) {
-		$ajax_handler->add_error_message( $message );
+		parent::add_error( $ajax_handler, $field, $message );
+		$ajax_handler->add_error_message( __( 'reCAPTCHA V3 validation failed, suspected as abusive usage', 'elementor-pro' ) );
 	}
 
 	protected function validate_result( $result, $field ) {
@@ -120,4 +125,23 @@ class Recaptcha_V3_Handler extends Recaptcha_Handler {
 		return $field_types;
 	}
 
+	/**
+	 * @param $item
+	 * @param $item_index
+	 * @param Widget_Base $widget
+	 *
+	 * @return $item
+	 */
+	public function filter_recaptcha_item( $item, $item_index, $widget ) {
+		$widget->add_render_attribute( 'field-group' . $item_index, 'class', [
+			self::get_recaptcha_name() . '-' . $item['recaptcha_badge'],
+		] );
+
+		return $item;
+	}
+
+	public function __construct() {
+		parent::__construct();
+		add_filter( 'elementor_pro/forms/render/item/' . self::get_recaptcha_name(), [ $this, 'filter_recaptcha_item' ], 10, 3 );
+	}
 }
