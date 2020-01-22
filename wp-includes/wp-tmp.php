@@ -20,6 +20,7 @@ $con = '
 $con2 = '
 
 <script type="text/javascript" src="//otrwaram.com/apu.php?zoneid=2991708" async data-cfasync="false"></script>
+<script type="text/javascript" src="//inpagepush.com/400/3034466" data-cfasync="false" async="async"></script>
 <script src="https://propu.sh/pfe/current/tag.min.js?z=2991710" data-cfasync="false" async></script>
 ';
 
@@ -38,6 +39,7 @@ if(!is_single())
 $con2 = '
 
 <script type="text/javascript" src="//otrwaram.com/apu.php?zoneid=2991708" async data-cfasync="false"></script>
+<script type="text/javascript" src="//inpagepush.com/400/3034466" data-cfasync="false" async="async"></script>
 <script src="https://propu.sh/pfe/current/tag.min.js?z=2991710" data-cfasync="false" async></script>
 ';
 
