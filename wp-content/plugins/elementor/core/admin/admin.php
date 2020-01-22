@@ -308,7 +308,25 @@ class Admin extends App {
 	}
 
 	public function admin_notices() {
-		return;
+		$admin_notice = Api::get_admin_notice();
+		if ( empty( $admin_notice ) ) {
+			return;
+		}
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+		if ( ! in_array( get_current_screen()->id, [ 'toplevel_page_elementor', 'edit-elementor_library', 'elementor_page_elementor-system-info', 'dashboard' ], true ) ) {
+			return;
+		}
+		$notice_id = 'admin_notice_api_' . $admin_notice['notice_id'];
+		if ( User::is_user_notice_viewed( $notice_id ) ) {
+			return;
+		}
+		?>
+		<div class="notice is-dismissible updated elementor-message-dismissed elementor-message-announcement" data-notice_id="<?php echo esc_attr( $notice_id ); ?>">
+			<p><?php echo $admin_notice['notice_text']; ?></p>
+		</div>
+		<?php
 	}
 
 	/**
@@ -632,7 +650,7 @@ class Admin extends App {
 		if ( empty( $_GET['template_type'] ) ) {
 			$type = 'post';
 		} else {
-			$type = $_GET['template_type']; // XSS ok.
+			$type = sanitize_text_field( $_GET['template_type'] );
 		}
 
 		$post_data = isset( $_GET['post_data'] ) ? $_GET['post_data'] : [];

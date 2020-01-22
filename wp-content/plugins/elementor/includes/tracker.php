@@ -178,9 +178,9 @@ class Tracker {
 		}
 
 		if ( 'opt_into' === $_GET['elementor_tracker'] ) {
-			check_admin_referer( 'opt_out' );
+			check_admin_referer( 'opt_into' );
 
-			self::set_opt_in( false );
+			self::set_opt_in( true );
 		}
 
 		if ( 'opt_out' === $_GET['elementor_tracker'] ) {
@@ -284,8 +284,8 @@ class Tracker {
 
 	public static function set_opt_in( $value ) {
 		if ( $value ) {
-			update_option( 'elementor_allow_tracking', 'no' );
-			self::send_tracking_data( false );
+			update_option( 'elementor_allow_tracking', 'yes' );
+			self::send_tracking_data( true );
 		} else {
 			update_option( 'elementor_allow_tracking', 'no' );
 			update_option( 'elementor_tracker_notice', '1' );
