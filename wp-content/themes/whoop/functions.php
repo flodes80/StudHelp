@@ -207,3 +207,12 @@ function whoop_copyright_text() {
 		echo esc_attr( get_theme_mod( 'dt_copyright_text', DT_COPYRIGHT_TEXT ) );
 	}
 }
+
+function wpum_modify_fields( $fields ) {
+
+	unset( $fields['user_cover'] );
+
+	return $fields;
+
+}
+add_filter( 'wpum_get_account_fields', 'wpum_modify_fields', 20 );
