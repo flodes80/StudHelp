@@ -27,5 +27,4 @@ $first_key = key( $data->steps );
 			</li>
 		<?php endforeach; ?>
 	</ul>
-</nav>
- -->
+</nav> -->
