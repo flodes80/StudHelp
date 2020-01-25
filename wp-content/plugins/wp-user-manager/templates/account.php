@@ -20,15 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <div class="wpum-template wpum-account-page">
 
-	<div class="wpum_one_third">
-		<?php
-			WPUM()->templates
-				->set_template_data( [ 'steps' => wpum_get_account_page_tabs() ] )
-				->get_template_part( 'account', 'tabs' );
-		?>
-	</div>
-
-	<div class="wpum_two_third last">
+	<div>
 		<?php do_action( 'wpum_account_page_content' ); ?>
 	</div>
 

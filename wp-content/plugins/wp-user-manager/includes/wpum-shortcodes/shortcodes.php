@@ -88,6 +88,36 @@ function wpum_password_recovery( $atts, $content = null ) {
 add_shortcode( 'wpum_password_recovery', 'wpum_password_recovery' );
 
 /**
+ * Password recovery shortcode.
+ *
+ * @param array  $atts
+ * @param string $content
+ * @return void
+ */
+function wpum_password( $atts, $content = null ) {
+
+    extract(
+        shortcode_atts(
+            array(
+                'login_link'    => '',
+                'register_link' => '',
+            ),
+            $atts
+        )
+    );
+
+    ob_start();
+
+    echo WPUM()->forms->get_form( 'password', $atts );
+
+    $output = ob_get_clean();
+
+    return $output;
+
+}
+add_shortcode( 'wpum_password', 'wpum_password' );
+
+/**
  * Display a login link.
  *
  * @param array  $atts

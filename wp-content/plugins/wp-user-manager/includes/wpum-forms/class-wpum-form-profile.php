@@ -74,7 +74,7 @@ class WPUM_Form_Profile extends WPUM_Form {
 			'wpum_account_tabs',
 			array(
 				'account' => array(
-					'name'     => esc_html__( 'Profile settings', 'wp-user-manager' ),
+					'name'     => '',
 					'view'     => array( $this, 'show_form' ),
 					'handler'  => array( $this, 'account_handler' ),
 					'priority' => 10,

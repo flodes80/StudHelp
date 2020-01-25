@@ -21,14 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 	<h2><?php echo esc_html( $data->step_name ); ?></h2>
 
-	<?php if( isset( $_GET['password-updated'] ) && $_GET['password-updated'] == 'success' ) : ?>
-		<?php
-			WPUM()->templates
-				->set_template_data( [ 'message' => esc_html__( 'Password successfully updated.', 'wp-user-manager' ) ] )
-				->get_template_part( 'messages/general', 'success' );
-		?>
-	<?php endif; ?>
-
 	<?php do_action( 'wpum_before_password_form' ); ?>
 
 	<form action="<?php echo esc_url( $data->action ); ?>" method="post" id="wpum-submit-password-form" enctype="multipart/form-data">
@@ -80,7 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		<input type="hidden" name="wpum_form" value="<?php echo $data->form; ?>" />
 		<input type="hidden" name="step" value="<?php echo esc_attr( $data->step ); ?>" />
 		<?php wp_nonce_field( 'verify_password_change_form', 'password_change_nonce' ); ?>
-		<input type="submit" name="submit_password" class="button" value="<?php esc_html_e( 'Change password', 'wp-user-manager' ); ?>" />
+		<input type="submit" name="submit_password" class="button" value="Changer mot de passer" />
 
 	</form>
 

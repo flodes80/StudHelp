@@ -72,7 +72,7 @@ class WPUM_Form_Password extends WPUM_Form {
 		$this->steps = (array) apply_filters(
 			'password_change_steps', array(
 				'submit' => array(
-					'name'     => esc_html__( 'Change password', 'wp-user-manager' ),
+					'name'     => '',
 					'view'     => array( $this, 'submit' ),
 					'handler'  => array( $this, 'submit_handler' ),
 					'priority' => 10,
@@ -102,14 +102,14 @@ class WPUM_Form_Password extends WPUM_Form {
 			'password_change_form_fields', array(
 				'password' => array(
 					'password'        => array(
-						'label'       => esc_html__( 'Password', 'wp-user-manager' ),
+						'label'       => 'Mot de passe',
 						'type'        => 'password',
 						'required'    => true,
 						'placeholder' => '',
 						'priority'    => 0,
 					),
 					'password_repeat' => array(
-						'label'       => esc_html__( 'Repeat password', 'wp-user-manager' ),
+						'label'       => 'Confirmer mot de passe',
 						'type'        => 'password',
 						'required'    => true,
 						'placeholder' => '',
@@ -235,7 +235,9 @@ class WPUM_Form_Password extends WPUM_Form {
 					$active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'password';
 				}
 
-				$redirect = rtrim( get_permalink(), '/' ) . '/' . 'password';
+                // Successful, the success message now.
+                $redirect = get_permalink();
+
 				$redirect = add_query_arg(
 					[
 						'password-updated' => 'success',

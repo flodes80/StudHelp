@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/wearerequired/wp-requirements-check" />
+      <path value="$PROJECT_DIR$/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/htmlburger/carbon-fields" />
+      <path value="$PROJECT_DIR$/vendor/wp-user-manager/wp-optionskit" />
+      <path value="$PROJECT_DIR$/vendor/gamajo/template-loader" />
+      <path value="$PROJECT_DIR$/vendor/brain/cortex" />
+      <path value="$PROJECT_DIR$/vendor/alessandrotesoro/wp-notices" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/wpbp/widgets-helper" />
+      <path value="$PROJECT_DIR$/vendor/a5hleyrich/wp-background-processing" />
+    </include_path>
+  </component>
+</project>

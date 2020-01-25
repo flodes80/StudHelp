@@ -299,7 +299,7 @@ msgstr ""
 #: includes/wpum-forms/class-wpum-form-login.php:98
 #: includes/wpum-forms/class-wpum-form-password.php:105
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: includes/functions.php:607 templates/directory/single-user.php:38
 msgid "View profile"
@@ -1975,11 +1975,11 @@ msgstr ""
 #: includes/wpum-forms/class-wpum-form-password.php:75
 #: templates/forms/form-password.php:83
 msgid "Change password"
-msgstr ""
+msgstr "Changement de mot de passe"
 
 #: includes/wpum-forms/class-wpum-form-password.php:112
 msgid "Repeat password"
-msgstr ""
+msgstr "Répéter le mot de passe"
 
 #: includes/wpum-forms/class-wpum-form-password.php:168
 #: includes/wpum-forms/class-wpum-form-registration.php:118

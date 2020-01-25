@@ -655,14 +655,6 @@ function wpum_get_account_page_tabs() {
 			'name'     => esc_html__( 'Password', 'wp-user-manager' ),
 			'priority' => 800,
 		],
-		'view'     => [
-			'name'     => esc_html__( 'View profile', 'wp-user-manager' ),
-			'priority' => 900,
-		],
-		'logout'   => [
-			'name'     => esc_html__( 'Logout', 'wp-user-manager' ),
-			'priority' => 999,
-		],
 	];
 
 	if ( ! wpum_get_core_page_id( 'profile' ) ) {
