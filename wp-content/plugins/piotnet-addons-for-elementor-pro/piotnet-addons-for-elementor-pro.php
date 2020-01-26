@@ -51,6 +51,7 @@ final class Piotnet_Addons_For_Elementor_Pro {
 		require_once( __DIR__ . '/inc/shortcode-pafe-gallery.php' );
 		require_once( __DIR__ . '/inc/shortcode-youtube.php' );
 		require_once( __DIR__ . '/inc/shortcode-pafe-edit-post.php' );
+		require_once( __DIR__ . '/inc/shortcode-pafe-delete-post.php' );
 
 		add_shortcode('pafe-template', [ $this, 'pafe_template_elementor' ] );
 
@@ -69,6 +70,7 @@ final class Piotnet_Addons_For_Elementor_Pro {
 		require_once( __DIR__ . '/inc/ajax-live-search.php' );
 		require_once( __DIR__ . '/inc/ajax-form-builder.php' );
 		require_once( __DIR__ . '/inc/form-database-meta-box.php' );
+		require_once( __DIR__ . '/inc/ajax-delete-post.php' );
 
 		$upload = wp_upload_dir();
 		$upload_dir = $upload['basedir'];

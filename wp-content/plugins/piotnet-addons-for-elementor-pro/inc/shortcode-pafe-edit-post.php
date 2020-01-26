@@ -3,7 +3,7 @@
 		ob_start();
 			if( is_user_logged_in()) {
 				if (current_user_can( 'edit_others_posts' ) || get_current_user_id() == get_post(get_the_ID())->post_author) {
-					$edit_text = __('Edit Post', 'pafe');
+					$edit_text = __('Modifier publication', 'pafe');
 					if (!empty($args['edit_text'])) {
 						$edit_text = $args['edit_text'];
 					}

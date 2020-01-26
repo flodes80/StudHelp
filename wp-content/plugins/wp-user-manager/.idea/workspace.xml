@@ -2,7 +2,329 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86e720ef-1636-48b1-be5c-5ebd50f9f104" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../hide-admin-bar/hide_admin_bar.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hide-admin-bar/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-admin.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-admin.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-advanced-nav-menu-styling.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-ajax-live-search.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-crossfade-multiple-background-images.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-editor.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-editor.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-font-awesome-5.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-form-builder.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-image-select-field.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-lightbox.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-multi-step-form.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-navigation-arrows-icon.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-parallax.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-range-slider.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-scroll-box-with-custom-scrollbar.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-section-link.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-select-autocomplete-field.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-slider-builder.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-sticky-header.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/minify/pafe-toggle-content.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-advanced-nav-menu-styling.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-ajax-live-search.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-crossfade-multiple-background-images.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-editor.css" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-editor.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-font-awesome-5.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-form-builder.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-image-select-field.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-lightbox.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-multi-step-form.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-navigation-arrows-icon.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-parallax.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-range-slider.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-scroll-box-with-custom-scrollbar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-section-link.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-select-autocomplete-field.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-slider-builder.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-sticky-header.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/css/pafe-toggle-content.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/fonts/webfonts/fa-brands-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/fonts/webfonts/fa-brands-400.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/fonts/webfonts/fa-regular-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/fonts/webfonts/fa-regular-400.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/fonts/webfonts/fa-solid-900.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/fonts/webfonts/fa-solid-900.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-address-autocomplete-field.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-advanced-nav-menu-styling.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-ajax-live-search.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-calculated-fields-form.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-close-first-accordion.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-conditional-logic-form.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-crossfade-multiple-background-images.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-custom-media-query-breakpoints.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-editor.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-editor.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-equal-height-for-cta.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-equal-height-for-woocommerce-products.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-equal-height.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-font-awesome-5.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-form-builder.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-form-google-sheets-connector.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-image-carousel-multiple-custom-urls.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-image-select-field.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-lightbox.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-multi-step-form.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-navigation-arrows-icon.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-parallax-library.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-parallax.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-range-slider.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-scroll-box-with-custom-scrollbar.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-section-link.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-select-autocomplete-field.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-slider-builder.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-sticky-header.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-stripe-payment.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/pafe-toggle-content.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-address-autocomplete-field.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-advanced-nav-menu-styling.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-ajax-live-search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-calculated-fields-form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-close-first-accordion.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-conditional-logic-form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-crossfade-multiple-background-images.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-custom-media-query-breakpoints.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-editor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-editor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-equal-height-for-cta.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-equal-height-for-woocommerce-products.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-equal-height.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-font-awesome-5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-form-builder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-form-google-sheets-connector.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-image-carousel-multiple-custom-urls.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-image-select-field.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-lightbox.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-multi-step-form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-navigation-arrows-icon.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-parallax-library.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-parallax.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-range-slider.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-scroll-box-with-custom-scrollbar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-section-link.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-select-autocomplete-field.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-slider-builder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-sticky-header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-stripe-payment.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/pafe-toggle-content.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-advanced-nav-menu-styling.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-advanced-nav-menu-styling.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-column-aspect-ratio.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-column-aspect-ratio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-column-link.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-column-link.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-conditional-logic-form.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-conditional-logic-form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-conditional-visibility.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-conditional-visibility.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-convert-image-to-black-or-white.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-convert-image-to-black-or-white.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-crossfade-multiple-background-images.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-crossfade-multiple-background-images.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-css-filters.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-css-filters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-custom-media-query-breakpoints.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-custom-media-query-breakpoints.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-equal-height-for-cta.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-equal-height-for-cta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-equal-height-for-woocommerce-products.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-equal-height-for-woocommerce-products.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-equal-height.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-equal-height.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-form-builder-conditional-logic.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-form-builder-conditional-logic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-form-google-sheets-connector.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-form-google-sheets-connector.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-max-width.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-max-width.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-media-carousel-ratio.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-media-carousel-ratio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-parallax.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-parallax.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-responsive-column-order.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-responsive-column-order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-responsive-custom-positioning.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-responsive-custom-positioning.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-responsive-hide-column.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-responsive-hide-column.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-scroll-box-with-custom-scrollbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-scroll-box-with-custom-scrollbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-section-link.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-section-link.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-sticky-header-image.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-sticky-header-image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-sticky-header-text.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-sticky-header-text.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-sticky-header-visibility.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-sticky-header-visibility.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-sticky-header.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-sticky-header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-text-color-change-on-column-hover.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-text-color-change-on-column-hover.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-toggle-content.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/controls/pafe-toggle-content.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/gulpfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/admin-page.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/admin-page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/ajax-form-builder.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/ajax-form-builder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/features.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/features.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/shortcode-pafe-edit-post.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/shortcode-pafe-edit-post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/shortcode-pafe-gallery.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/shortcode-pafe-gallery.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/shortcode-youtube.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/shortcode-youtube.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/langs/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/langs/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/plugins/codesample/css/prism.css" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/plugins/codesample/css/prism.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/plugins/imagetools/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/plugins/imagetools/plugin.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/plugins/table/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/plugins/table/plugin.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/plugins/visualblocks/css/visualblocks.css" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/plugins/visualblocks/css/visualblocks.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/skins/lightgray/fonts/tinymce-small.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/skins/lightgray/fonts/tinymce.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/skins/lightgray/fonts/tinymce.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/skins/lightgray/skin.mobile.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/skins/lightgray/skin.mobile.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/themes/inlite/theme.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/themes/inlite/theme.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/themes/mobile/theme.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/themes/mobile/theme.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/themes/modern/theme.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/themes/modern/theme.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/tinymce-upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/tinymce-upload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/tinymce.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/tinymce/tinymce.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/autoload_real.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/.coveralls.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/VERSION" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/build.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/build.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/data/ca-certificates.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/data/ca-certificates.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/examples/oauth.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/init.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/AlipayAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/AlipayAccount.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/All.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/All.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/Create.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/Create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/Delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/Delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/NestedResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/NestedResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/Request.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/Retrieve.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/Retrieve.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/Update.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiOperations/Update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiRequestor.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiRequestor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiResponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApiResponse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApplePayDomain.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApplePayDomain.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApplicationFee.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApplicationFee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApplicationFeeRefund.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ApplicationFeeRefund.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Balance.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Balance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/BalanceTransaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/BalanceTransaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/BankAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/BankAccount.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/BitcoinReceiver.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/BitcoinReceiver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/BitcoinTransaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/BitcoinTransaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Card.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Card.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Charge.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Charge.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Collection.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Collection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/CountrySpec.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/CountrySpec.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Coupon.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Coupon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Customer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Dispute.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Dispute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/EphemeralKey.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/EphemeralKey.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/Api.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/ApiConnection.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/Authentication.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/Base.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/Card.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/Idempotency.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/InvalidRequest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/OAuth/InvalidClient.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/OAuth/InvalidGrant.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/OAuth/InvalidRequest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/OAuth/InvalidScope.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/OAuth/OAuthBase.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/OAuth/UnsupportedGrantType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/OAuth/UnsupportedResponseType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/Permission.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/RateLimit.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Error/SignatureVerification.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Event.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Event.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ExchangeRate.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ExchangeRate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/FileUpload.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/HttpClient/ClientInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/HttpClient/ClientInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/HttpClient/CurlClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/HttpClient/CurlClient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Invoice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/InvoiceItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/InvoiceItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/LoginLink.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/LoginLink.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/OAuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/OAuth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/OrderReturn.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/OrderReturn.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Payout.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Payout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Plan.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Plan.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Recipient.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Recipient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/RecipientTransfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/RecipientTransfer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Refund.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Refund.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/SKU.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/SKU.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/SingletonApiResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/SingletonApiResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Source.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Source.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/SourceTransaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/SourceTransaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Stripe.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Stripe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/StripeObject.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/StripeObject.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Subscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Subscription.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/SubscriptionItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/SubscriptionItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ThreeDSecure.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/ThreeDSecure.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Token.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Token.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Transfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Transfer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/TransferReversal.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/TransferReversal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/AutoPagingIterator.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/DefaultLogger.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/DefaultLogger.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/LoggerInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/LoggerInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/RandomGenerator.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/RandomGenerator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/RequestOptions.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/RequestOptions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/Set.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/Set.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/Util.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Util/Util.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Webhook.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/Webhook.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/WebhookSignature.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/lib/WebhookSignature.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/phpunit.no_autoload.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/phpunit.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/AccountTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/AlipayAccountTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/ApiRequestorTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/ApplePayDomainTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/ApplicationFeeRefundTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/ApplicationFeeTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/BalanceTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/BalanceTransactionTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/BankAccountTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/BitcoinReceiverTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/CardTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/ChargeTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/CollectionTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/CountrySpecTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/CouponTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/CustomerTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/DisputeTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/EphemeralKeyTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/Error/BaseTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/Error/SignatureVerificationTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/EventTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/ExchangeRateTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/FileUploadTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/HttpClient/CurlClientTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/InvoiceItemTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/InvoiceTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/OAuthTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/OrderReturnTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/OrderTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/PayoutTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/PlanTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/ProductTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/RecipientTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/RefundTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/SKUTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/SourceTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/StripeObjectTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/StripeTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/SubscriptionItemTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/SubscriptionTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/ThreeDSecureTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/TokenTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/TransferReversalTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/TransferTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/Util/DefaultLoggerTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/Util/RequestOptionsTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/Util/UtilTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/Stripe/WebhookTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/TestCase.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/bootstrap.no_autoload.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/tests/data/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/update_certs.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/vendor/stripe/stripe-php/update_certs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/piotnet-addons-for-elementor-pro.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/piotnet-addons-for-elementor-pro.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-form-builder-field.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-form-builder-field.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-form-builder-submit.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-form-builder-submit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-lightbox-gallery.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-lightbox-gallery.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-lightbox-image.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-lightbox-image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-multi-step-form.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-multi-step-form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-slider-builder.php" beforeDir="false" afterPath="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-slider-builder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../uploads/elementor/css/post-279.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../uploads/elementor/css/post-279.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../uploads/elementor/css/post-423.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../uploads/elementor/css/post-423.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../uploads/wp-user-manager-uploads/2020/01/fond-ecran.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../wp-includes/wp-tmp.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../../wp-includes/wp-tmp.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,49 +332,39 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1674810203">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JavaScript" value="3" />
+          <entry key="JavaScript" value="5" />
           <entry key="Locale" value="2" />
-          <entry key="PHP" value="40" />
+          <entry key="PHP" value="49" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Locale" value="12" />
-          <entry key="PHP" value="209" />
+          <entry key="PHP" value="230" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../wp-ulike/inc/classes/class-wp-ulike.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="448" column="11" lean-forward="true" selection-start-line="448" selection-start-column="11" selection-end-line="448" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>wpum_display_account_page_content</find>
-      <find>wpum_account_page_content_</find>
       <find>account.php</find>
       <find>add_short</find>
       <find>add_shortcode</find>
@@ -78,9 +390,15 @@
       <find>Update pr</find>
       <find>Update profile</find>
       <find>Profile suc</find>
+      <find>Edit post</find>
+      <find>delete_</find>
+      <find>textarea</find>
+      <find>make_text</find>
+      <find>delete_post</find>
     </findStrings>
     <dirStrings>
       <dir>E:\Programmes\UwAmp\www\StudHelp\wp-content\plugins\wp-user-manager</dir>
+      <dir>E:\Programmes\UwAmp\www\StudHelp\wp-content\plugins\piotnet-addons-for-elementor-pro</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -99,6 +417,8 @@
         <option value="$PROJECT_DIR$/includes/wpum-forms/class-wpum-form-password.php" />
         <option value="$PROJECT_DIR$/templates/forms/form-password.php" />
         <option value="$PROJECT_DIR$/templates/forms/form-account.php" />
+        <option value="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/shortcode-pafe-edit-post.php" />
+        <option value="$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-form-builder-field.php" />
       </list>
     </option>
   </component>
@@ -139,6 +459,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -162,30 +483,28 @@
               <item name="StudHelp" type="462c0819:PsiDirectoryNode" />
               <item name="wp-content" type="462c0819:PsiDirectoryNode" />
               <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="wp-ulike" type="462c0819:PsiDirectoryNode" />
+              <item name="piotnet-addons-for-elementor-pro" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wp-user-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="StudHelp" type="462c0819:PsiDirectoryNode" />
               <item name="wp-content" type="462c0819:PsiDirectoryNode" />
               <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="wp-ulike" type="462c0819:PsiDirectoryNode" />
-              <item name="inc" type="462c0819:PsiDirectoryNode" />
+              <item name="piotnet-addons-for-elementor-pro" type="462c0819:PsiDirectoryNode" />
+              <item name="controls" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wp-user-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="StudHelp" type="462c0819:PsiDirectoryNode" />
               <item name="wp-content" type="462c0819:PsiDirectoryNode" />
               <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="wp-ulike" type="462c0819:PsiDirectoryNode" />
+              <item name="piotnet-addons-for-elementor-pro" type="462c0819:PsiDirectoryNode" />
               <item name="inc" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -217,25 +536,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1579964174879</updated>
-      <workItem from="1579964178650" duration="7997000" />
+      <workItem from="1579964178650" duration="8732000" />
+      <workItem from="1580054289772" duration="3187000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7997000" />
+    <option name="totallyTimeSpent" value="11919000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -243,10 +557,15 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,9 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
           <caret line="195" column="35" lean-forward="true" selection-start-line="195" selection-start-column="35" selection-end-line="195" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -438,10 +754,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../wp-ulike/inc/index.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../wp-ulike/admin/index.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../wp-ulike/admin/admin-functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3876">
+          <caret line="234" column="19" lean-forward="true" selection-start-line="234" selection-start-column="19" selection-end-line="234" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../wp-ulike/inc/frontend-ajax.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2186" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../wp-ulike/inc/classes/class-wp-ulike-frontend-assets.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../wp-ulike/admin/admin-hooks.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/../wp-ulike/inc/classes/class-wp-ulike.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="448" column="11" lean-forward="true" selection-start-line="448" selection-start-column="11" selection-end-line="448" selection-end-column="11" />
+        <state relative-caret-position="17">
+          <caret line="499" column="11" selection-start-line="499" selection-start-column="11" selection-end-line="499" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/minify/form-builder.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="14696" selection-start-line="5" selection-start-column="14696" selection-end-line="5" selection-end-column="14696" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/assets/js/form-builder-pafe-form-builder.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="3224" column="45" lean-forward="true" selection-start-line="3224" selection-start-column="45" selection-end-line="3224" selection-end-column="45" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../elementor/includes/base/element-base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="673">
+          <caret line="400" column="9" lean-forward="true" selection-start-line="400" selection-start-column="9" selection-end-line="400" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/widgets/pafe-form-builder-field.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="2578" column="28" selection-start-line="2578" selection-start-column="28" selection-end-line="2578" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../piotnet-addons-for-elementor-pro/inc/shortcode-pafe-edit-post.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
         </state>
       </provider>
     </entry>
