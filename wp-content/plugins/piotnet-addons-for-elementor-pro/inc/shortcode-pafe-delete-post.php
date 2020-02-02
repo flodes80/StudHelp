@@ -19,8 +19,8 @@
 						$force_delete = $args['force_delete'];
 					}
 
-					wp_enqueue_script( 'pafe-form-builder', plugin_dir_url( __FILE__ ) . 'assets/js/minify/form-builder.min.js', array('jquery'), PAFE_PRO_VERSION );
-					wp_enqueue_style( 'pafe-form-builder-style', plugin_dir_url( __FILE__ ) . 'assets/css/minify/form-builder.min.css', [], PAFE_PRO_VERSION );
+					wp_enqueue_script( 'pafe-form-builder', plugin_dir_url( __FILE__ ) . 'assets/js/minify/form-builder.min.js', array('jquery'), '5.19.2' );
+					wp_enqueue_style( 'pafe-form-builder-style', plugin_dir_url( __FILE__ ) . 'assets/css/minify/form-builder.min.css', [], '5.19.2' );
 
 					echo '<a data-pafe-form-builder-delete-post="' . get_the_ID() . '" data-pafe-form-builder-delete-post-redirect="' . $redirect . '" data-pafe-form-builder-delete-post-force="' . $force_delete . '" class="pafe-form-builder-delete-post">' . $delete_text . '</a>';
 				}

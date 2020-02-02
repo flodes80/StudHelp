@@ -12,12 +12,12 @@
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'PAFE_PRO_VERSION', '5.3.11' );
+define( 'PAFE_PRO_VERSION', '5.19.2' );
 define( 'PAFE_PRO_PREVIOUS_STABLE_VERSION', '5.3.9' );
 
 final class Piotnet_Addons_For_Elementor_Pro {
 
-	const VERSION = '5.3.11';
+	const VERSION = '5.19.2';
 	const MINIMUM_ELEMENTOR_VERSION = '2.0.0';
 	const MINIMUM_PHP_VERSION = '5.4';
 
@@ -259,8 +259,8 @@ final class Piotnet_Addons_For_Elementor_Pro {
 		}
 
 		if( get_option( 'pafe-features-form-builder', 2 ) == 2 || get_option( 'pafe-features-form-builder', 2 ) == 1 ) {
-			wp_enqueue_style( 'pafe-form-builder', plugin_dir_url( __FILE__ ) . 'assets/css/minify/pafe-form-builder.min.css', [], self::VERSION );
-			wp_enqueue_script( 'pafe-form-builder-scripts', plugin_dir_url( __FILE__ ) . 'assets/js/minify/pafe-form-builder.min.js', array('jquery'), self::VERSION );
+			wp_enqueue_style( 'pafe-form-builder', plugin_dir_url( __FILE__ ) . 'assets/css/minify/pafe-form-builder.min.css', [], '5.19.2' );
+			wp_enqueue_script( 'pafe-form-builder-scripts', plugin_dir_url( __FILE__ ) . 'assets/js/minify/pafe-form-builder.min.js', array('jquery'), '5.19.2' );
 
 			if (!empty(get_option('piotnet-addons-for-elementor-pro-recaptcha-site-key')) && !empty(get_option('piotnet-addons-for-elementor-pro-recaptcha-secret-key'))) {
 				wp_enqueue_script( 'pafe-form-builder-scripts-recaptcha', 'https://www.google.com/recaptcha/api.js?render=' . esc_attr(get_option('piotnet-addons-for-elementor-pro-recaptcha-site-key')) );

@@ -40,15 +40,14 @@ function v_forcelogin() {
 		 * @since 5.2.0 The `$url` parameter was added.
 		 */
 		$bypass = apply_filters( 'v_forcelogin_bypass', false, $url );
-		$whitelist = apply_filters( 'v_forcelogin_whitelist', array() );
 
-		if ( preg_replace( '/\?.*/', '', $url ) !== preg_replace( '/\?.*/', '', wp_login_url() ) && ! $bypass && ! in_array( $url, $whitelist ) ) {
+		if ( preg_replace( '/\?.*/', '', $url ) !== preg_replace( '/\?.*/', '', 'https://florian.dedi.valentincocherel.fr/login-page/' ) && ! $bypass ) {
 			// Determine redirect URL
 			$redirect_url = apply_filters( 'v_forcelogin_redirect', $url );
 			// Set the headers to prevent caching
 			nocache_headers();
 			// Redirect
-			wp_safe_redirect( wp_login_url( $redirect_url ), 302 ); exit;
+			wp_safe_redirect( 'https://florian.dedi.valentincocherel.fr/login-page/', 302 ); exit;
 		}
 	}
 	elseif ( function_exists('is_multisite') && is_multisite() ) {
